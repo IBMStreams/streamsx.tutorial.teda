@@ -22,7 +22,7 @@ After completing this module you should be able to:
 
 # Prerequisites
 
-You completed [module 1](https://github.com/IBMStreams/streamsx.tutorial.teda/wiki/Module-1:-Preparing-your-development-system), which guided you through the installation of the TEDA plug-in for Streams Studio and the setup and configuration of the Monitoring GUI.
+You completed [module 1](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-1/), which guided you through the installation of the TEDA plug-in for Streams Studio and the setup and configuration of the Monitoring GUI.
 
 If you imported the sample application that comes as SPL Sample with the com.ibm.streams.teda toolkit, in module 1, you must create a new workspace for Streams Studio to avoid that the new project conflicts with the imported sample application.
 
