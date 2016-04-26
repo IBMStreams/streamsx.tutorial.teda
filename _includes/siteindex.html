@@ -3,7 +3,7 @@
 {% for node in site.pages %}
     {% unless node.url contains "none" %} 
 	{% if node.url contains "docs"%}
-      <li><a href='/streamsx.documentation{{node.url}}'>{{node.url}}{{node.title}}</a></li>
+      <li><a href='/streamsx.tutorial.teda{{node.url}}'>{{node.url}}{{node.title}}</a></li>
   {% endif %}
   {%endunless%}
 {% endfor %}
