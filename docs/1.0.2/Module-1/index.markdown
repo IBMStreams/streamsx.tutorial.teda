@@ -56,7 +56,7 @@ The TEDA plug-in provides wizards to create SPL projects that are based on the T
 
 3. Navigate to your Streams installation directory (`$STREAMS_INSTALL`) and select `$STREAMS_INSTALL/etc/eclipse`. Click **OK** in the file dialog window and in the _Add Repository_ dialog window. The software from the new local repository is displayed.
 
-  <img src="/streamsx.tutorial.teda/images/1.0.2/module-01/AvailableSoftwareDialog_AddSoftwareRepository.png" alt="Available Software dialog" style="width: 60%;"/>
+  <img src="/streamsx.tutorial.teda/images/1.0.2/module-01/AvailableSoftwareDialog_AddSoftwareRepository.png" alt="Available Software dialog"/>
 
   <img src="/streamsx.tutorial.teda/images/1.0.2/module-01/AvailableSoftwareDialog.png" alt="Available Software dialog" style="width: 60%;"/>
 
