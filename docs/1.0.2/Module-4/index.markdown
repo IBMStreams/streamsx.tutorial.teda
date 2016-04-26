@@ -20,7 +20,7 @@ After completing this module you should be able to:
 
 # Prerequisites
 
-You completed [module 3](https://github.com/IBMStreams/streamsx.tutorial.teda/wiki/Module-3:-Customizing-for-input-files-in-CSV-format), which guided you through the customizing for input files in CSV format of a TEDA-based sample mediation application.
+You completed [module 3](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-3/), which guided you through the customizing for input files in CSV format of a TEDA-based sample mediation application.
 
 # Concepts
 
@@ -209,7 +209,7 @@ The transformed and derived attributes are formatted bold.
 
 ## Shutting down the ITE application gracefully and cleaning up
 
-Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](https://github.com/IBMStreams/streamsx.tutorial.teda/wiki/Module-2:-Creating,-running,-and-monitoring-the-basic-mediation-application#shutting-down-the-ite-application-gracefully).
+Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/).
 
 The quick summary is:
 
