@@ -1,6 +1,6 @@
 ---
 layout: docs
-title:  Module-4
+title:  Module 4 - Customizing the business logic (first steps)
 description:  Customizing-the-business-logic-(first-steps)
 weight:  10
 ---
@@ -46,7 +46,7 @@ When customizing the ITE application, it is recommended to follow the functional
 
 The following figure and table show the points that you need to customize in the ITE application during this module or that influence the customization like the different formats and stream schemas. In the previous module, you customized the FileReader component. Other parts don't need to be customized because it is not necessary for this module.
 
-[[img/module-04/Architecture.png|alt=The customization points]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-04/Architecture.png" alt="The customization points"/>
 
 |    Number    |    Functional Block                             |    What needs to be customized?                                                                                                                |
 |--------------|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -139,7 +139,7 @@ Now you are ready to implement the transformer operator logic.
 
 You implement the transformation logic in the **DataProcessor** composite in namespace **demoapp.chainprocessor.transformer.custom**. You find a default implementation in the **Resources/demoapp.chainprocessor.transformer.custom/DataProcessor.spl** file. It forwards the input tuples unmodified. Your transformer logic uses one Custom operator to transform and forward the input tuple and to forward the statistics tuple unmodified.
 
-[[img/module-04/DataProcessor.png|alt=DataProcessor]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-04/DataProcessor.png" alt="DataProcessor"/>
 
 The transformer uses the custom functions, **extractDateTime**, **twistAndTrimDigitString**, and **TBCDtoASCII**. You implement these functions in the same SPL namespace as the **DataProcessor** composite, even in the same file.
 
@@ -168,7 +168,7 @@ The Application is submitted to your Streams instance.
 
 Shortly after that, the submitted application appears in the Monitoring GUI, and its status goes to healthy after some seconds. If you select the application in the Monitoring GUI, you see that all metrics have the value 0.
 
-[[img/module-04/MonitoringGUI.png|alt=Monitoring GUI after job submission]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-04/MonitoringGUI.png" alt="Monitoring GUI after job submission"/>
 
 ## Moving sample data files to the application's input directory to process the data
 
@@ -184,7 +184,7 @@ Open a terminal window and run the following command to move the CSV files in to
 Remember that you always move the files into the input directory to make the files appear atomically within the directory that is being scanned. You avoid that a file is processed while it is still being copied.
 The files are processed within 5 seconds. You can press F5 in the Monitoring GUI to refresh the metrics immediately, not waiting for the next refresh cycle.
 
-[[img/module-04/MonitoringGUI_ProcessedRecords.png|alt=Monitoring GUI after file processing]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-04/MonitoringGUI_ProcessedRecords.png" alt="Monitoring GUI after file processing"/>
 
 You can see, that the application processed two files with total 200 tuples.
 
@@ -218,10 +218,6 @@ The quick summary is:
 * Remove the checkpoint, control, and out directories that are sub directories of the data directory. Either you remove them using Streams Studio or the rm command. This step is required to get rid of the file name history that is used for the file duplicate detection, and to start the next time from scratch.
 
 * Optionally, you can close the Monitoring GUI.
-
-# Fast Facts
-
-# Self Check
 
 # Next Steps
 

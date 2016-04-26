@@ -1,7 +1,7 @@
 ---
 layout: docs
-title:  Module-5
-description:  Customizing-for-input-files-in-binary-format-(fixed-size-structures).md
+title:  Module 5 - Customizing for input files in binary format (fixed-size structures) 
+description:  Customizing-for-input-files-in-binary-format-(fixed-size-structures)
 weight:  10
 ---
 
@@ -23,7 +23,7 @@ You finished at least [module 3](https://github.com/IBMStreams/streamsx.tutorial
 
 Fixed-size structures are a vendor-specific format. A data file contains for example Call Detail Records (CDRs) encoded as fixed-size structures, which means, a number of fields that have fixed lengths each. The following picture shows a fictive data record. 
 
-[[img/module-05/DataRecord.png|alt=Data Record]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/DataRecord.png" alt="Data Record"/>
 
 A record as a whole and the included data fields can contain fill bytes. An example for a data field with fill bytes is a digit field for telephone numbers. The maximum length of a telephone number defines the length of the field. In case the number is shorter, the rest of the field contains fill bytes or fill digits. Typically a file contains more than one record. Nevertheless, you need a description issued by the creator of the data files to understand and decode these files.
 
@@ -40,7 +40,7 @@ When customizing the ITE application, it is recommended to follow the functional
 
 The following figure and table show the points that you need to customize in the ITE application during this module or that influence the customization like the different formats and stream schemas. Other parts don't need to be customized because it is not necessary for this module.
 
-[[img/module-05/Architecture.png|alt=The customization points]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/Architecture.png" alt="The customization points"/>
 
 |    Number    |    Functional Block                             |    What needs to be customized?                                                                                                                |
 |--------------|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -168,7 +168,7 @@ For a detailed description, refer to [Reference>Toolkits>SPL standard and specia
 
 Use the Streams Studio's Project Explorer to create the `structure.xml` file in the project’s `etc` folder. 
 
-[[img/module-05/StructureXML.png|alt=The structure definition document]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/StructureXML.png" alt="The structure definition document"/>
 
 Add the following content to the file.
 
@@ -199,7 +199,7 @@ In the tutorial, the binary file can contain two different structures, a voice C
 
 Use the Streams Studio’s Project Explorer to create the file mapping.xml in the project’s etc folder.
 
-[[img/module-05/MappingXML.png|alt=The mapping definition document]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/MappingXML.png" alt="The mapping definition document"/>
 
 Replace the content of the XML file with the following content.
 
@@ -291,7 +291,7 @@ The Application is submitted to your Streams instance.
 
 Shortly after that, the submitted application appears in the Monitoring GUI, and its status goes to healthy after some seconds. If you select the application in the Monitoring GUI, you see that all metrics have the value 0.
 
-[[img/module-05/MonitoringGUI.png|alt=Monitoring GUI after job submission]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/MonitoringGUI.png" alt="Monitoring GUI after job submission"/>
 
 ## Moving sample data files to the application's input directory to process the data
 
@@ -308,7 +308,7 @@ Open a terminal window and run the following commands to move the files into the
 
 The files are processed within 5 seconds. You can press F5 in the Monitoring GUI to refresh the metrics immediately, not waiting for the next refresh cycle.
 
-[[img/module-05/MonitoringGUI_ProcessedRecords.png|alt=Monitoring GUI after file processing]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/MonitoringGUI_ProcessedRecords.png" alt="Monitoring GUI after file processing"/>
 
 You can see, that the application processed two files with a total of 20000 tuples.
 
@@ -318,7 +318,7 @@ Refresh the **Resources** tree of the ITE project in the Project Explorer to see
 
 The ITE application processed the input files from the `in` directory and moved them back to `in/archive`. Note, that the `archive` directory contains also other files, which you copied before and which are ignored for now. The ITE application created also the files in the `out/load` directory. These files are the output files.
 
-[[img/module-05/FileExplorer_Outputs.png|alt=Output files]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/FileExplorer_Outputs.png" alt="Output files"/>
 
 ## Shutting down the ITE application gracefully and cleaning up
 
@@ -331,10 +331,6 @@ The quick summary is:
 * Remove the checkpoint, control, and out directories that are sub directories of the data directory. Either you remove them using Streams Studio or the rm command. This step is required to get rid of the file name history that is used for the file duplicate detection, and to start the next time from scratch.
 
 * Optionally, you can close the Monitoring GUI.
-
-# Fast Facts
-
-# Self Check
 
 # Next Steps
 

@@ -1,6 +1,6 @@
 ---
 layout: docs
-title:  Module-3
+title:  Module 3 - Customizing for input files in CSV format
 description:  Customizing-for-input-files-in-CSV-format
 weight:  10
 ---
@@ -87,7 +87,7 @@ When customizing the ITE application, it is recommended to follow the functional
 
 The following figure and table show the points that you need to customize in the ITE application during this module or that influence the customization like the different formats and stream schemas. Other parts don't need to be customized because it is not necessary for this module.
 
-[[img/module-03/Architecture.png|alt=The customization points]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/Architecture.png" alt="The customization points"/>
 
 |    Number    |    Functional Block                             |    What needs to be customized?                                                                                                                |
 |--------------|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -122,7 +122,7 @@ The configuration and customization consists of the following tasks:
 
 Expand **teda.demoapp/Resources/config** in the Project Explorer and open the **config.cfg** file. Keep this file open because you change it during various tasks.
 
-[[img/module-03/ConfigurationFile.png|alt=The configuration file in the Project Explorer]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/ConfigurationFile.png" alt="The configuration file in the Project Explorer"/>
 
 ## Disabling the sample code and enabling the customizable code parts of the ITE application
 
@@ -203,13 +203,13 @@ Insert the following tuple definition as static type into the **TypesCustom** co
                 uint64  cdrCallingSubsFirstMcc          /* 20 */
             >;
 
-[[img/module-03/TypesCustom.png|alt=The common output schema for the file readers]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/TypesCustom.png" alt="The common output schema for the file readers"/>
 
 You specify that your new SPL type is the schema of the output stream of the file reader. Open **Resouces/demoapp.streams.custom/ReaderTypes.spl**, and assign the new SPL type to **ReaderRecordType**.
 
     type ReaderRecordType = TypesCustom.MobileSampleMsgFlat;
 
-[[img/module-03/ReaderTypes.png|alt=The common output schema for the file readers]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/ReaderTypes.png" alt="The common output schema for the file readers"/>
 
 The **ReaderRecordType** is the stream schema that is common for all CDRs, independent from whether they come from CSV, ASN.1 or binary files or are voice or SMS CDRs. It is the input for the business logic in the ITE transformer block. The business logic determines from the **cdrRecordType** attribute, which kind of CDR it is: voice or SMS.
 
@@ -285,7 +285,7 @@ For this tutorial module, use the `demo_csv_mapping.xml` name as specified in th
 
 Either open the Resources/etc/custom_csv_mapping.xml file and save it as demo_csv_mapping.xml by using **File > Save As…**, or create a new and empty demo_csv_mapping.xml file in the `etc` directory.
 
-[[img/module-03/demo_csv_mapping.png|alt=Save As dialog to create the demo_csv_mapping.xml mapping document]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/demo_csv_mapping.png" alt="Save As dialog to create the demo_csv_mapping.xml mapping document"/>
 
 Replace the content of the XML file with the following content.
 
@@ -389,7 +389,7 @@ The Application is submitted to your Streams instance.
 
 Shortly after that, the submitted application appears in the Monitoring GUI, and its status goes to healthy after some seconds. If you select the application in the Monitoring GUI, you see that all metrics have the value 0.
 
-[[img/module-03/MonitoringGUI.png|alt=Monitoring GUI after job submission]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/MonitoringGUI.png" alt="Monitoring GUI after job submission"/>
 
 ## Moving sample data files to the application's input directory to process the data
 
@@ -405,7 +405,7 @@ Open a terminal window and run the following commands to move the files into the
 
 The files are processed within 5 seconds. You can press F5 in the Monitoring GUI to refresh the metrics immediately, not waiting for the next refresh cycle.
 
-[[img/module-03/MonitoringGUI_ProcessedRecords.png|alt=Monitoring GUI after file processing]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/MonitoringGUI_ProcessedRecords.png" alt="Monitoring GUI after file processing"/>
 
 You can see, that the application processed two files with total 200 tuples.
 
@@ -415,7 +415,7 @@ Refresh the **Resources** tree of the ITE project in the Project Explorer to see
 
 The ITE application processed the input files from the `in` directory and moved them back to `in/archive`. Note, that the `archive` directory contains also other files, which you copied before and which are ignored for now. The ITE application created also the files in the `out/load` directory. These files are the output files.
 
-[[img/module-03/FileExplorer_Outputs.png|alt=Output files]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/FileExplorer_Outputs.png" alt="Output files"/>
 
 The directories and files have following content.
 
@@ -450,10 +450,6 @@ The quick summary is:
 * Remove the checkpoint, control, and out directories that are sub directories of the data directory. Either you remove them using Streams Studio or the rm command. This step is required to get rid of the file name history that is used for the file duplicate detection, and to start the next time from scratch.
 
 * Optionally, you can close the Monitoring GUI.
-
-# Fast Facts
-
-# Self Check
 
 # Next Steps
 

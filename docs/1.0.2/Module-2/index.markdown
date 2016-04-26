@@ -1,6 +1,6 @@
 ---
 layout: docs
-title:  Module-2
+title:  Module 2 - Creating, running, and monitoring the basic mediation application
 description:  Creating,-running,-and-monitoring-the-basic-mediation-application
 weight:  10
 ---
@@ -54,11 +54,11 @@ The following tasks are performed:
 
 Open your Streams Studio and go to **File > New > Project…**. Scroll down to **InfoSphere Streams Telecommunications Event Data Analytics**, and open this entry. Streams Studio presents two different project options: ITE Application Project, and Lookup Manager Application Project. Select **ITE Application Project** and click **Next >**.
 
-[[img/module-02/NewProjectWizards.png|alt=New Project dialog]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/NewProjectWizards.png" alt="New Project dialog"/>
 
 The New ITE application project dialog opens. Here you can initially configure your Streams application and where it is stored.
 
-[[img/module-02/NewITEApplicationProjectWizard.png|alt=ITE Application Project wizard]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/NewITEApplicationProjectWizard.png" alt="ITE Application Project wizard"/>
 
 Enter **teda.demoapp** as project name. This name becomes a part of the default location where the project is stored. Keep **Use default location** checked. Then, your project is created within the workspace directory (red underlined). Your workspace directory is most likely different than in the previous figure. Throughout the complete tutorial, this path is referred to as the _workspace directory_ or simply as the _workspace_.
 
@@ -68,23 +68,23 @@ Enter **demoapp** as the namespace. This namespace becomes the most-outer SPL na
 
 Click **Finish**. The teda.demoapp SPL project is created and automatically built. The build process takes some time.
 
-[[img/module-02/ProjectExplorerAfterProjectCreation.png|alt=Project Explorer showing the content of the created SPL project]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/ProjectExplorerAfterProjectCreation.png" alt="Project Explorer showing the content of the created SPL project"/>
 
 ## Building the ITE application project
 
 First, you should disable automatic builds in your Streams Studio. This setting avoids that the external builder builds the application after every change. Uncheck the menu item **Project > Build Automatically**.
 
-[[img/module-02/DisabledAutomaticBuild.png|alt=Build Automatically menu item in Project menu]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/DisabledAutomaticBuild.png" alt="Build Automatically menu item in Project menu"/>
 
 When you customize your application later, you can build the application from Streams Studio from the **Project** menu by selecting **Build Project**. You can also right-click at the project teda.demoapp in the Project Explorer, and select **Build Project** from the pop-up menu.
 
-[[img/module-02/RightClickBuildProject.png|alt=Right-click Build Project]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/RightClickBuildProject.png" alt="Right-click Build Project"/>
 
 ## Running and monitoring the ITE application
 
 The Main composite of the ITE application has the name ITEMain. You find it in the Project Explorer under the **demoapp** namespace. However, before you can start the application you must start the Streams instance.
 
-[[img/module-02/RightClickLaunch.png|alt=Lauch demoapp application]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/RightClickLaunch.png" alt="Launch demoapp application"/>
 
 To submit the application to a Streams runtime, navigate to the Project Explorer.
 
@@ -105,7 +105,7 @@ If the Monitoring GUI is not yet running, start it now. To do so, open a termina
 
 The Monitoring GUI starts and shows the ITEMain job. If you select a job, you can see the details of the selected job in the Job Details area of the application.
 
-[[img/module-02/MonitoringGUI.png|alt=Monitoring GUI after job submission]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/MonitoringGUI.png" alt="Monitoring GUI after job submission"/>
 
 **Note**: During the startup phase of the application, its status might be displayed as critical. Some seconds later the application changes its status to healthy.
 
@@ -113,7 +113,7 @@ The Monitoring GUI starts and shows the ITEMain job. If you select a job, you ca
 
 When you start the ITE application for the first time, it creates the directories for input, output, and other functions. With the default settings, these directories are created under `WORKSPACE/teda.demoapp/data`. After refreshing the **Resources** tree, you find them under **Resources/data** in the Project Explorer in Streams Studio. The `in` directory is the directory for input data, the `out` directory contains the various output files.
 
-[[img/module-02/ProjectExplorerDataDirectory.png|alt=Project Explorer shows the data directory tree]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/ProjectExplorerDataDirectory.png" alt="Project Explorer shows the data directory tree"/>
 
 The sample directory contains sample files, which can be processed by an ITE application that uses the embedded sample code. Open a terminal window and change into the data directory. Then, move a file into the input directory:
 
@@ -124,11 +124,11 @@ The sample directory contains sample files, which can be processed by an ITE app
  
 After processing, the input file is moved from the `in` directory to `in/archive`. The `out` directory contains the sub-directories `load`, `rejected`, and `statistics` for the output files with successfully processed data, rejected data and statistics.
 
-[[img/module-02/ProjectExplorerDataDirectoryWithFiles.png|alt=Project Explorer shows the data directory tree with processed files]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/ProjectExplorerDataDirectoryWithFiles.png" alt="Project Explorer shows the data directory tree with processed files"/>
 
 After refreshing the Monitoring GUI (press F5), the changed metrics reflect that the file is processed.
 
-[[img/module-02/MonitoringGUIAfterDataProcessing.png|alt=Monitoring GUI after data processing]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/MonitoringGUIAfterDataProcessing.png" alt="Monitoring GUI after data processing"/>
 
 ## Shutting down the ITE application gracefully
 
@@ -148,10 +148,6 @@ Remove the created directories from the data directory of the application to get
     rm -r checkpoint control out
 
 You can also close the Monitoring GUI.
-
-# Fast Facts
-
-# Self Check
 
 # Next Steps
 
