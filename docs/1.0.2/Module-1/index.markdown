@@ -5,6 +5,8 @@ description:  Preparing-your-development-system
 weight:  10
 ---
 
+[[images/github-button|alt=TST]]
+
 # Objectives
 
 Before starting to develop a mediation application, your development system has to be configured, so the Telecommunications Event Data Analytics (TEDA) features are accessible.
