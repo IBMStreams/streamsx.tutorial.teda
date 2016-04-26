@@ -1,7 +1,7 @@
 ---
 layout: docs
-title:  Module-1: Preparing-your-development-system
-description:  Module-1: Preparing-your-development-system
+title:  Module-1
+description:  Module-1
 weight:  10
 ---
 
