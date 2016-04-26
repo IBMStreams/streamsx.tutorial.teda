@@ -1,7 +1,7 @@
 ---
 layout: docs
-title:  Module-3: Customizing-for-input-files-in-CSV-format
-description:  Module-3: Customizing-for-input-files-in-CSV-format
+title:  Module-3
+description:  Customizing-for-input-files-in-CSV-format
 weight:  10
 ---
 
