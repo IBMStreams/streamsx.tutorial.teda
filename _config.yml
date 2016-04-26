@@ -1,0 +1,14 @@
+url: http://ibmstreams.github.io/streamsx.tutorial.teda/
+baseurl: /streamsx.tutorial.teda
+github_editme_path: IBMStreams/streamsx.tutorial.teda/blob/gh-pages
+
+# Site settings
+title: IBM Streams streamsx.tutorial.teda
+description: "IBM Streams TEDA Tutorials"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+detach:  false
+port:    4000
+host:    127.0.0.1
