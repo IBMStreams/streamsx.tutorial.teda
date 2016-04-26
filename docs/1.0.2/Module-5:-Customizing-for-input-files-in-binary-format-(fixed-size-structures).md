@@ -1,7 +1,7 @@
 ---
 layout: docs
-title:  Module-5: Customizing-for-input-files-in-binary-format-(fixed-size-structures).md
-description:  Module-5: Customizing-for-input-files-in-binary-format-(fixed-size-structures).md
+title:  Module-5
+description:  Customizing-for-input-files-in-binary-format-(fixed-size-structures).md
 weight:  10
 ---
 
