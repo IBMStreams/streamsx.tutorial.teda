@@ -7,7 +7,7 @@ weight:  10
 
 # Objectives
 
-In [module 2](https://github.com/IBMStreams/streamsx.tutorial.teda/wiki/Module-2:-Creating,-running,-and-monitoring-the-basic-mediation-application), you created an SPL project in Streams Studio using the Telecommunications Event Data Analytics (TEDA) wizard. The SPL project is a simple mediation application (ITE application) with sample code that is able to process the provided sample data.
+In [module 2](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/), you created an SPL project in Streams Studio using the Telecommunications Event Data Analytics (TEDA) wizard. The SPL project is a simple mediation application (ITE application) with sample code that is able to process the provided sample data.
 
 In this module, you customize the ITE application. You discuss the format of the input data and the requirements according to the internal data schemas. Then, you create and customize a file reader for processing comma-separated values (CSV files).
 
@@ -25,7 +25,7 @@ After completing this module you should be able to:
 
 # Prerequisites
 
-You completed [module 2](https://github.com/IBMStreams/streamsx.tutorial.teda/wiki/Module-2:-Creating,-running,-and-monitoring-the-basic-mediation-application), which guided you through the creation of a TEDA-based sample mediation application.
+You completed [module 2](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/), which guided you through the creation of a TEDA-based sample mediation application.
 
 # Concepts
 
@@ -441,7 +441,7 @@ This directory contains the daily file processing statistic file. On day boundar
 
 ## Shutting down the ITE application gracefully and cleaning up
 
-Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](https://github.com/IBMStreams/streamsx.tutorial.teda/wiki/Module-2:-Creating,-running,-and-monitoring-the-basic-mediation-application#shutting-down-the-ite-application-gracefully).
+Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/).
 
 The quick summary is:
 
