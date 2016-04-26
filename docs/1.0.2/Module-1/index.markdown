@@ -1,7 +1,7 @@
 ---
 layout: docs
 title:  Module 1 - Preparing your development system
-description:  Preparing-your-development-system
+description:  Preparing your development system
 weight:  10
 ---
 
