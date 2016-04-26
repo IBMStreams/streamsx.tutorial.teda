@@ -2,9 +2,7 @@
 layout: docs
 title:  TEDA Toolkit
 description:  Introduction to IBM Streams TEDA Toolkit
-weight: 70
 ---
-
 
 # Table of Content
 {% include nav.html context="/docs/"%}
