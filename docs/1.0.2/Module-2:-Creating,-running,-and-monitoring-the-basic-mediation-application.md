@@ -1,7 +1,7 @@
 ---
 layout: docs
-title:  Module-2: Creating,-running,-and-monitoring-the-basic-mediation-application
-description:  Module-2: Creating,-running,-and-monitoring-the-basic-mediation-application
+title:  Module-2
+description:  Creating,-running,-and-monitoring-the-basic-mediation-application
 weight:  10
 ---
 
