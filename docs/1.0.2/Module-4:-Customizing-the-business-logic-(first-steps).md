@@ -1,7 +1,7 @@
 ---
 layout: docs
-title:  Module-4: Customizing-the-business-logic-(first-steps)
-description:  Module-4: Customizing-the-business-logic-(first-steps)
+title:  Module-4
+description:  Customizing-the-business-logic-(first-steps)
 weight:  10
 ---
 
