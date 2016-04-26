@@ -1,3 +1,10 @@
+---
+layout: docs
+title:  Module-2: Creating,-running,-and-monitoring-the-basic-mediation-application
+description:  Module-2: Creating,-running,-and-monitoring-the-basic-mediation-application
+weight:  10
+---
+
 # Objectives
 
 The Telecommunications Event Data Analytics (TEDA) application framework provides Streams Studio wizards to create Streams mediation applications as SPL projects. You configure these applications with configuration parameters that are stored in a simple text file, and customize them by adding your business logic or near real-time analytics to already prepared SPL composite operators.

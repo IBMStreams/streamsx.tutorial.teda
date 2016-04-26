@@ -1,3 +1,10 @@
+---
+layout: docs
+title:  Module-5: Customizing-for-input-files-in-binary-format-(fixed-size-structures).md
+description:  Module-5: Customizing-for-input-files-in-binary-format-(fixed-size-structures).md
+weight:  10
+---
+
 # Objectives
 
 In this module, you extend the ITE application that you created while following the instructions of the modules 1-4, with a file reader for binary data files that contain fixed-size structures. 
