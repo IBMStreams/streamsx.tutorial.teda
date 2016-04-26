@@ -56,9 +56,9 @@ The TEDA plug-in provides wizards to create SPL projects that are based on the T
 
 3. Navigate to your Streams installation directory (`$STREAMS_INSTALL`) and select `$STREAMS_INSTALL/etc/eclipse`. Click **OK** in the file dialog window and in the _Add Repository_ dialog window. The software from the new local repository is displayed.
 
-  [[img/module-01/AvailableSoftwareDialog_AddSoftwareRepository.png|alt=Available Software dialog]]
+  <img src="/streamsx.tutorial.teda/images/1.0.2/module-01/AvailableSoftwareDialog_AddSoftwareRepository.png" alt="Available Software dialog" style="width: 60%;"/>
 
-  [[img/module-01/AvailableSoftwareDialog.png|alt=Available Software dialog]]
+  <img src="/streamsx.tutorial.teda/images/1.0.2/module-01/AvailableSoftwareDialog.png" alt="Available Software dialog" style="width: 60%;"/>
 
 4. Expand the Streams Studio _Optional Features_ tree, select **IBM InfoSphere Streams Telecommunications Event Data Analytics**, and click **Next >**.
 
@@ -68,11 +68,11 @@ The TEDA plug-in provides wizards to create SPL projects that are based on the T
 
 7. Confirm the security warning with **OK**.
 
-  [[img/module-01/SecurityWarning.png|alt=Security Warning dialog]]
+  <img src="/streamsx.tutorial.teda/images/1.0.2/module-01/SecurityWarning.png" alt="Security Warning dialog" style="width: 60%;"/>
 
 8. Confirm Streams Studio restart with **Yes**. Streams Studio is restarting.
 
-  [[img/module-01/SoftwareUpdates.png|alt=Software Updates dialog]]
+  <img src="/streamsx.tutorial.teda/images/1.0.2/module-01/SoftwareUpdates.png" alt="Software Updates dialog" style="width: 60%;"/>
 
 9. Verify that you find the following new menu items in your Streams Studio:
   * **Help > Cheat Sheets... > InfoSphere Streams Telecommunications Event Data Analytics > Customizing the ASN1Parse operator**
@@ -106,7 +106,7 @@ To start the Monitoring GUI, change into the directory, where you installed the 
     cd $HOME/MonitoringGUI
     ./teda-monitor.sh
 
-[[img/module-01/MonitoringGUI_Settings.png|alt=Monitoring GUI - Settings Dialog]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-01/MonitoringGUI_Settings.png" alt="Monitoring GUI - Settings Dialog" style="width: 60%;"/>
 
 For initial configuration, select **Action > Settings** from the menu. In the _Settings_ dialog, click **New** to create a new connection with your Streams domain.
 
@@ -115,18 +115,13 @@ Note: The data that you need to enter into the _New Connection_ dialog differs f
     streamtool geturl
     https://streams1.localdomain:8650/streams/domain/console
 
-[[img/module-01/MonitoringGUI_NewConnection.png|alt=Monitoring GUI - New Connection Dialog]]
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-01/MonitoringGUI_NewConnection.png" alt="Monitoring GUI - New Connection Dialog" style="width: 60%;"/>
  
 As user and password enter your user ID and password. These credentials are the same you use to login into the Streams console.
 
 If the connection status in the Monitoring GUI shows one successful connection, you succeeded.
 
-[[img/module-01/MonitoringGUI_StatusBar.png|alt=Monitoring GUI - Status Bar]]
-
-# Fast Facts
-
-
-# Self Check
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-01/MonitoringGUI_StatusBar.png" alt="Monitoring GUI - Status Bar" style="width: 60%;"/>
 
 # Next Steps
 
