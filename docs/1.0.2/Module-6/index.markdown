@@ -433,7 +433,9 @@ In preparation for the next module of the tutorial, or to repeat the processing,
 For the next steps, or if you want to repeat this module, you must remove the history of the file name deduplication, which is stored in files in the checkpoint directory. It is also recommended to clean up the control and out directories. 
 
 * Cancel the job now by using teda-shutdown-job jobId
-* Remove the checkpoint, control and out directories under your data directory and all its content. You can remove them from Streams Studio or command line:
+* Remove the checkpoint, control and out directories under your data directory and all its content.
+ 
+You can remove them from Streams Studio or command line:
 
     cd WORKSPACE/teda.demoapp/data
     rm -rv checkpoint control out
