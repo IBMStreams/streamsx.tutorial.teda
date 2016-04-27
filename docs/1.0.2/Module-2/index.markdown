@@ -2,7 +2,7 @@
 layout: docs
 title:  Module 2 - Creating, running, and monitoring the basic mediation application
 description:  Creating, running, and monitoring the basic mediation application
-weight:  10
+weight:  11
 ---
 
 # Objectives
