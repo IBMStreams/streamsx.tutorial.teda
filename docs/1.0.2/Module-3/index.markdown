@@ -67,7 +67,7 @@ The first column of the CSV file contains the record type. Depending on the type
 | 18     | CallingNumberNpi    |                     |
 | 19     | CallReferenceTime   |                     |
 | 20     | CallingSubsFirstMcc |                     |
-(thanks to [Markdown Tables generator](http://www.tablesgenerator.com/markdown_tables))
+
 
 **The CSV output files**
 
@@ -122,7 +122,7 @@ The configuration and customization consists of the following tasks:
 
 Expand **teda.demoapp/Resources/config** in the Project Explorer and open the **config.cfg** file. Keep this file open because you change it during various tasks.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/ConfigurationFile.png" alt="The configuration file in the Project Explorer"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/ConfigurationFile.png" alt="The configuration file in the Project Explorer" style="width: 80%;"/>
 
 ## Disabling the sample code and enabling the customizable code parts of the ITE application
 
@@ -203,13 +203,13 @@ Insert the following tuple definition as static type into the **TypesCustom** co
                 uint64  cdrCallingSubsFirstMcc          /* 20 */
             >;
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/TypesCustom.png" alt="The common output schema for the file readers"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/TypesCustom.png" alt="The common output schema for the file readers" style="width: 80%;"/>
 
 You specify that your new SPL type is the schema of the output stream of the file reader. Open **Resouces/demoapp.streams.custom/ReaderTypes.spl**, and assign the new SPL type to **ReaderRecordType**.
 
     type ReaderRecordType = TypesCustom.MobileSampleMsgFlat;
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/ReaderTypes.png" alt="The common output schema for the file readers"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/ReaderTypes.png" alt="The common output schema for the file readers" style="width: 80%;"/>
 
 The **ReaderRecordType** is the stream schema that is common for all CDRs, independent from whether they come from CSV, ASN.1 or binary files or are voice or SMS CDRs. It is the input for the business logic in the ITE transformer block. The business logic determines from the **cdrRecordType** attribute, which kind of CDR it is: voice or SMS.
 
@@ -285,7 +285,7 @@ For this tutorial module, use the `demo_csv_mapping.xml` name as specified in th
 
 Either open the Resources/etc/custom_csv_mapping.xml file and save it as demo_csv_mapping.xml by using **File > Save As…**, or create a new and empty demo_csv_mapping.xml file in the `etc` directory.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/demo_csv_mapping.png" alt="Save As dialog to create the demo_csv_mapping.xml mapping document"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/demo_csv_mapping.png" alt="Save As dialog to create the demo_csv_mapping.xml mapping document" style="width: 80%;"/>
 
 Replace the content of the XML file with the following content.
 
@@ -453,4 +453,4 @@ The quick summary is:
 
 # Next Steps
 
-In the next module you add a simple business logic that transforms the input data before writing the output files.
+In the next [module](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-4/) you add a simple business logic that transforms the input data before writing the output files.
