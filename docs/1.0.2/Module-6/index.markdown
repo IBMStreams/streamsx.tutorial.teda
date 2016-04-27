@@ -86,7 +86,7 @@ The following table defines not only the field mapping but also the data types f
 
 **.table.**
 
-The ASN.1 Type is the type the frameworks built-in ASN1Parse operator generates out of the ASN.1 grammar file. For more information about the ASN1Parse operator refer to the IBM Knowledge Center [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > com.ibm.streams.teda.parser.binary > ASN1Parse] (https://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/op$com.ibm.streams.teda.parser.binary$ASN1Parse.html).
+The ASN.1 Type is the type the frameworks built-in ASN1Parse operator generates out of the ASN.1 grammar file. For more information about the ASN1Parse operator refer to the IBM Knowledge Center [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > com.ibm.streams.teda.parser.binary > ASN1Parse](https://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/op$com.ibm.streams.teda.parser.binary$ASN1Parse.html).
 
 To match the data types of your already defined common output schema, you need the type conversation. The column ASN.1 Conversion describes the rules. You refer to this table later on in this module when you create the converter.
 
@@ -343,7 +343,7 @@ Open **Resources/demoapp.chainprocessor.reader.custom/FileReaderCustomASN1.spl**
 	}
     }
 
-For more information about the ASN1Parse operator’s parameters read the Parameters section in the IBM Knowledge Center under: [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > com.ibm.streams.teda.parser.binary > ASN1Parse] (https://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/op$com.ibm.streams.teda.parser.binary$ASN1Parse.html)
+For more information about the ASN1Parse operator’s parameters read the Parameters section in the IBM Knowledge Center under: [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda>com.ibm.streams.teda.parser.binary>ASN1Parse](https://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/op$com.ibm.streams.teda.parser.binary$ASN1Parse.html)
 
 ## Creating the Converter composite for ASN.1 FileReader
 
@@ -351,7 +351,7 @@ Now you need a mapping from the output schema the ASN.1 parser is generating (ou
 
 Because the ASN.1 parser generates list<…> attributes for each optional ASN.1 element, the converter checks whether there is an element in the list. If yes, then the value is converted. Otherwise, a default value (project developer decision, which is the default value for each element) is inserted.
 
-Open **Resources/demoapp.chainprocessor.reader.custom/RecordConverter.spl in the Project Explorer and add the following code:
+Open **Resources/demoapp.chainprocessor.reader.custom/RecordConverter.spl** in the Project Explorer and add the following code:
 
 [RecordConverter.spl](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-6/RecordConverter.spl)
 
