@@ -139,13 +139,13 @@ Now you are ready to implement the transformer operator logic.
 
 You implement the transformation logic in the **DataProcessor** composite in namespace **demoapp.chainprocessor.transformer.custom**. You find a default implementation in the **Resources/demoapp.chainprocessor.transformer.custom/DataProcessor.spl** file. It forwards the input tuples unmodified. Your transformer logic uses one Custom operator to transform and forward the input tuple and to forward the statistics tuple unmodified.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-04/DataProcessor.png" alt="DataProcessor"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-04/DataProcessor.png" alt="DataProcessor" style="width: 90%;"/>
 
 The transformer uses the custom functions, **extractDateTime**, **twistAndTrimDigitString**, and **TBCDtoASCII**. You implement these functions in the same SPL namespace as the **DataProcessor** composite, even in the same file.
 
 Open the file DataProcessor.spl with the SPL editor of Streams Studio and replace the content with the following code:
 
-[DataProcessor.spl](src/module-04/DataProcessor.spl)
+[DataProcessor.spl](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-4/DataProcessor.spl)
 
 The customization of the transformer is done. Remember to save all files before you build and test the application.
 
