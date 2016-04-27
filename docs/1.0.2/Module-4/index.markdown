@@ -209,7 +209,7 @@ The transformed and derived attributes are formatted bold.
 
 ## Shutting down the ITE application gracefully and cleaning up
 
-Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/).
+Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/#shutting-down-the-ite-application-gracefully).
 
 The quick summary is:
 
@@ -221,4 +221,4 @@ The quick summary is:
 
 # Next Steps
 
-As next steps, you add support for processing input files in binary and ASN.1 format. You can skip these steps and continue with adding lookups to the application.
+As next steps, you add support for processing input files in [binary](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-5/) and [ASN.1](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-6/) format. You can skip these steps and continue with adding [lookups](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-7/) to the application.
