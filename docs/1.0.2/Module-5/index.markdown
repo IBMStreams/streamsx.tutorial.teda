@@ -23,7 +23,7 @@ You finished at least [module 3](http://ibmstreams.github.io/streamsx.tutorial.t
 
 Fixed-size structures are a vendor-specific format. A data file contains for example Call Detail Records (CDRs) encoded as fixed-size structures, which means, a number of fields that have fixed lengths each. The following picture shows a fictive data record. 
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/DataRecord.png" alt="Data Record"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/DataRecord.png" alt="Data Record" style="width: 95%;"/>
 
 A record as a whole and the included data fields can contain fill bytes. An example for a data field with fill bytes is a digit field for telephone numbers. The maximum length of a telephone number defines the length of the field. In case the number is shorter, the rest of the field contains fill bytes or fill digits. Typically a file contains more than one record. Nevertheless, you need a description issued by the creator of the data files to understand and decode these files.
 
@@ -168,11 +168,11 @@ For a detailed description, refer to [Reference>Toolkits>SPL standard and specia
 
 Use the Streams Studio's Project Explorer to create the `structure.xml` file in the project’s `etc` folder. 
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/StructureXML.png" alt="The structure definition document"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/StructureXML.png" alt="The structure definition document" style="width: 95%;"/>
 
 Add the following content to the file.
 
-[structure.xml](src/module-05/structure.xml)
+[structure.xml](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-5/structure.xml)
 
 ### The mapping definition document
 
@@ -199,11 +199,11 @@ In the tutorial, the binary file can contain two different structures, a voice C
 
 Use the Streams Studio’s Project Explorer to create the file mapping.xml in the project’s etc folder.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/MappingXML.png" alt="The mapping definition document"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-05/MappingXML.png" alt="The mapping definition document" style="width: 90%;"/>
 
 Replace the content of the XML file with the following content.
 
-[mapping.xml](src/module-05/mapping.xml)
+[mapping.xml](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-5/mapping.xml)
 
 A detailed description of the mapping file of the fixed-size structure binary data parser is contained in the toolkit’s reference in the IBM Knowledge Center under [Reference>Toolkits>Specialized toolkits>com.ibm.streams.teda 1.0.1>com.ibm.streams.teda.parser.binary>StructureParse>Mapping Definition Document>Mapping Definition](https://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/op$com.ibm.streams.teda.parser.binary$StructureParse$12.html).
 
@@ -322,7 +322,7 @@ The ITE application processed the input files from the `in` directory and moved 
 
 ## Shutting down the ITE application gracefully and cleaning up
 
-Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/).
+Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/#shutting-down-the-ite-application-gracefully).
 
 The quick summary is:
 
@@ -334,4 +334,4 @@ The quick summary is:
 
 # Next Steps
 
-As next step, you can optionally add support for processing input files in ASN.1 format. You can also skip this step and continue with adding lookups to the application.
+As next step, you can optionally add support for processing input files in [ASN.1](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-6/) format. You can also skip this step and continue with adding [lookups](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-7/) to the application.
