@@ -68,6 +68,7 @@ The first column of the CSV file contains the record type. Depending on the type
 | 19     | CallReferenceTime   |                     |
 | 20     | CallingSubsFirstMcc |                     |
 
+
 **The CSV output files**
 
 The output files must contain the superset of all attributes of the input files. Those attributes, which are not present in SMS CDRs, remain blank in the output files.
@@ -87,6 +88,7 @@ When customizing the ITE application, it is recommended to follow the functional
 The following figure and table show the points that you need to customize in the ITE application during this module or that influence the customization like the different formats and stream schemas. Other parts don't need to be customized because it is not necessary for this module.
 
 <img src="/streamsx.tutorial.teda/images/1.0.2/module-03/Architecture.png" alt="The customization points"/>
+
 
 |    Number    |    Functional Block                             |    What needs to be customized?                                                                                                                |
 |--------------|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
