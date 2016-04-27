@@ -68,7 +68,7 @@ Enter **demoapp** as the namespace. This namespace becomes the most-outer SPL na
 
 Click **Finish**. The teda.demoapp SPL project is created and automatically built. The build process takes some time.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/ProjectExplorerAfterProjectCreation.png" alt="Project Explorer showing the content of the created SPL project" style="width: 60%;"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/ProjectExplorerAfterProjectCreation.png" alt="Project Explorer showing the content of the created SPL project" style="width: 80%;"/>
 
 ## Building the ITE application project
 
@@ -84,7 +84,7 @@ When you customize your application later, you can build the application from St
 
 The Main composite of the ITE application has the name ITEMain. You find it in the Project Explorer under the **demoapp** namespace. However, before you can start the application you must start the Streams instance.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/RightClickLaunch.png" alt="Launch demoapp application" style="width: 60%;"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-02/RightClickLaunch.png" alt="Launch demoapp application" style="width: 80%;"/>
 
 To submit the application to a Streams runtime, navigate to the Project Explorer.
 
