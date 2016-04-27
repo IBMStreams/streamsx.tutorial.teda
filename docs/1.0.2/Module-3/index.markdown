@@ -385,7 +385,7 @@ Now start the ITE application. Go to the Project Explorer.
 * You can keep all submission time values. Click **Continue**.
 * In the **Save Changes** dialog, click **No**.
 
-The Application is submitted to your Streams instance.
+The application is submitted to your Streams instance.
 
 Shortly after that, the submitted application appears in the Monitoring GUI, and its status goes to healthy after some seconds. If you select the application in the Monitoring GUI, you see that all metrics have the value 0.
 

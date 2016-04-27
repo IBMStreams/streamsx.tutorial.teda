@@ -287,7 +287,7 @@ Now start the ITE application. Go to the Project Explorer.
 * You can keep all submission time values. Click **Continue**.
 * In the **Save Changes** dialog, click **No**.
 
-The Application is submitted to your Streams instance.
+The application is submitted to your Streams instance.
 
 Shortly after that, the submitted application appears in the Monitoring GUI, and its status goes to healthy after some seconds. If you select the application in the Monitoring GUI, you see that all metrics have the value 0.
 
@@ -297,7 +297,7 @@ Shortly after that, the submitted application appears in the Monitoring GUI, and
 
 Since you did not configure directories for input and output, the default directories are used for the file interface. All these directories are subdirectories of the data directory of your SPL application. The input directory is WORKSPACE/teda.demoapp/data/in.
 
-In chapter 3 of the tutorial, you already copied the *.bin data input files to the directory WORKSPACE/teda.demoapp/data/in/archive.
+In module 3 of the tutorial, you already copied the *.bin data input files to the directory WORKSPACE/teda.demoapp/data/in/archive.
 
 Now move them into the in directory to get them detected and processed. You must always move the files into the input directory to make the files appear atomically within the directory that is being scanned. This way, you avoid that a file is processed while it is still being copied.
 

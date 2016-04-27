@@ -1,0 +1,109 @@
+// begin_generated_IBM_copyright_prolog                            
+//                                                                 
+// This is an automatically generated copyright prolog.            
+// After initializing,  DO NOT MODIFY OR MOVE                      
+// ****************************************************************
+// Licensed Materials - Property of IBM                            
+// 5724-Y95                                                        
+// (C) Copyright IBM Corp.  2011, 2016    All Rights Reserved.     
+// US Government Users Restricted Rights - Use, duplication or     
+// disclosure restricted by GSA ADP Schedule Contract with         
+// IBM Corp.                                                       
+//                                                                 
+// end_generated_IBM_copyright_prolog                              
+namespace demoapp.chainprocessor.reader.custom;
+
+use demoapp.streams::TypesCommon;
+
+/**
+ * This file is a template that can be used as-is or copied to implement
+ * data conversions that runs immediately after the parse step.
+ * 
+ * The RecordConverter composite is used, for example, to rearrange or derive
+ * values right after an input record is parsed. These new values can be
+ * verified in the demoapp.chainprocessor.reader.custom::RecordValidator
+ * composite operator. If such a verification is not required, the conversion can be
+ * also implemented in the demoapp.chainprocessor.transformer.custom::DataProcessor
+ * composite operator.
+ * 
+ * The operator must not raise any exception. Ensure that your
+ * assignments and calculations always succeed. For example,
+ * if you want to assign a substring() result, ensure that the
+ * source string is long enough or assign an empty or any other
+ * string that fits to your business needs.
+ * 
+ * Example 1: A parsed ASN.1 record has a list value. The first item
+ * of this list is stored in another SPL attribute.
+ * 
+ * Example 2: A parsed CSV record has a concatenated value. The parts
+ * of this concatenated value are stored in separate SPL attributes.
+ * 
+ * The provided default implementation forwards tuples and punctuations
+ * from the input to the output port. Add your implementation in between
+ * the comments "custom code begin" and "custom code end".
+ *
+ * @input I
+ * Receives tuples that have values from the parsed input records.
+ * 
+ * @output O
+ * Sends modified input tuples and forwards punctuations that are
+ * received on the input port.
+ */
+public composite RecordConverter(input I; output stream<TypesCommon.ReaderOutStreamType> O)
+{
+
+	graph
+
+		/**
+		 * The default input schema is identical to the output schema. For
+		 * identical input/output schemas, you can replace the Functor operator
+		 * with a Custom operator that forwards modified input tuples.
+		 * 
+		 * During customization, you can specify another schema that is set
+		 * with the parserRecordOutputType parameter in the
+		 * demoapp.chainprocessor.reader.custom::FileReaderCustom
+		 * composite operator. In this case, you typically use a Functor
+		 * operator but you can also use the Custom operator and the assignFrom
+		 * function.
+		 * 
+		 * In case you use a Custom operator instead of the Functor, you must
+		 * ensure that WindowMarker punctuations are forwarded from the input
+		 * to the output port.
+		 */
+		stream<TypesCommon.ReaderOutStreamType> O = Custom(I) {
+			logic
+				onTuple I: {
+					mutable O otuple = {};
+					assignFrom(otuple, I);
+	
+					otuple.cdrRecordType = (uint8) mscRecordType;
+					otuple.cdrRecordNumber = size(mscRecordNumber) == 1 ? (uint64) mscRecordNumber[0] : (uint64) 0;
+					otuple.cdrCallReference = size(mscCallReference) == 1 ? (rstring) mscCallReference[0] : "";
+					otuple.cdrCallingImsi = size(mscCallingImsi) == 1 ? (rstring) mscCallingImsi[0] : "";
+					otuple.cdrCallingImei = size(mscCallingImei) == 1 ? (rstring) mscCallingImei[0] : "";
+					otuple.cdrCallingNumber = size(mscCallingNumber) == 1 ? upper((rstring) mscCallingNumber[0]) : "";
+					otuple.cdrCalledImsi = size(mscCalledImsi) == 1 ? (rstring) mscCalledImsi[0] : "";
+					otuple.cdrCalledImei = size(mscCalledImei) == 1 ? (rstring) mscCalledImei[0] : "";
+					otuple.cdrCalledNumberTon = size(mscCalledNumberTon) == 1 ? (uint8) mscCalledNumberTon[0] : (uint8) 0;
+					otuple.cdrCalledNumberNpi = size(mscCalledNumberNpi) == 1 ? (uint8) mscCalledNumberNpi[0] : (uint8) 0;
+					otuple.cdrCalledNumber = size(mscCalledNumber) == 1 ? upper((rstring) mscCalledNumber[0]) : "";
+					otuple.cdrCallingSubsFirstLac = size(mscCallingSubsFirstLac) == 1 ? (rstring) mscCallingSubsFirstLac[0] : "";
+					otuple.cdrCallingSubsFirstCi = size(mscCallingSubsFirstCi) == 1 ? (rstring) mscCallingSubsFirstCi[0] : "";
+					otuple.cdrCauseForTermination = size(mscCauseForTermination) == 1 ? (rstring) mscCauseForTermination[0] : "";
+					otuple.cdrCallType = size(mscCallType) == 1 ? (uint8) mscCallType[0] : (uint8) 0;
+					otuple.cdrSamMczDuration = size(mscSamMczDuration) == 1 ? (uint64) mscSamMczDuration[0] : (uint64) 0;
+					otuple.cdrCallingNumberTon = size(mscCallingNumberTon) == 1 ? (uint8) mscCallingNumberTon[0] : (uint8) 0;
+					otuple.cdrCallingNumberNpi = size(mscCallingNumberNpi) == 1 ? (uint8) mscCallingNumberNpi[0] : (uint8) 0;
+					otuple.cdrCallReferenceTime = size(mscCallReferenceTime) == 1 ? (rstring) mscCallReferenceTime[0] : "";
+					otuple.cdrCallingSubsFirstMcc = size(mscCallingSubsFirstMcc) == 1 ? (uint64) mscCallingSubsFirstMcc[0] : (uint64) 0;
+	
+					submit(otuple, O);
+				}
+				onPunct I: {
+					if (currentPunct() == Sys.WindowMarker) {
+						submit(Sys.WindowMarker, O);
+					}
+				}
+		}
+
+}

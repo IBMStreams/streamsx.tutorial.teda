@@ -85,7 +85,7 @@ The way, how to write the output files, can be configured with the **ite.busines
 
 As opposed to record stream result tuples, which contain any number of SPL attributes, a tuple in a TableStream basically contains two string attributes. One holds the name of the target table in the database, the other holds a comma separated list of all attribute values to be written into the columns of the target table. Each input record from the so-called RecordStream can result in multiple tuples in the TableStream, one for each target table the transformed record needs to be written to.
 
-In this chapter of the tutorial, you select the record stream output. As the result, the output files contain all attributes from **TypesCustom.TransformedRecord** SPL type. This setting is the default after creating a new TEDA project. Verify that **ite.businessLogic.transformation.outputType** has the value **recordStream** or is not set at all. Then the default value is used, which is also **recordStream**.
+In this module of the tutorial, you select the record stream output. As the result, the output files contain all attributes from **TypesCustom.TransformedRecord** SPL type. This setting is the default after creating a new TEDA project. Verify that **ite.businessLogic.transformation.outputType** has the value **recordStream** or is not set at all. Then the default value is used, which is also **recordStream**.
 
     ite.businessLogic.transformation.outputType=recordStream
 
@@ -164,7 +164,7 @@ Now start the ITE application. Go to the Project Explorer.
 * You can keep all submission time values. Click **Continue**.
 * In the **Save Changes** dialog, click **No**.
 
-The Application is submitted to your Streams instance.
+The application is submitted to your Streams instance.
 
 Shortly after that, the submitted application appears in the Monitoring GUI, and its status goes to healthy after some seconds. If you select the application in the Monitoring GUI, you see that all metrics have the value 0.
 
@@ -173,7 +173,7 @@ Shortly after that, the submitted application appears in the Monitoring GUI, and
 ## Moving sample data files to the application's input directory to process the data
 
 Since you did not configure directories for input and output, the default directories are used for the file interface. All these directories are subdirectories of the data directory of your SPL application. The input directory is WORKSPACE/teda.demoapp/data/in.
-Your WORKSPACE/teda.demoapp/data/in/archive directory should still contain the input files that you copied in the previous chapter. If you deleted them by mistake, copy the data as described in chapter 3.
+Your WORKSPACE/teda.demoapp/data/in/archive directory should still contain the input files that you copied in the previous module. If you deleted them by mistake, copy the data as described in module 3.
 Open a terminal window and run the following command to move the CSV files in to the input directory of the ITE application:
 
     mv -v archive/*.csv .
