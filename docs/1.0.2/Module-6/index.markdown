@@ -84,11 +84,10 @@ Each substructure can be a trigger point for the parser to generate an SPL tuple
 In module 3 and possibly in module 5 of the tutorial, you defined a common schema as an output of the CSV and the fixed-size structure data file readers. Since the input files contain the same data records (this time ASN.1 encoded), you use the same mapping relation between the input data record fields and the SPL tuple attributes.
 The following table defines not only the field mapping but also the data types for each field.
 
-|No.|CDR output        | Type | Input (reduced) | Type | Conversion
-|---|------------------|------|-----------------|------|------------
-|01 |cdrRecordType     |uint8 |mscRecordType    |int64 |int64 -> uint8, reduced range
-|02 |cdrRecordNumber   |uint64|mscRecordNumber  |list<int64> |int64 -> uint64, only positives (default:0)
-
+|No.|CDR output        | Type | Input (reduced) | Type | Conversion |
+|---|------------------|------|-----------------|------|------------|
+|01 |cdrRecordType     |uint8 |mscRecordType    |int64 |int64 -> uint8, reduced range |
+|02 |cdrRecordNumber   |uint64|mscRecordNumber  |list<int64> |int64 -> uint64, only positives (default:0) |
 
 The ASN.1 Type is the type the frameworks built-in ASN1Parse operator generates out of the ASN.1 grammar file. For more information about the ASN1Parse operator refer to the IBM Knowledge Center [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > com.ibm.streams.teda.parser.binary > ASN1Parse](https://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/op$com.ibm.streams.teda.parser.binary$ASN1Parse.html).
 
