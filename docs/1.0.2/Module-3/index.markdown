@@ -67,8 +67,7 @@ The first column of the CSV file contains the record type. Depending on the type
 | 18     | CallingNumberNpi    |                     |
 | 19     | CallReferenceTime   |                     |
 | 20     | CallingSubsFirstMcc |                     |
-
-
+ 
 **The CSV output files**
 
 The output files must contain the superset of all attributes of the input files. Those attributes, which are not present in SMS CDRs, remain blank in the output files.
@@ -442,7 +441,7 @@ This directory contains the daily file processing statistic file. On day boundar
 
 ## Shutting down the ITE application gracefully and cleaning up
 
-Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/).
+Shutdown and clean up the ITE application as described in [Module 2: Shutting down the ITE application gracefully](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/#shutting-down-the-ite-application-gracefully).
 
 The quick summary is:
 
