@@ -125,4 +125,5 @@ If the connection status in the Monitoring GUI shows one successful connection, 
 
 # Next Steps
 
-Now you are ready to create your first SPL project that is based on the TEDA framework. In the next module, you will learn how to create the SPL project for a simple mediation use case.
+Now you are ready to create your first SPL project that is based on the TEDA framework. In the next [module](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-2/), you will learn how to create the SPL project for a simple mediation use case.
+
