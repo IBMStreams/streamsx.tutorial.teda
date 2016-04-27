@@ -197,6 +197,7 @@ Refresh the view in the Streams Project Explorer to see the copied file there.
 Although the ASN.1 grammar for this tutorial has a fairly large number of elements, the grammar is not complicated. It is a simple sequence of mostly optional attributes.
 
 This ASN.1 grammar file is needed at two places:
+
 * As a parameter at ASN.1 parser operator invocation
 * To generate an SPL type for the output of the ASN.1 parser.
 
