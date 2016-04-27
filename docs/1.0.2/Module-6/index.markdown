@@ -256,10 +256,7 @@ You use the etc/tutorial.asn file.
 
 Defines the name of the root ASN.1 structure (PDU) that the parser needs to decode. You take it from the <WORKSPACE>/teda.demoapp/etc/tutorial.asn file.
 
-    MSCRecord ::= CHOICE
-    {
-        mscSampleRecord          [1] MobileSampleMsg
-    }
+**`MSCRecord`**` ::= CHOICE`
 
 You set the value to **MSCRecord**.
 
@@ -267,10 +264,7 @@ You set the value to **MSCRecord**.
 
 You specify the structure name that you want the parser to generate tuples for. You can specify one or more triggers as a comma-separated string list. You want to get tuples for the structure **mscSampleRecord**. You take it also from the <WORKSPACE>/teda.demoapp/etc/tutorial.asn file.
 
-    MSCRecord ::= CHOICE
-    {
-`       `**mscSampleRecord**`          [1] MobileSampleMsg`
-    }
+**`mscSampleRecord**`          [1] MobileSampleMsg`
 
 **checkConstraints**
 
