@@ -35,6 +35,7 @@ The business logic processes the files by applying the following logic:
 **The CSV output files**
 
 The output files contain the following attributes:
+
 * The modified input attributes
 * The callStartDate and callStartTime attributes, which are derived from the CallReferenceTime input attributes
 
