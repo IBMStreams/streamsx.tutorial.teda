@@ -2,7 +2,7 @@
 layout: docs
 title:  Module 4 - Customizing the business logic (first steps)
 description:  Customizing-the-business-logic-(first-steps)
-weight:  10
+weight:  14
 ---
 
 # Objectives
