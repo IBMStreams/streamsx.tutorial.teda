@@ -68,7 +68,6 @@ The first column of the CSV file contains the record type. Depending on the type
 | 19     | CallReferenceTime   |                     |
 | 20     | CallingSubsFirstMcc |                     |
 
-
 **The CSV output files**
 
 The output files must contain the superset of all attributes of the input files. Those attributes, which are not present in SMS CDRs, remain blank in the output files.
@@ -122,7 +121,7 @@ The configuration and customization consists of the following tasks:
 
 Expand **teda.demoapp/Resources/config** in the Project Explorer and open the **config.cfg** file. Keep this file open because you change it during various tasks.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/ConfigurationFile.png" alt="The configuration file in the Project Explorer" style="width: 80%;"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/ConfigurationFile.png" alt="The configuration file in the Project Explorer" style="width: 90%;"/>
 
 ## Disabling the sample code and enabling the customizable code parts of the ITE application
 
@@ -203,7 +202,7 @@ Insert the following tuple definition as static type into the **TypesCustom** co
                 uint64  cdrCallingSubsFirstMcc          /* 20 */
             >;
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/TypesCustom.png" alt="The common output schema for the file readers" style="width: 80%;"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/TypesCustom.png" alt="The common output schema for the file readers" style="width: 90%;"/>
 
 You specify that your new SPL type is the schema of the output stream of the file reader. Open **Resouces/demoapp.streams.custom/ReaderTypes.spl**, and assign the new SPL type to **ReaderRecordType**.
 
@@ -285,7 +284,7 @@ For this tutorial module, use the `demo_csv_mapping.xml` name as specified in th
 
 Either open the Resources/etc/custom_csv_mapping.xml file and save it as demo_csv_mapping.xml by using **File > Save As…**, or create a new and empty demo_csv_mapping.xml file in the `etc` directory.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/demo_csv_mapping.png" alt="Save As dialog to create the demo_csv_mapping.xml mapping document" style="width: 80%;"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-03/demo_csv_mapping.png" alt="Save As dialog to create the demo_csv_mapping.xml mapping document" style="width: 90%;"/>
 
 Replace the content of the XML file with the following content.
 
