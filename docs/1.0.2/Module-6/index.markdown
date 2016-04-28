@@ -229,7 +229,7 @@ At this place, you only need to know that the ASN.1 parser automatically assigns
 
 ### Generating the SPL schema from ASN.1 grammar
 
-Within your application, you need the SPL types for the tuples that the ASN.1 parser generates. Open **Resources/teda.demoapp/etc/tutorial.asn** in the Streams Project Explorer.
+Within your application, you need the SPL types for the tuples that the ASN.1 parser generates. Open **teda.demoapp/Resources/etc/tutorial.asn** in the Streams Project Explorer.
 The parent structure is a choice, which contains only one record structure.
 This substructure is the output from the parser and your start element for the SPL schema generation.
 
@@ -243,7 +243,7 @@ You use the `spl-schema-from-asn1` tool to generate these types out of the ASN.1
     cd <WORKSPACE>/teda.demoapp/etc/
     spl-schema-from-asn1 --output=demo.spl --pdu=MobileSampleMsg --namespace=demoapp.streams.custom tutorial.asn
 
-Refresh the view in the Streams Project Explorer. The generated **Resources/teda.demoapp/etc/demo.spl** file contains the SPL code. It contains tuple definitions used as output schema of the ASN.1 parser. The parameter **namespace** is necessary because you put the final schema file into the namespace directory where the framework expects custom schemas.
+Refresh the view in the Streams Project Explorer. The generated **teda.demoapp/Resources/etc/demo.spl** file contains the SPL code. It contains tuple definitions used as output schema of the ASN.1 parser. The parameter **namespace** is necessary because you put the final schema file into the namespace directory where the framework expects custom schemas.
 
 The demo.spl file is very long because it contains the whole message structure and all of the element definitions. You need only a subset of them in your later processing. 
 The parser already can omit elements that you don't need. Therefore, you define a reduced output schema, and the parser automatically creates tuples with the reduced set of attributes. 
@@ -258,7 +258,7 @@ Refresh the view in the Streams Project Explorer. The file demo.spl can be delet
 
 ### Creating the custom ASN.1 data file reader composite
 
-Analog to the reader for CSV files, you copy the **Resources/demoapp.chainprocessor.reader.custom/FileReaderCustom.spl** file to **FileReaderCustomASN1.spl** and rename the contained composite from FileReaderCustom to FileReaderCustomASN1. This composite must be customized to use the built-in ASN.1 reader, which is demoapp.chainprocessor.reader::FileReaderASN1.
+Analog to the reader for CSV files, you copy the **teda.demoapp/Resources/demoapp.chainprocessor.reader.custom/FileReaderCustom.spl** file to **FileReaderCustomASN1.spl** and rename the contained composite from FileReaderCustom to FileReaderCustomASN1. This composite must be customized to use the built-in ASN.1 reader, which is demoapp.chainprocessor.reader::FileReaderASN1.
 
 The file contains the composite with the instantiation of a file reader, which follows the frameworks reader interfaces. The framework already contains three configurable file readers: FileReaderCSV, FileReaderStructure and FileReaderASN1. You select the **FileReaderASN1** file reader and set its parameter values.
 
@@ -294,7 +294,7 @@ You specify the structure name that you want the parser to generate tuples for. 
 
 Enables or disables ASN.1 constraints verification, for example restrictions on the allowed character set for ASN.1 primitive types. In this example, you set the value to **false**.
 
-Open **Resources/demoapp.chainprocessor.reader.custom/FileReaderCustomASN1.spl** and replace the operator implementation with the following code.
+Open **teda.demoapp/Resources/demoapp.chainprocessor.reader.custom/FileReaderCustomASN1.spl** and replace the operator implementation with the following code.
 
     public composite FileReaderCustomASN1 (
         input
@@ -371,7 +371,7 @@ Now you need a mapping from the output schema the ASN.1 parser is generating (ou
 
 Because the ASN.1 parser generates list<…> attributes for each optional ASN.1 element, the converter checks whether there is an element in the list. If yes, then the value is converted. Otherwise, a default value (project developer decision, which is the default value for each element) is inserted.
 
-Open **Resources/demoapp.chainprocessor.reader.custom/RecordConverter.spl** in the Project Explorer and add the following code:
+Open **teda.demoapp/Resources/demoapp.chainprocessor.reader.custom/RecordConverter.spl** in the Project Explorer and add the following code:
 
 [RecordConverter.spl](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-6/RecordConverter.spl)
 
