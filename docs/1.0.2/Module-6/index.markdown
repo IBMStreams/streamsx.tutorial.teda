@@ -266,11 +266,11 @@ You configure the following parameters for the FileReaderCustomASN1 composite:
 
 **parserRecordOutputType**
 
-Similar to the FileReaderCustomCSV, you parameterize this parser operator to generate just the common CDR format ReaderRecordType, which must be the same as in FileReaderCustomCSV.
+Set the parameter to the type MobileSampleMsg, which is defined in the `demoapp.streams.custom/reduced_asn1schema.spl` file.
 
 **RecordConverterOperator**
 
-Set the parameter to the RecordConverter composite, which you will create in the next task. 
+Set the parameter to the RecordConverter composite, which you will customize in the next task. 
 
 **grammarFile**
 
