@@ -174,7 +174,7 @@ The configuration is done by assigning a composite name to a certain file type s
 
 You define the output schema of your file reader. Even if you have multiple file readers for various file formats you must define one common schema to which all formats must be mapped. For now, you have only the CSV file reader. You define a reader output schema that contains all attributes from the voice CDR and the SMS CDR, which has only a subset of the attributes that a voice record has. The SPL type is named **MobileSampleMsgFlat**.
 
-Insert the following tuple definition as static type into the **TypesCustom** composite in the **Resources/demoapp.streams.custom/TypesCustom.spl** file
+Insert the following tuple definition as static type into the **TypesCustom** composite in the **teda.demoapp/Resources/demoapp.streams.custom/TypesCustom.spl** file
 
             /**
              * Unique message schema after reading from file.
@@ -215,9 +215,9 @@ The **ReaderRecordType** is the stream schema that is common for all CDRs, indep
 
 ## Implementing a CSV file reader
 
-As mentioned before, you create a FileReaderCustomCSV composite for CSV file reading. The framework project wizard generates just one empty FileReaderCustom composite in `FileReaderCustom.spl`. If a project needs only one file reader, this SPL file can be customized, but projects often need different file readers. It is recommended to copy the original `FileReaderCustom.spl` file to `FileReaderCustomCSV.spl` for creating the custom file reader. You find this file in directory in Streams Studio under **Resources/demoapp.chainprocessor.reader.custom**. Copy the file in Streams Studio.
+As mentioned before, you create a FileReaderCustomCSV composite for CSV file reading. The framework project wizard generates just one empty FileReaderCustom composite in `FileReaderCustom.spl`. If a project needs only one file reader, this SPL file can be customized, but projects often need different file readers. It is recommended to copy the original `FileReaderCustom.spl` file to `FileReaderCustomCSV.spl` for creating the custom file reader. You find this file in directory in Streams Studio under **teda.demoapp/Resources/demoapp.chainprocessor.reader.custom**. Copy the file in Streams Studio.
 
-Open the **Resources/demoapp.chainprocessor.reader.custom/FileReaderCustomCSV.spl** file and rename the contained FileReaderCustom composite to FileReaderCustomCSV. Remember that you specified this composite name for the `ite.ingest.reader.parserList` parameter and assigned to the `CSV` file type string.
+Open the **teda.demoapp/Resources/demoapp.chainprocessor.reader.custom/FileReaderCustomCSV.spl** file and rename the contained FileReaderCustom composite to FileReaderCustomCSV. Remember that you specified this composite name for the `ite.ingest.reader.parserList` parameter and assigned to the `CSV` file type string.
 
 The FileReaderCustomCSV file contains the composite with the instantiation of a file reader, which follows the frameworks reader interfaces. The framework provides three built-in configurable file readers: FileReaderCSV, FileReaderASN1, and FileReaderStructure. You select the CSV file reader and set its parameters, which must match the use case requirements.
 
@@ -281,9 +281,9 @@ You must configure the CSV reader operator with a mapping document, which specif
 
 If you use the built-in FileReaderCSV to read CSV files, you must provide a mapping document that specifies which CSV columns are mapped to which SPL attribute. The mapping document is an XML file.
 
-For this tutorial module, use the `demo_csv_mapping.xml` name as specified in the **mappingDocument** parameter for the FileReaderCSV operator. The file must be created in the Resources/etc directory.
+For this tutorial module, use the `demo_csv_mapping.xml` name as specified in the **mappingDocument** parameter for the FileReaderCSV operator. The file must be created in the **teda.demoapp/Resources/etc** directory.
 
-Either open the Resources/etc/custom_csv_mapping.xml file and save it as demo_csv_mapping.xml by using **File > Save As…**, or create a new and empty demo_csv_mapping.xml file in the `etc` directory.
+Either open the **teda.demoapp/Resources/etc/custom_csv_mapping.xml** file and save it as demo_csv_mapping.xml by using **File > Save As…**, or create a new and empty demo_csv_mapping.xml file in the `etc` directory.
 
 <img src="/streamsx.tutorial.teda/images/1.0.2/module-03/demo_csv_mapping.png" alt="Save As dialog to create the demo_csv_mapping.xml mapping document" style="width: 90%;"/>
 
