@@ -1,0 +1,310 @@
+// begin_generated_IBM_copyright_prolog                            
+//                                                                 
+// This is an automatically generated copyright prolog.            
+// After initializing,  DO NOT MODIFY OR MOVE                      
+// ****************************************************************
+// Licensed Materials - Property of IBM                            
+// 5724-Y95                                                        
+// (C) Copyright IBM Corp.  2011, 2015    All Rights Reserved.     
+// US Government Users Restricted Rights - Use, duplication or     
+// disclosure restricted by GSA ADP Schedule Contract with         
+// IBM Corp.                                                       
+//                                                                 
+// end_generated_IBM_copyright_prolog                              
+
+namespace demoapp.chainprocessor.transformer.custom;
+
+use demoapp.streams::*;
+use demoapp.streams.custom::*;
+use demoapp.utility::*;
+use com.ibm.streams.teda.utility::*;
+use demoapp.lookup::LookupCache;
+
+
+/**
+ * This function converts the somehow exotic example timestamp which is an octett string
+ * of format ssmmhhddMMYYCC. The octett string is converted by SPL type conversion to 
+ * readable string which is input for this function.
+ * Just demo, this timestamp would probably not appear in real but other ...
+ */
+void extractDateTime (rstring inDateTime, mutable rstring outDate, mutable rstring outTime) {
+    if (length(inDateTime) == 14) {
+        outDate = inDateTime[12:14] + inDateTime[10:12] + "-" + inDateTime[8:10] + "-" + inDateTime[6:8];
+        outTime = inDateTime[4:6] + ":" + inDateTime[2:4] + ":" + inDateTime[0:2];
+    }
+    else {
+        outDate = "";
+        outTime = "";
+    }
+    return;
+}
+
+
+/**
+ * This function converts a TBCD hex string into 
+ * readable ASCII string in correct order.
+ * All HEX characters are allowed except 'F' which
+ * is just a fill character allowed at end only.
+ */
+rstring TBCDtoASCII (blob aAddressStringInTBCD) {
+    rstring HEX = "0123456789ABCDE";
+    mutable rstring result = "";
+    mutable uint8 x = 0;
+    mutable uint8 byte;
+    for (int32 i in range (0, size (aAddressStringInTBCD))) {
+        byte = aAddressStringInTBCD[i];
+        // low nibble
+        x = byte & 0xfu;
+        if (x < 0xfu) result += HEX[x];
+        // high nibble
+        x = (byte >> 4ub) & 0xfu;
+        if (x < 0xfu) result += HEX[x];
+    }
+    return result;
+}
+
+
+void twistAndTrimDigitString (mutable rstring inString) {
+    blob tmpBlob = (blob)inString;
+    inString = TBCDtoASCII (tmpBlob);
+}
+
+
+
+/**
+ * Implements the business logic that can consist of, for example, filtering,
+ * enrichment, calculations, or other transformations.
+ *
+ * This composite operator is the only one that must be adapted during the
+ * customization process.
+ * 
+ * Window punctuation received on InRec port must be forwarded to OutRec, OutRej and OutTap output ports. 
+ * 
+ * Example custom logic:
+ * a) Performs record transformations, for example filtering or schema change for target tables.
+ * b) Records can be enriched by lookup data of shared memory.
+ * c) Creates hash codes for tuple deduplication.
+ * 
+ * Exceptions raised in this operator result in rejected tuples
+ * if **ite.resilienceOptimization** parameter is on.
+ *
+ * @input  InRec
+ * Tuples received from the
+ * <APPLICATION_NAMESPACE>.chainprocessor.reader.custom::RecordValidator.
+ *
+ * @input  InStat
+ * Statistic tuple received at end of file.
+ * You can update your custom statistic attributes before forwarding this tuple.
+ *
+ * @output OutRec
+ * Tuples for the group or storage stage.
+ * 
+ * @output OutStat
+ * The tuple received InStat port must be forwarded on this port.
+ * 
+ * @output OutRej
+ * Tuples sent on this port are written to the rejected files.
+ * 
+ * @output OutTap
+ * Tap stream to the <namespace>.tap.custom::PostContextDataProcessorTap composite.
+ * This stream is connected only if the **ite.businessLogic.group.tap** parameter is on.
+ *
+ * @param groupId
+ * The group identifier
+ *
+ * @param chainId
+ * The chain identifier
+ *
+ * @param reprocessDir
+ * The absolute path of the reprocess directory. Use this parameter
+ * to create files in the reprocess directory.
+ * 
+ * @param disableLookup
+ * If parameter is true then the lookup code must not be called.
+ * Pass this parameter to the LookupCache operator.
+ */
+public composite DataProcessor (
+    input 
+        stream<TypesCommon.ReaderOutStreamType> InRec,
+        stream<TypesCommon.FileStatistics> InStat;
+    output
+        stream<TypesCommon.TransformerOutType> OutRec,
+        stream<TypesCommon.FileStatistics> OutStat,
+        stream<TypesCommon.RejectedDataStreamType> OutRej,
+        // connected only if ite.businessLogic.transformation.tap=on:
+        stream<TypesCommon.BundledTransformerOutputStreamType> OutTap
+)
+{
+    param
+        expression<rstring> $groupId;
+        expression<rstring> $chainId;
+        expression<rstring> $reprocessDir;
+        expression<boolean> $disableLookup;
+        
+    graph
+
+        // The transformation. We use a Custom instead of a Functor to avoid copying Tuples
+        (stream <TypesCommon.TransformerOutType> TransformedRecords as O) as Transform
+            = Custom (InRec as I)
+        {
+            logic
+                onTuple I :
+                {
+                    // untwist the calling and called IMSI
+                    // transform the timestamp
+                    // remove trailing 'F's from called and calling number
+                    twistAndTrimDigitString (I.cdrCalledImsi);
+                    twistAndTrimDigitString (I.cdrCallingImsi);
+
+                    if (length (cdrCallReferenceTime) == 14) {
+                        extractDateTime (I.cdrCallReferenceTime, I.callStartDate, I.callStartTime);
+                        I.cdrCallReferenceTime = I.callStartDate + " " + I.callStartTime;
+                    }
+                    else {
+                        I.cdrCallReferenceTime = "";  // clear the original invalid timestamp
+                        // I.callStartDate = "";      // attribute is already initialized
+                        // I.callStartTime = "";      // attribute is already initialized
+                    }
+                    I.cdrCalledNumber = rtrim (I.cdrCalledNumber, "F");
+                    I.cdrCallingNumber = rtrim (I.cdrCallingNumber, "F");
+                    // new in chapter 7: calculate the key for lookup
+                    I.lookupImsi = cdrCallType  == 0ub? cdrCalledImsi: cdrCallingImsi;
+
+                    submit (I, O) ;
+                }
+                onPunct I :
+                {
+                    if (currentPunct() == Sys.WindowMarker) {
+                        // always forward window markers:
+                        submit (Sys.WindowMarker, O);
+                    }
+                }
+        }
+
+        // Do the lookup from IMSI CRM to get customerType and customerID from the IMSI
+        (stream <I> EnrichedRecords) as Lookup = LookupCache (TransformedRecords as I)
+        {
+            param
+                // segmentName must equal MemSegmentName and containerName must
+                // equal StoreDefinitions Name in LookupMgrCustomiting.xml
+                segmentName:     "segmentDemoApp";  // The name of the physical memory segment
+                containerName:   "ImsiMap";         // The name of the store
+                useMutex:        false;             // Don't protect data with mutex
+                mutexName:       "";
+                // When LookupManager triggers ITE app to stop processing for an update
+                // the app stops at file boundary (punct is sent). So for each file the 
+                // segment is opend and closed.
+                releaseOnPunct:  true;
+                key:             I.lookupImsi;
+                keyType:         rstring;           // SPL type of key
+                found:           I.lookupFound;     // attribute that takes lookup success
+                valueType:       TypesCustom.ImsiLookupTableType;
+                disableLookup:   $disableLookup;    // always pass through this parameter
+        }
+
+        /* Evaluate the lookupFound attribute and generate the reject stream
+         * We only collect a reject info containing
+         *  rejectReason
+         *  rejectInfo (Description string with IMSI
+         *  recordNumber (within file)
+         *  filename
+         */
+        (stream <I> OutRec;
+         stream <TypesCommon.BundledTransformerOutputStreamType> OutTap;
+         stream <TypesCommon.RejectedDataStreamType> EnrichFailed) as Check
+              = Custom (EnrichedRecords as I)
+        {
+            logic
+                state:
+                {
+                    mutable uint32 recCount = 0;
+                    mutable TypesCommon.RejectedDataStreamType rejectTuple = {}; 
+                }
+                onTuple I:
+                {
+                    ++recCount;
+                    // This is an error case in our Business Logic
+                    // Every Lookup has to be successful if lookups are enabled
+                    if ((!lookupFound) && (!$disableLookup)) {
+                        // send a reject info, don't send the record
+                        // the rejectReason rrLookupFailed is a custom reason defined 
+                        // in TypesCustom.spl enum rejectReason
+                        //                  
+                        rejectTuple.rejectreason = (uint32)TypesCustom.rrLookupFailed;
+                        rejectTuple.rejectinfo = "Lookup failed for IMSI: "+ I.lookupImsi;
+                        rejectTuple.readerLinenumber = recCount;
+                        rejectTuple.filename = I.filename;
+                        submit ( rejectTuple, EnrichFailed);
+                    }
+                    else submit (I, OutRec);
+                }
+                onPunct I:
+                {
+                    if (currentPunct() == Sys.WindowMarker) {
+                        //reset the record counter for next file
+                        recCount = 0u;
+                        submit (Sys.WindowMarker, OutRec);
+                        submit (Sys.WindowMarker, EnrichFailed);
+                        // Tap is disabled; window marker forwarding commented out
+                        //submit (Sys.WindowMarker, OutTap);
+                    }
+                }
+        }
+
+        /**
+         * count rejected tuples and forward them,
+         * synchronize incoming window marker and incoming statistics,
+         * update incoming statistics tuple and forward it
+         */
+        (stream <TypesCommon.FileStatistics> OutStat;
+         stream <TypesCommon.RejectedDataStreamType> OutRej
+        ) as StatsUpdt = Custom (EnrichFailed as InRej; InStat)
+        {
+            logic
+                state:
+                {
+                    mutable int64 rejCount = 0l;
+                    mutable boolean punctReceived = false;
+                    mutable boolean statReceived = false;
+                    mutable TypesCommon.FileStatistics statTuple = {}; 
+                }
+                onTuple InRej:
+                {
+                    ++rejCount;
+                    submit (InRej, OutRej);
+                }
+                onPunct InRej:
+                {
+                    if (currentPunct() == Sys.WindowMarker) {
+                        submit (Sys.WindowMarker, OutRej);
+                        if (statReceived) {
+                            // statistics tuple already received: update saved tuple and submit
+                            statTuple.rejectedInvalids += rejCount;
+                            rejCount = 0l;
+                            statReceived = false;
+                            submit (statTuple, OutStat);
+                        }
+                        else {
+                            // statistics tuple not yet received
+                            punctReceived = true;
+                        }
+                    }
+                }
+                onTuple InStat:
+                {
+                    if (punctReceived) {
+                        // rejCounter is stable
+                        InStat.rejectedInvalids += rejCount;
+                        rejCount = 0l;
+                        punctReceived = false;
+                        submit(InStat, OutStat);
+                    }
+                    else {
+                        // temporarily buffer statistics tuple for later update
+                        statTuple = InStat;
+                        statReceived = true;
+                    }
+                }
+        }
+}
+
