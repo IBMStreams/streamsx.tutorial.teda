@@ -334,7 +334,7 @@ Open **Resources/demoapp.chainprocessor.reader.custom/FileReaderCustomASN1.spl**
                 /**
                  * operator record stream output type
                  */
-                parserRecordOutputType: ReaderRecordType;
+                parserRecordOutputType: MobileSampleMsg;
                 /**
                  * The operator that converts the decoded record tuples.
                  */
