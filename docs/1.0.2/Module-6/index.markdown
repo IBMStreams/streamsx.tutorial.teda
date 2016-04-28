@@ -252,6 +252,7 @@ You can use the reduced schema included in the Streams installation. Copy the re
 
     cd <WORKSPACE>/teda.demoapp/demoapp.streams.custom
     cp $STREAMS_INSTALL/samples/com.ibm.streams.teda/demo/teda_tutorial/teda.tutorial/demoapp.streams.custom/reduced_asn1schema.spl .
+    rm <WORKSPACE>/teda.demoapp/etc/demo.spl
 
 Refresh the view in the Streams Project Explorer. The file demo.spl can be deleted since it is not used in the project.
 
