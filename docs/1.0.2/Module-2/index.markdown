@@ -111,7 +111,7 @@ The Monitoring GUI starts and shows the ITEMain job. If you select a job, you ca
 
 ## Moving sample data files to the application's input directory to process the data
 
-When you start the ITE application for the first time, it creates the directories for input, output, and other functions. With the default settings, these directories are created under `WORKSPACE/teda.demoapp/data`. After refreshing the **Resources** tree, you find them under **Resources/data** in the Project Explorer in Streams Studio. The `in` directory is the directory for input data, the `out` directory contains the various output files.
+When you start the ITE application for the first time, it creates the directories for input, output, and other functions. With the default settings, these directories are created under `WORKSPACE/teda.demoapp/data`. After refreshing the **Resources** tree, you find them under **teda.demoapp/Resources/data** in the Project Explorer in Streams Studio. The `in` directory is the directory for input data, the `out` directory contains the various output files.
 
 <img src="/streamsx.tutorial.teda/images/1.0.2/module-02/ProjectExplorerDataDirectory.png" alt="Project Explorer shows the data directory tree"/>
 
