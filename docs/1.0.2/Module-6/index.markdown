@@ -296,70 +296,70 @@ Enables or disables ASN.1 constraints verification, for example restrictions on 
 Open **Resources/demoapp.chainprocessor.reader.custom/FileReaderCustomASN1.spl** and replace the operator implementation with the following code.
 
     public composite FileReaderCustomASN1 (
-	    input
-	    	stream<TypesCommon.FileIngestSchema> FileIn;
-	    output
-		stream<TypesCommon.ReaderOutStreamType> ReaderRec,
-		stream<TypesCommon.ParserStatisticsStream> ReaderStat
+        input
+            stream<TypesCommon.FileIngestSchema> FileIn;
+        output
+            stream<TypesCommon.ReaderOutStreamType> ReaderRec,
+            stream<TypesCommon.ParserStatisticsStream> ReaderStat
     ) {
-    	param
-	expression<rstring> $groupId;
-	expression<rstring> $chainId;
-	
-	graph
-	
-	(
-		stream<TypesCommon.ReaderOutStreamType> ReaderRec;
-		stream<TypesCommon.ParserStatisticsStream> ReaderStat
-	) =
-	// ------------------------------------------------
-	// custom code begin
-	// ------------------------------------------------
-	// Select the file reader operator
-	// a) FileReaderCSV or
-	// b) FileReaderASN1 or
-	// c) FileReaderStructure or
-	// d) Create your own parsers based on CustomParserTemplate
-	FileReaderASN1
-	// ------------------------------------------------
-	// custom code end
-	// ------------------------------------------------
-	(FileIn as IN) {
-		param
-			groupId : $groupId;
-			chainId : $chainId;
-			// ------------------------------------------------
-			// custom code begin
-			// ------------------------------------------------
-			/**
-			 * operator record stream output type
-			 */
-			parserRecordOutputType: ReaderRecordType;
-			/**
-			 * The operator that converts the decoded record tuples.
-			 */
-			RecordConverterOperator: RecordConverter;
-			/**
-			 * The absolute filename of the ASN.1 grammar file.
-			 * default dir is <app>/etc
-			 */
-			grammarFile : "etc/tutorial.asn";
-			/**
-			 * The name of the root PDU.
-			 */
-			pdu : "MSCRecord";
-			/**
-			 * The list of triggers.
-			 */
-			trigger : "/mscSampleRecord";
-			/**
-			 * Check ASN.1 constraints.
-			 */
-			checkConstraints : false;
-			// ------------------------------------------------
-			// custom code end
-			// ------------------------------------------------
-	}
+        param
+            expression<rstring> $groupId;
+            expression<rstring> $chainId;
+    
+        graph
+    
+        (
+            stream<TypesCommon.ReaderOutStreamType> ReaderRec;
+            stream<TypesCommon.ParserStatisticsStream> ReaderStat
+        ) =
+        // ------------------------------------------------
+        // custom code begin
+        // ------------------------------------------------
+        // Select the file reader operator
+        // a) FileReaderCSV or
+        // b) FileReaderASN1 or
+        // c) FileReaderStructure or
+        // d) Create your own parsers based on CustomParserTemplate
+        FileReaderASN1
+        // ------------------------------------------------
+        // custom code end
+        // ------------------------------------------------
+        (FileIn as IN) {
+            param
+                groupId : $groupId;
+                chainId : $chainId;
+                // ------------------------------------------------
+                // custom code begin
+                // ------------------------------------------------
+                /**
+                 * operator record stream output type
+                 */
+                parserRecordOutputType: ReaderRecordType;
+                /**
+                 * The operator that converts the decoded record tuples.
+                 */
+                RecordConverterOperator: RecordConverter;
+                /**
+                 * The absolute filename of the ASN.1 grammar file.
+                 * default dir is <app>/etc
+                 */
+                grammarFile : "etc/tutorial.asn";
+                /**
+                 * The name of the root PDU.
+                 */
+                pdu : "MSCRecord";
+                /**
+                 * The list of triggers.
+                 */
+                trigger : "/mscSampleRecord";
+                /**
+                 * Check ASN.1 constraints.
+                 */
+                checkConstraints : false;
+                // ------------------------------------------------
+                // custom code end
+                // ------------------------------------------------
+        }
     }
 
 For more information about the ASN1Parse operator’s parameters read the Parameters section in the IBM Knowledge Center under: [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda>com.ibm.streams.teda.parser.binary>ASN1Parse](https://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/op$com.ibm.streams.teda.parser.binary$ASN1Parse.html)
