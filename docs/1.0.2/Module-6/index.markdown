@@ -250,7 +250,7 @@ The parser already can omit elements that you don't need. Therefore, you define 
 
 You can use the reduced schema included in the Streams installation. Copy the reduced_asn1schema.spl file from the teda.tutorial to your project into the directory demoapp.streams.custom:
 
-    cd <WORKSPACE>/teda.tutorial/demoapp.streams.custom
+    cd <WORKSPACE>/teda.demoapp/demoapp.streams.custom
     cp $STREAMS_INSTALL/samples/com.ibm.streams.teda/demo/teda_tutorial/teda.tutorial/demoapp.streams.custom/reduced_asn1schema.spl .
 
 Refresh the view in the Streams Project Explorer. The file demo.spl can be deleted since it is not used in the project.
