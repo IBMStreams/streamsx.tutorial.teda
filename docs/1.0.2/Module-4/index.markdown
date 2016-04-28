@@ -95,12 +95,12 @@ In this module of the tutorial, you select the record stream output. As the resu
 
 The transformer creates two more attributes by splitting the **CallReferenceTime** into date and time. You extend the schema of the transformer output stream with the **callStartDate** and **callStartTime** attributes that get the results of the split operation.
 
-Typically, you specify the transformer output type by modifying the `TypesCustom.TransformedRecord` type, which is located in the **Resources/demoapp.streams.custom/TypesCustom.spl** file. The `TransformedRecord` type is by default identical to the `ReaderRecordType`. The result of this default is that the transformer does not change its output schema. To include the extra attributes you have two options:
+Typically, you specify the transformer output type by modifying the `TypesCustom.TransformedRecord` type, which is located in the **teda.demoapp/Resources/demoapp.streams.custom/TypesCustom.spl** file. The `TransformedRecord` type is by default identical to the `ReaderRecordType`. The result of this default is that the transformer does not change its output schema. To include the extra attributes you have two options:
 
 1. Add the extra attributes already to the schema of the transformer input data. This method is best practice if there are only small schema extensions. Instead of using Functors for assignment, you can use the [Modify](http://ibmstreams.github.io/streamsx.transform/) operator from [StreamsDev](https://developer.ibm.com/streamsdev/docs/using-modify-operator-reduce-copying/), or you can use a Custom operator that modifies the input tuple and sends it to its output. The performance of your application can benefit from doing it this way, because you avoid copying tuples in the transformer logic.
 2. Add these attributes to `TypesCustom.TransformedRecord`. In this case, the transformer copies each tuple because input schema and output schema differ. You typically select this option if the transformation logic produces an output that is different in major parts compared to the input.
 
-In the tutorial, you use the first option. Insert the type definition TransformResultType for the extra attributes as static type into composite TypesCustom in **Resources/demoapp.streams.custom/TypesCustom.spl** file.
+In the tutorial, you use the first option. Insert the type definition TransformResultType for the extra attributes as static type into composite TypesCustom in **teda.demoapp/Resources/demoapp.streams.custom/TypesCustom.spl** file.
 
     /**
      * specifies the extra attributes that are derived from the CDR
@@ -138,7 +138,7 @@ Now you are ready to implement the transformer operator logic.
 
 ## Implementing the transformer operator logic
 
-You implement the transformation logic in the **DataProcessor** composite in namespace **demoapp.chainprocessor.transformer.custom**. You find a default implementation in the **Resources/demoapp.chainprocessor.transformer.custom/DataProcessor.spl** file. It forwards the input tuples unmodified. Your transformer logic uses one Custom operator to transform and forward the input tuple and to forward the statistics tuple unmodified.
+You implement the transformation logic in the **DataProcessor** composite in namespace **demoapp.chainprocessor.transformer.custom**. You find a default implementation in the **teda.demoapp/Resources/demoapp.chainprocessor.transformer.custom/DataProcessor.spl** file. It forwards the input tuples unmodified. Your transformer logic uses one Custom operator to transform and forward the input tuple and to forward the statistics tuple unmodified.
 
 <img src="/streamsx.tutorial.teda/images/1.0.2/module-04/DataProcessor.png" alt="DataProcessor" style="width: 90%;"/>
 
