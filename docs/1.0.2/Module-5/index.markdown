@@ -209,7 +209,7 @@ A detailed description of the mapping file of the fixed-size structure binary da
 
 ## Creating the custom binary-encoded data file reader composite
 
-Analog to the reader for CSV files, you copy the **Resources/demoapp.chainprocessor.reader.custom/FileReaderCustom.spl** file to **FileReaderCustomBIN.spl** and rename the contained composite from FileReaderCustom to FileReaderCustomBIN. This composite must be customized to use the built-in binary structure reader, which is demoapp.chainprocessor.reader::FileReaderStructure.
+Analog to the reader for CSV files, you copy the **teda.demoapp/Resources/demoapp.chainprocessor.reader.custom/FileReaderCustom.spl** file to **FileReaderCustomBIN.spl** and rename the contained composite from FileReaderCustom to FileReaderCustomBIN. This composite must be customized to use the built-in binary structure reader, which is demoapp.chainprocessor.reader::FileReaderStructure.
 
 The file contains the composite with the instantiation of a file reader, which follows the frameworks reader interfaces. The framework already contains three configurable file readers: FileReaderCSV, FileReaderASN1, and **FileReaderStructure**. You select the FileReaderStructure file reader and set its parameter values. Two of them are the previously created `structure.xml` and `mapping.xml`. 
 
