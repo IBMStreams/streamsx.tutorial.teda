@@ -196,7 +196,7 @@ It is important to understand that the XML elements `<SPLValueAssignment>` repre
 
 For more information about the allowed elements and values in the customization file, see the `etc/LookupMgrCustomizing.xsd` XSD file in your project directory.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-07/LookupMgrCustomizing.png" alt="LookupMgrCustomizing.xml" width="95%" height="95%"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-07/LookupMgrCustomizing.png" alt="LookupMgrCustomizing.xml" width="97%" height="97%"/>
 
 You finished customizing the Lookup Manager application. You can build the project now.
 
