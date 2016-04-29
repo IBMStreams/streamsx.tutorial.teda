@@ -80,7 +80,7 @@ and modify the line:
 
 The group determination pattern looks for a part of the file name that contains the `msc_id`, and the new `groupId` attribute is extracted by a regular expression (brackets). The resulting string value in brackets is used later on to identify a mapping in `groups.cfg`, which contains group-specific configuration values.
 
-`Example:`
+Example:
 `File name: CDR_RGN`**1**`_20140205083000.csv`
 `Extracted msc_id: `**1**
 
