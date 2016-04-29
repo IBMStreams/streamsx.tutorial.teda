@@ -186,9 +186,7 @@ In preparation for the next module of the tutorial, or to repeat the processing,
 For the next steps, or if you want to repeat this module, you must remove the history of the file name deduplication, which is stored in files in the checkpoint directory. It is also recommended to clean up the control and out directories. 
 
 * Cancel ITE job and Lookup Manager job
-* Remove the checkpoint, control and out directories under your data directory and all its content.
-* Remove the control directory (remember that this folder is now under Lookup Manager's data directory).
-* Optionally, you can remove the out directory of the Lookup Manager
+* Remove the checkpoint, control and out directories and all its content (remember that the control folder is now under Lookup Manager’s data directory).
  
 You can remove them from Streams Studio or command line:
 
