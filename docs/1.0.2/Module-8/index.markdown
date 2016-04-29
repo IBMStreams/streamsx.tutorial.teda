@@ -132,7 +132,7 @@ However, this rate requires more memory for the bloom filter.
 
 Each data record needs a “finger print” to be stored to detect potential duplicates. For this purpose, it is necessary to find CDR attributes, which define a CDR uniquely. You concatenate these CDR attributes to a single rstring. In a second step, you calculate a hash code out of this rstring to reduce the storage requirement.
 
-The toolkit provides the hash function **sha2hash224()** that you can use for that purpose.
+The toolkit provides the hash function `sha2hash224()` that you can use for that purpose.
 
 You do these changes in the 
 **teda.demoapp/demoapp.chainprocessor.transformer.custom/DataProcessor.spl** file.
@@ -172,9 +172,9 @@ The file name indicates which file the rejected duplicated data come from. It is
 
 The file starts with:
 
-    ***2***,,5
-    ***2***,,10
-    ***2***,,15
+    2,,5
+    2,,10
+    2,,15
 
 The first value of each CSV line is the reject reason. The value ***2*** stands for `rrRecordDuplicate`. The second value is available for comments but remains empty in this demo project. The third value in each of these CSV lines indicates the record number of the duplicate record in the input file.
 
