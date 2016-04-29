@@ -388,9 +388,9 @@ Open a console window and copy the `IMSI_CRM.csv` file from the sample directory
 
 <img src="/streamsx.tutorial.teda/images/1.0.2/module-07/LaunchITE.png" alt="ITE Submission Time Values"/>
 
-**Note:**
+***Note:***
 
-If you restarted the domain, the port number of the sws service can be different. You get the port number by running the `streamtool geturl` command. Update the port number in the Monitoring GUI. Open **Action > Settings...** in the main menu. Select the current connection in the Connections tab and edit the port number.  
+*If you restarted the domain, the port number of the sws service can be different. You get the port number by running the `streamtool geturl` command. Update the port number in the Monitoring GUI. Open **Action > Settings...** in the main menu. Select the current connection in the Connections tab and edit the port number.*
 
 ### Loading the lookup data
 
