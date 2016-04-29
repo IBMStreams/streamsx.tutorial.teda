@@ -290,11 +290,11 @@ Open the **teda.demoapp /Resources/demoapp.streams.custom/TypesCustom.spl** file
         int64 customerType
     >;
 
-**Note:**
+***Note:***
 
-The definition of the **ImsiLookupTableType** has two constraints:
+*The definition of the* ***ImsiLookupTableType*** *has two constraints:*
 
-1. The attribute types and their order must be the same as for the values in the store definition that you specified in the `LookupMgrCustomizing.xml` file. In this XML file you specified the types and order of the values of the lookup data:
+1. *The attribute types and their order must be the same as for the values in the store definition that you specified in the* `LookupMgrCustomizing.xml` *file. In this XML file you specified the types and order of the values of the lookup data:*
 
         <StoreDefinitions Name="ImsiMap">
           <SPLValueAssigment SPLType="int64" ValueName="customerId"
@@ -303,25 +303,25 @@ The definition of the **ImsiLookupTableType** has two constraints:
               SPLValueExpression="customerType"/>
           <SPLKeyAssigment SPLKeyExpression="(rstring)imsi" SPLKey-Type="rstring"/>
 
-   Therefore, the SPL type **ImsiLookupTableType** must have as first attribute an int64, which represents the customer ID. The next attribute must also be an int64, which is the customer type. The attribute names can differ from the definition in the XML file, for example, be in different case.
+   *Therefore, the SPL type* ***ImsiLookupTableType*** *must have as first attribute an int64, which represents the customer ID. The next attribute must also be an int64, which is the customer type. The attribute names can differ from the definition in the XML file, for example, be in different case.*
 
-2. The attribute types and names of **ImsiLookupTableType** must match those attributes of the input stream that contain the lookup results. This condition is the same condition that must be met for the **assignFrom** SPL function to succeed. Remember, that the input stream schema is extended by **LookupType**, which is defined as
+2. *The attribute types and names of* ***ImsiLookupTableType*** *must match those attributes of the input stream that contain the lookup results. This condition is the same condition that must be met for the* ***assignFrom*** *SPL function to succeed. Remember, that the input stream schema is extended by **LookupType**, which is defined as*
 
-    static LookupType = tuple<
-        // ------------------------------------------------
-        // custom code begin
-        // ------------------------------------------------
-        // add your custom attributes here
-        int64 customerID,
-        int64 customerType,
-        rstring lookupImsi,
-        boolean lookupFound     // lookup success indicator 
-        // ------------------------------------------------
-        // custom code end
-        // ------------------------------------------------
-    >;
+        static LookupType = tuple<
+            // ------------------------------------------------
+            // custom code begin
+            // ------------------------------------------------
+            // add your custom attributes here
+            int64 customerID,
+            int64 customerType,
+            rstring lookupImsi,
+            boolean lookupFound     // lookup success indicator 
+            // ------------------------------------------------
+            // custom code end
+            // ------------------------------------------------
+        >;
 
-   The **customerID** and **customerType** attributes in the **LookupType** have the same SPL type and the same name as those values in **ImsiLookupTable**. The order of attributes in the input stream schema can be different from the **ImsiLookupTableType**.
+   *The **customerID** and **customerType** attributes in the **LookupType** have the same SPL type and the same name as those values in **ImsiLookupTable**. The order of attributes in the input stream schema can be different from the **ImsiLookupTableType**.*
 
 For the records that the business logic rejects, you add a new reject reason, `rrLookupFailed`. Add this new value to the `rejectReason` enum in the **teda.demoapp/Resources/demoapp.streams.custom/TypesCustom.spl** file under the teda.demoapp project:
 
