@@ -1,6 +1,6 @@
 ---
 layout: docs
-title:  Module 7 - Enrich your data by using lookups on external data (under construction)
+title:  Module 7 - Enrich your data by using lookups on external data
 description:  Enrich your data by using lookups on external data
 weight:  17
 ---
@@ -439,7 +439,13 @@ Open one or more of the result files. A CSV line of these files looks like:
 
 The last four values of each line represent your lookup values (customerID, customerType, lookupImsi, lookupFound). The last `true` indicates that the lookup was successful.
 
-If a lookup fails, the record is not processed. An error information line is added to the rejected data output file. Refresh and expand the **data/out/rejected** folder of the ITE application. You find some files with rejection information there:
+If a lookup fails, the record is not processed. An error information line is added to the rejected data output file.
+
+Optionally, you can process the following input file to see a record rejected because lookup fails:
+
+[CDR_RGN1_20140205085500.csv](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-7/CDR_RGN1_20140205085500.csv)
+
+Refresh and expand the **data/out/rejected** folder of the ITE application. You find some files with rejection information there:
 
 <img src="/streamsx.tutorial.teda/images/1.0.2/module-07/RejectedRecords.png" alt="Output files in rejected directory"/>
 
