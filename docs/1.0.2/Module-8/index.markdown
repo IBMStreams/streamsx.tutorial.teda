@@ -187,11 +187,15 @@ For the next steps, or if you want to repeat this module, you must remove the hi
 
 * Cancel ITE job and Lookup Manager job
 * Remove the checkpoint, control and out directories under your data directory and all its content.
+* Remove the control directory (remember that this folder is now under Lookup Manager's data directory).
+* Optionally, you can remove the out directory of the Lookup Manager
  
 You can remove them from Streams Studio or command line:
 
     cd WORKSPACE/teda.demoapp/data
-    rm -rv checkpoint control out
+    rm -rv checkpoint out
+    cd WORKSPACE/teda.lookupmgr/data
+    rm -rv control out
 
 Optionally, you can close the Monitoring GUI.
 
