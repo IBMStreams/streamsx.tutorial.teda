@@ -469,11 +469,11 @@ The “rejectedInvalids=1” indicate that one lookup failed.
 
 ## Shutting down the applications and cleaning up
 
-Typically, you use the teda-shutdown-job jobIds command to shut down an ITE or LookupManager application gracefully.
+Typically, you use the teda-shutdown-job jobIds command to shut down an ITE or Lookup Manager application gracefully.
 In preparation for the next module of the tutorial, or to repeat the processing, you can also use streamtool or Streams Studio to cancel the job.
 For the next steps, or if you want to repeat this module, you must remove the history of the file name deduplication, which is stored in files in the checkpoint directory. It is also recommended to clean up the control and out directories. 
 
-* Cancel ITE job and LookupManager job
+* Cancel ITE job and Lookup Manager job
 * Remove the checkpoint, control and out directories under your data directory and all its content.
  
 You can remove them from Streams Studio or command line:
