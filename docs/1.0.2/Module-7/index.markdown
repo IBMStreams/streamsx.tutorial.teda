@@ -283,7 +283,7 @@ Now, you add the following functions to the business logic:
 The LookupCache operator must be configured with an SPL type that represents the value in the lookup data. Remember, that the lookup data is organized as a map with a key and a value. The value typically consists of multiple attributes.
 
 You define this tuple type as a static SPL type in the TypesCustom composite.
-Open the **teda.demoapp /Resources/demoapp.streams.custom/TypesCustom.spl** file in the teda.demoapp project and add the type definition for **ImsiLookupTableType**:
+Open the **teda.demoapp/Resources/demoapp.streams.custom/TypesCustom.spl** file in the teda.demoapp project and add the type definition for **ImsiLookupTableType**:
 
     static ImsiLookupTableType = tuple<
         int64 customerID,
@@ -467,13 +467,13 @@ The statistics file has one CSV line per processed input file. The line can look
 
 The “rejectedInvalids=1” indicate that one lookup failed. 
 
-## Shutting down the ITE application gracefully and cleaning up
+## Shutting down the applications and cleaning up
 
-Typically, you use the teda-shutdown-job jobIds command to shut down an ITE application gracefully.
+Typically, you use the teda-shutdown-job jobIds command to shut down an ITE or LookupManager application gracefully.
 In preparation for the next module of the tutorial, or to repeat the processing, you can also use streamtool or Streams Studio to cancel the job.
 For the next steps, or if you want to repeat this module, you must remove the history of the file name deduplication, which is stored in files in the checkpoint directory. It is also recommended to clean up the control and out directories. 
 
-* Cancel the job now by using teda-shutdown-job jobId
+* Cancel ITE job and LookupManager job
 * Remove the checkpoint, control and out directories under your data directory and all its content.
  
 You can remove them from Streams Studio or command line:
