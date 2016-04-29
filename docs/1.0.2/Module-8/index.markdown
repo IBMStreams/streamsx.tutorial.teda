@@ -92,7 +92,7 @@ After defining how to determine the group from the file name, you configure the 
 
 Open the configuration file **teda.demoapp/Resources/config/groups.cfg** in the Project Explorer.
 
-According to the requirements, you have three MSCs; each of them has its own group. Each group has a configuration line in the file. Additionally, one **default** line must exist for all not explicitly mentioned cases. Each of these uncommented lines contains a set of parameters.
+According to the requirements, you have three MSCs; each of them has its own group. Each group has a configuration line in the file. One **default** line must exist for all not explicitly mentioned cases. Each of these uncommented lines contains a set of parameters.
 
 The first parameter contains the Group identifier, which comes from the `groupId` attribute. 
 
@@ -108,7 +108,6 @@ Now, your groups.cfg looks like:
 
     # Group identifier, Chains per group, Maximum BloomFilter entries
     "default",1,4000000
-    "0",1,4000000
     "1",1,4000000
     "2",1,4000000
 
