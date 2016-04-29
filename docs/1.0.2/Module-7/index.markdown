@@ -238,9 +238,9 @@ The key must be an attribute of the input stream. Dependent on the **callType** 
 
     ite.ingest.reader.schemaExtensionForLookup=on
 
-**Note:**
+***Note:***
 
-**ite.ingest.reader.schemaExtensionForLookup=on** is the default setting for this parameter. You turned off the parameter when you examined module 3 of the tutorial. This setting makes the application framework add the attributes from **LookupType** to the common file reader output schema.
+***ite.ingest.reader.schemaExtensionForLookup=on*** *is the default setting for this parameter. You turned off the parameter when you examined module 3 of the tutorial. This setting makes the application framework add the attributes from* ***LookupType*** *to the common file reader output schema.*
 
 To include the additional attributes in the output stream of the transformer and to the CSV output files, you modify the **TypesCustom.TransformedRecord** and **TypesCustom.ChainSinkType** SPL types.
 
