@@ -211,8 +211,8 @@ public composite DataProcessor (
          */
         (stream <I> OutRec;
          stream <TypesCommon.BundledTransformerOutputStreamType> OutTap;
-         stream <TypesCommon.RejectedDataStreamType> EnrichFailed) as Check
-              = Custom (EnrichedRecords as I)
+         stream <TypesCommon.RejectedDataStreamType> EnrichFailed
+        ) as Check = Custom (EnrichedRecords as I)
         {
             logic
                 state:
