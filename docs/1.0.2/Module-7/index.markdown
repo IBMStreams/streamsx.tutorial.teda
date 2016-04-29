@@ -342,7 +342,7 @@ For the records that the business logic rejects, you add a new reject reason, `r
 
 Have a look at the processing graph of the evolved **DataProcessor** composite before you copy and paste its SPL code into your development environment.
 
-<img src="/streamsx.tutorial.teda/images/1.0.2/module-07/DataProcessor.png" alt="DataProcessor composite"/>
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-07/DataProcessor.png" alt="DataProcessor composite" width="98%" height="98%"/>
 
 Compared with module 4 of the tutorial, the operator graph now consists of four operators, which are explained from left to right. 
 
