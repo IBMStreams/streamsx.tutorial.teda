@@ -1,0 +1,89 @@
+					if ("clear" == Cmd.command) {
+						//Clear command is ignored since expired data is cleaned when receiving data tuples
+						appTrc(Trace.info, "Clear command received. Nothing cleaned here.", "CustomContext");
+					}
+					if ("write" == Cmd.command) {
+						mutable int32 ferror = -1;
+						mutable uint64 fileWriteH = 0; //the write file handle for the checkpoint file
+						fileWriteH = spl.file::fopen(checkpointFile, "w", ferror);
+						if (0!=ferror) {
+							appTrc(Trace.error, "Can not open checkpointFile="+checkpointFile+" ferror="+strerror(ferror), "CustomContext");
+							Cmd.success =false;
+						} else {
+							appTrc(Trace.info, "Open file success checkpointFile="+checkpointFile, "CustomContext");
+							spl.file::fwriteBin (subscriberMap, fileWriteH, ferror);
+							if (0!=ferror) {
+								appTrc(Trace.error, "Can not write checkpointFile="+checkpointFile+" ferror="+strerror(ferror), "CustomContext");
+								Cmd.success =false;
+							} else {
+								if (0!=spl.file::fclose(fileWriteH, ferror)) {
+									appTrc(Trace.error, "On fclose file: " + checkpointFile + " ferror="+strerror(ferror), "CustomContext");
+								}
+								else {
+									argument = checkpointFile; // for statistic log file only to indicate that file was written
+
+									// save metrics
+									fileWriteH = spl.file::fopen(metricsFile, "w", ferror);
+									if (0!=ferror) {
+										appTrc(Trace.error, "Can not open metricsFile="+metricsFile+" ferror="+strerror(ferror), "CustomContext");
+										Cmd.success =false;
+									} else {
+										appTrc(Trace.info, "Open file success metricsFile="+metricsFile, "CustomContext");
+										spl.file::fwriteBin (metrics, fileWriteH, ferror);
+										if (0!=ferror) {
+											appTrc(Trace.error, "Can not write metricsFile="+metricsFile+" ferror="+strerror(ferror), "CustomContext");
+											Cmd.success =false;
+										} else {
+											if (0!=spl.file::fclose(fileWriteH, ferror)) {
+												appTrc(Trace.error, "On fclose file: " + metricsFile + " ferror="+strerror(ferror), "CustomContext");
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					if ("read" == Cmd.command) {
+						mutable int32 ferror = -1;
+						mutable uint64 fileReadH = 0; //the read file handle for the checkpoint file
+						fileReadH = spl.file::fopen(checkpointFile, "r", ferror);
+						if (0!=ferror) {
+							appTrc(Trace.error, "Can not open checkpointFile="+checkpointFile+" ferror="+strerror(ferror), "CustomContext");
+							Cmd.success =false;
+						} else {
+							appTrc(Trace.info, "Open file success checkpointFile="+checkpointFile, "CustomContext");
+							spl.file::freadBin (subscriberMap, fileReadH, ferror);
+							if (0!=ferror) {
+								appTrc(Trace.error, "Can not read checkpointFile="+checkpointFile+" ferror="+strerror(ferror), "CustomContext");
+								Cmd.success =false;
+							} else {
+								if (0!=spl.file::fclose(fileReadH, ferror)) {
+									appTrc(Trace.error, "On fclose file: " + checkpointFile + " ferror="+strerror(ferror), "CustomContext");
+								}
+								else {
+									argument = checkpointFile; // for statistic log file only to indicate that file was written
+
+									// restore metrics
+									fileReadH = spl.file::fopen(metricsFile, "r", ferror);
+									if (0!=ferror) {
+										appTrc(Trace.error, "Can not open metricsFile="+metricsFile+" ferror="+strerror(ferror), "CustomContext");
+										Cmd.success =false;
+									} else {
+										appTrc(Trace.info, "Open file success metricsFile="+metricsFile, "CustomContext");
+										spl.file::freadBin (metrics, fileReadH, ferror);
+										if (0!=ferror) {
+											appTrc(Trace.error, "Can not read metricsFile="+metricsFile+" ferror="+strerror(ferror), "CustomContext");
+											Cmd.success =false;
+										} else {
+											if (0!=spl.file::fclose(fileReadH, ferror)) {
+												appTrc(Trace.error, "On fclose file: " + metricsFile + " ferror="+strerror(ferror), "CustomContext");
+											} else {
+												submit(metrics, CampaignMetricsStream);
+												spl.file::remove(metricsFile, ferror);
+											}
+										}
+									}
+								}
+							}
+						}
+					}

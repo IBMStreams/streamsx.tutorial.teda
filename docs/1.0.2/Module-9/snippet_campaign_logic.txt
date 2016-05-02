@@ -1,0 +1,157 @@
+						metrics.totalCDRs++;
+						/**
+						 * process only of not a duplicate
+						 */
+						if(!duplicate) {
+
+							/**
+							 * declare and initialize local variable
+							 */
+							uint32 callReferenceDaySince1970 = daysSince1970(callReferenceTimeToTimestamp(cdrCallReferenceTime));
+							uint64 causeForTermination = strtoull(cdrCauseForTermination, 16);
+							mutable uint32 lastCallDurationPerDay;
+							mutable uint32 lastDroppedCallsPerDay;
+							mutable rstring imsi;
+							mutable int32 sizeOfList;
+							mutable boolean dayInList;
+							mutable int32 idx;
+	
+							/**
+							 * evaluate imsi depending on call type
+							 */
+							if(cdrCallType == 3ub)
+								imsi = cdrCallingImsi;
+							else
+								imsi = cdrCalledImsi;
+	
+							/**
+							 * add subscriber to hash map if not already in
+							 */
+							if(!(imsi in subscriberMap)) {
+								subscriberMap[imsi] = subscriberDataEMPTY;
+								metrics.sizeofSubscriberMap = (int64) size(subscriberMap);
+							}
+		
+							/**
+							 * check if the incoming data is in the interval and so valid to be processed 
+							 */
+							sizeOfList = size(subscriberMap[imsi].intervalDays);
+							if((0 == sizeOfList) ||
+							   (subscriberMap[imsi].intervalDays[sizeOfList-1].daySince1970 < callReferenceDaySince1970+$interval)) {
+		
+								/**
+								 * check if we have expired data (data out of interval) in the list and if so remove them
+								 */
+								while((0 < size(subscriberMap[imsi].intervalDays)) &&
+									  ((subscriberMap[imsi].intervalDays[0].daySince1970+$interval) < (callReferenceDaySince1970+1u))) {
+									removeM(subscriberMap[imsi].intervalDays, 0);
+									metrics.totalNumberOfDays--;
+								}
+		
+								/**
+								 * check if the reference day is in the list or if not insert into list (list is ascending by daySince1970)
+								 * set idx to index of data in the list.
+								 */
+								dayInList = false;
+								idx = 0;
+								while(idx <= size(subscriberMap[imsi].intervalDays) && !dayInList) {
+		
+									/**
+									 * if we are behind the last element in the list append to list. this covers also empty list in the beginning
+									 */
+									if(idx == size(subscriberMap[imsi].intervalDays)) {
+										appendM(subscriberMap[imsi].intervalDays, dayAggregateEMPTY);
+										subscriberMap[imsi].intervalDays[idx].daySince1970 = callReferenceDaySince1970;
+										dayInList = true;
+										metrics.totalNumberOfDays++;
+									}
+		
+									/**
+									 * else if the reference day is lower than day in the list insert the day before
+									 */
+									else if(callReferenceDaySince1970 < subscriberMap[imsi].intervalDays[idx].daySince1970) {
+										insertM(subscriberMap[imsi].intervalDays, dayAggregateEMPTY, idx);
+										subscriberMap[imsi].intervalDays[idx].daySince1970 = callReferenceDaySince1970;
+										dayInList = true;
+										metrics.totalNumberOfDays++;
+									}
+		
+									/**
+									 * else if the reference day is equal to the day in the list we found it
+									 */
+									else if(subscriberMap[imsi].intervalDays[idx].daySince1970 == callReferenceDaySince1970) {
+										dayInList = true;
+									}
+		
+									/**
+									 * go to next element in the list
+									 */
+									else {
+										idx++;
+									}
+								}
+	
+								/**
+								 * aggregate call time per day for outgoing calls (cdrCallType == 3)
+								 */
+								lastCallDurationPerDay = subscriberMap[imsi].intervalDays[idx].callDurationPerDay;
+								if(cdrCallType == 3ub)
+									subscriberMap[imsi].intervalDays[idx].callDurationPerDay += (uint32) cdrSamMczDuration;
+		 
+								/**
+								 * aggregate dropped calls per day. cause for termination 16 and 31 are normal terminations
+								 */
+								lastDroppedCallsPerDay = subscriberMap[imsi].intervalDays[idx].droppedCallsPerDay;
+								if((causeForTermination != 16ul) && (causeForTermination != 31ul)) {
+									subscriberMap[imsi].intervalDays[idx].droppedCallsPerDay++;
+									metrics.failedCDRs++;
+								}
+		
+								/**
+								 * check if threshold 1 limit is crossed and if so submit event
+								 */
+								if((lastCallDurationPerDay < $durationPerDayThreshold1) &&
+								   ($durationPerDayThreshold1 <= subscriberMap[imsi].intervalDays[idx].callDurationPerDay)) {
+									submit({imsi=imsi,
+											day=getDateStringFromDay(subscriberMap[imsi].intervalDays[idx].daySince1970),
+											duration=subscriberMap[imsi].intervalDays[idx].callDurationPerDay},
+											Threshold1EventStream);
+								}
+		
+								/**
+								 * check if threshold 2 limit is crossed and if so submit event
+								 */
+								if((lastCallDurationPerDay < $durationPerDayThreshold2) &&
+								   ($durationPerDayThreshold2 <= subscriberMap[imsi].intervalDays[idx].callDurationPerDay)) {
+									submit({imsi=imsi,
+									        day=getDateStringFromDay(subscriberMap[imsi].intervalDays[idx].daySince1970),
+											duration=subscriberMap[imsi].intervalDays[idx].callDurationPerDay},
+								        	Threshold2EventStream);
+								}
+		
+								/**
+								 * check if dropped calls limit is hit and if so submit event
+								 */
+								if((lastDroppedCallsPerDay < $droppedCallsThreshold) &&
+								   ($droppedCallsThreshold == subscriberMap[imsi].intervalDays[idx].droppedCallsPerDay)) {
+									submit({imsi=imsi,
+									        day=getDateStringFromDay(subscriberMap[imsi].intervalDays[idx].daySince1970),
+									        droppedCalls=subscriberMap[imsi].intervalDays[idx].droppedCallsPerDay},
+							    		    DroppedCallsEventStream);
+								}
+							}
+		
+							/**
+							 * the incoming data is not in the interval and so not valid to be processed 
+							 */
+							else {
+								metrics.ignoredCDRs++;
+							}
+						}
+
+						/**
+						 * the incoming data is tagged as duplicate so just count it
+						 */
+						else {
+							metrics.duplicateCDRs++;
+						}

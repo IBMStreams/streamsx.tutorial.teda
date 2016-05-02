@@ -1,0 +1,51 @@
+		/**
+		 * EventThreshold1
+		 * FileSink operator that receives threshold1 event stream data tuples and writes them into the threshold1 csv file.
+		 * @input  Threshold1EventStream data stream with threshold1 events
+		 */
+		() as EventThreshold1 = FileSink(Threshold1EventStream) {
+			logic
+				state : {
+					rstring dir = $outputDir; // prevents submission code to be called when using directory param
+					boolean dirOk = com.ibm.streams.teda.internal.fileutils::createDir(dir);
+				}		
+			param
+				file : $outputDir + "/" + $threshold1FileName + "_CDR-" + $groupId + ".csv";
+				format : csv;
+				flush : 1u;
+		}
+
+		/**
+		 * EventThreshold2
+		 * FileSink operator that receives threshold event stream data tuples and writes them into the threshold2 csv file.
+		 * @input  Threshold1EventStream data stream with threshold2 events
+		 */
+		() as EventThreshold2 = FileSink(Threshold2EventStream) {
+			logic
+				state : {
+					rstring dir = $outputDir; // prevents submission code to be called when using directory param
+					boolean dirOk = com.ibm.streams.teda.internal.fileutils::createDir(dir);
+				}		
+			param
+				file : $outputDir + "/" + $threshold2FileName + "_CDR-" + $groupId + ".csv";
+				format : csv;
+				flush : 1u;
+		}
+
+		/**
+		 * EventDroppedCalls
+		 * FileSink operator that receives dropped calls event stream data tuples and writes them into the dropped calls csv file.
+		 * @input  DroppedCallsEventStream data stream with dropped calls events
+		 */
+		() as EventDroppedCalls = FileSink(DroppedCallsEventStream) {
+			logic
+				state : {
+					rstring dir = $outputDir; // prevents submission code to be called when using directory param
+					boolean dirOk = com.ibm.streams.teda.internal.fileutils::createDir(dir);
+				}		
+			param
+				file : $outputDir + "/" + $droppedCallsFileName + "_CDR-" + $groupId + ".csv";
+				format : csv;
+				flush : 1u;
+		}
+

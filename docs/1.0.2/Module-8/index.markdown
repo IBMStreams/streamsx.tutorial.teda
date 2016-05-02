@@ -211,3 +211,5 @@ Optionally, you can close the Monitoring GUI.
 
 # Next Steps
 
+In the next [module](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-9/) you add a custom campaign logic implementation in the ITE application.
+
