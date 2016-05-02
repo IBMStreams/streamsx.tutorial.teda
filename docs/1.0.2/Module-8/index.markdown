@@ -163,6 +163,18 @@ After restructuring the project, it is best practice to clean the project before
 
 You need to do the same steps as in [Module 7: Starting the applications](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-7/#starting-the-applications) to launch the applications and to process the input files.
 
+***Note:***
+
+***If your Lookup Manager is still running and the lookup data was loaded already before, then you can launch the ITE application and trigger the*** **restart** ***command in the*** **control** ***directory. In this case the*** **init** ***command does not need to be processed again in order to synchronize the Lookup Manager and ITE applications.***
+
+***Change into `<WORKSPACE>/teda.lookupmgr/data/control` directory and create the `appl.ctl.cmd` file with content of the
+desired command, in our case: `restart,demoapp`.***
+
+    cd <WORKSPACE>/teda.lookupmgr/data/control
+    echo 'restart,demoapp' > appl.ctl.cmd
+
+***ITE application and Lookup Manager application will establish a control sequence where at the end both applications are in RUN state using the data already available, without reload.***
+
 ## Discussing the results
 
 Refresh and expand the **data/out/rejected** folder of the ITE application after processing the input files. You find some files with rejection information there:
