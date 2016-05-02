@@ -165,15 +165,15 @@ You need to do the same steps as in [Module 7: Starting the applications](http:/
 
 ***Note:***
 
-***If your Lookup Manager is still running and the lookup data was loaded already before, then you can launch the ITE application and trigger the*** **restart** ***command in the*** **control** ***directory. In this case the*** **init** ***command does not need to be processed again in order to synchronize the Lookup Manager and ITE applications.***
+*If your Lookup Manager is still running and the lookup data was loaded already before, then you can launch the ITE application and trigger the* **restart** *command in the* **control** *directory. In this case the* **init** *command does not need to be processed again in order to synchronize the Lookup Manager and ITE applications.*
 
-***Change into `<WORKSPACE>/teda.lookupmgr/data/control` directory and create the `appl.ctl.cmd` file with content of the
-desired command, in our case: `restart,demoapp`.***
+*Change into `<WORKSPACE>/teda.lookupmgr/data/control` directory and create the `appl.ctl.cmd` file with content of the
+desired command, in our case: `restart,demoapp`.*
 
     cd <WORKSPACE>/teda.lookupmgr/data/control
     echo 'restart,demoapp' > appl.ctl.cmd
 
-***ITE application and Lookup Manager application will establish a control sequence where at the end both applications are in RUN state using the data already available, without reload.***
+*ITE application and Lookup Manager application will establish a control sequence where at the end both applications are in RUN state using the data already available, without reload.*
 
 ## Discussing the results
 
