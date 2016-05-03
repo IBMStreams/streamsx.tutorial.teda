@@ -15,6 +15,7 @@ After completing this module you should be able to:
 
 * Configure the ITE application for group-related custom logic
 * Describe the interfaces of the group-related custom logic
+* Customize the housekeeping composite
 
 # Prerequisites
 
@@ -128,6 +129,7 @@ The configuration and customization consists of the following tasks:
 
 1. Enable the Custom Context composite
 2. Customize the ContextDataProcessor
+3. Customize the CheckpointFileRemover
 
 ## Enable the Custom Context composite
 
@@ -457,6 +459,49 @@ Download the code for the **CampaignMetricsSink** from [snippet_campaign_metrics
             << Insert code from file snippet_campaign_metrics_sink.txt here >>
 
     }
+
+## Customize the CheckpointFileRemover
+
+In the custom Campaign logic it is checked if the subscriber map has expired data. These entries (data out of interval) are removed from the list in the `onTuple Data` section of the **CustomContextLogic** operator. Therefore it is not required to read the checkpoint files and to pass the data to the recovery stream at the housekeeping phase. The housekeeping time is scheduled at midnight (0:00) for each day of the week (See parameters `ite.schedule.cleanup.dayOfWeek`, `ite.cleanup.schedule.hour` and `ite.cleanup.schedule.minute`). The demoapp needs to recover from the checkpoint files at job startup only.
+
+Open **teda.demoapp/Resources/demoapp.housekeeping.context.custom/CheckpointFileRemover.spl** in the Project Explorer and add the following operator right before the end of the CheckpointFileRemover composite (right before the last '}' in the file:
+
+    /**
+     * Filenames are forwarded only on startup
+     */
+    (stream<I> KeptFiles as O) as KeptFilesFilter = Custom(KeptFilesStream as I)
+    {
+        logic
+        state:
+        {
+            // Forward tuples only for the first batch, which ends with
+            // the first punctuation.
+            mutable boolean forwardTuples = true;
+        }
+        onTuple I:
+        {
+            if (forwardTuples) {
+                submit (I, O);
+            }
+        }
+        onPunct I:
+        {
+            if (currentPunct() == Sys.WindowMarker) {
+                forwardTuples = false;
+                submit(Sys.WindowMarker, O);
+            }
+        }
+    }
+
+In the **Splitter** operator you need to rename the output stream name from `KeptFiles` to **`KeptFilesStream`**.
+
+    /**
+     * The first file that arrives, triggers the calculation of "now".
+     * Take this time information to split the stream into good and
+     * too old files.
+     */
+    (stream<I> KeptFilesStream as G; stream<I> TooOld as B) as Splitter = Filter(ExistingFiles as I)
+    {
 
 ## Building and starting the ITE application
 
