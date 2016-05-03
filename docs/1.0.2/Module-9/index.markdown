@@ -492,6 +492,23 @@ The content looks like:
 
 According to the DroppedCallsEventStream each line contains the values for IMSI, date and nummber of dropped calls.
 
+The other files in the **data/out** folder are the Threshold output files, like `Threshold1_CDR-00.csv`.
 
+The content looks like:
 
+    "41400000000034","01.02.2014",922
+    "41400000001034","02.02.2014",921
+    "41400000002034","03.02.2014",918
 
+Each line contains the values for IMSI, date and duration of the voice calls in minutes.
+
+In the Monitoring GUI you can see the custom metrics for each group.
+
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-09/MonitoringGUI_Metrics.png" alt="Custom Metrics"/>
+
+# Next steps
+
+This covers the basics of writing applications with the Telecommunications Event Data Analytics (TEDA) application framework. To learn more about the details, refer to the knowledge center.
+
+We will continue to improve this tutorial.
+If you have any feedback, please click on the Feedback button at the top and let us know what you think!
