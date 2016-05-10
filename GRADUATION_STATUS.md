@@ -9,7 +9,7 @@ Incubation for projects is covered here: https://github.com/IBMStreams/administr
 - [ ] :red_circle: Stable release(s)
   * Status: **TBD**
 - [ ] :white_check_mark: Project is properly documented
-  * Status: **Done.** See http://ibmstreams.github.io/streamsx.tutorial.teda/
+  * Status: See http://ibmstreams.github.io/streamsx.tutorial.teda/
 - [ ] :white_check_mark: Project has samples and instructions to help users get started easily
   * Status: This project is a tutorial to help users getting started easily with the com.ibm.streams.teda toolkit.
     See http://ibmstreams.github.io/streamsx.tutorial.teda/
