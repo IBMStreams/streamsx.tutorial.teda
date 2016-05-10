@@ -1,4 +1,4 @@
-# streamsx.XXXXX Graduation Status
+# streamsx.tutorial.teda Graduation Status
 
 
 ## Overview
@@ -8,20 +8,21 @@ Incubation for projects is covered here: https://github.com/IBMStreams/administr
 
 - [ ] :red_circle: Stable release(s)
   * Status: **TBD**
-- [ ] :red_circle: Project is properly documented
-  * Status: **TBD**
-- [ ] :red_circle: Project has samples and instructions to help users get started easily
-  * Status: **TBD**
-- [ ] :red_circle: Sufficient testing
-  * Status: **TBD**
+- [ ] :white_check_mark: Project is properly documented
+  * Status: **Done.** See http://ibmstreams.github.io/streamsx.tutorial.teda/
+- [ ] :white_check_mark: Project has samples and instructions to help users get started easily
+  * Status: This project is a tutorial to help users getting started easily with the com.ibm.streams.teda toolkit.
+    See http://ibmstreams.github.io/streamsx.tutorial.teda/
+- [ ] :white_check_mark: Sufficient testing
+  * Status: The team tested the tutorial modules manually, following the described actions step by step.
 - [ ] :red_circle: Instructions on how to get started with development and contributing to project
   * Status: **TBD**
-- [ ] :red_circle: Website that contains information and documentation of the project
-  * Status: **TBD**
+- [ ] :white_check_mark: Website that contains information and documentation of the project
+  * Status: http://ibmstreams.github.io/streamsx.tutorial.teda/
 - [ ] :red_circle: Clear release plan
   * Status: **TBD**
-- [ ] :red_circle: At least one active committer
-  * Status: **TBD**
+- [ ] :white_check_mark: At least one active committer
+  * Status: Few committers committed the contributions of a larger team. Further contributions will be done for upcoming releases.
 
 ### Key
 * :white_check_mark: - Complete
