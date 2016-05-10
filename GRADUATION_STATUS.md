@@ -22,7 +22,7 @@ Incubation for projects is covered here: https://github.com/IBMStreams/administr
 - [ ] :red_circle: Clear release plan
   * Status: **TBD**
 - [ ] :white_check_mark: At least one active committer
-  * Status: Few committers committed the contributions of a larger team. Further contributions will be done for upcoming releases.
+  * Status: Few committers committed the contributions of a larger team. Further contributions will be done for upcoming toolkit releases.
 
 ### Key
 * :white_check_mark: - Complete
