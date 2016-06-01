@@ -78,7 +78,7 @@ Expand **teda.demoapp/Resources/config** in the Project Explorer and open the **
 
 ## Configuring the type of the output data of the transformer
 
-The transformer applies business rules to the records and optionally enriches the records with enrichment data. Here you can integrate, for example, rules engines like [IBM's Operational Decision Manager (ODM)](http://www-01.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.rules/tk$com.ibm.streams.rules.html).
+The transformer applies business rules to the records and optionally enriches the records with enrichment data. Here you can integrate, for example, rules engines like [IBM's Operational Decision Manager (ODM)](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.rules/tk$com.ibm.streams.rules.html).
 
 The transformer uses the **ReaderRecordType** input schema, which is the superset of all input formats, plus some more SPL attributes, which you investigate later. The result tuples of the transformer are written to one or more output files. The CSV format is used by default.
 

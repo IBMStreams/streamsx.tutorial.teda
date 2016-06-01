@@ -9,7 +9,7 @@ weight:  11
 
 The Telecommunications Event Data Analytics (TEDA) application framework provides Streams Studio wizards to create Streams mediation applications as SPL projects. You configure these applications with configuration parameters that are stored in a simple text file, and customize them by adding your business logic or near real-time analytics to already prepared SPL composite operators.
 
-The tasks that the Streams Studio wizards perform can also run on the command line using the **teda-create-project** script, which is described in the IBM Knowledge Center: [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Developing applications > Creating applications > Creating applications with the command line](http://www.ibm.com/support/knowledgecenter/api/content/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$32.html). The tutorial focuses on the Streams Studio.
+The tasks that the Streams Studio wizards perform can also run on the command line using the **teda-create-project** script, which is described in the IBM Knowledge Center: [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Developing applications > Creating applications > Creating applications with the command line](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$32.html). The tutorial focuses on the Streams Studio.
 
 After completing this module you should be able to:
 
@@ -36,7 +36,7 @@ The TEDA application framework has two built-in application types.
 
 2. The Lookup Manager application is responsible for loading and updating the enrichment data in memory and distributing it across hosts.
 
-A mediation solution can contain one or more ITE applications, and optionally one Lookup Manager application if enrichment from external data sources like Customer Relation Management (CRM) systems is required. You can read more about the architecture in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Application framework > Architecture](http://www.ibm.com/support/knowledgecenter/api/content/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$10.html).
+A mediation solution can contain one or more ITE applications, and optionally one Lookup Manager application if enrichment from external data sources like Customer Relation Management (CRM) systems is required. You can read more about the architecture in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Application framework > Architecture](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$10.html).
 
 This module focuses on the ITE application.
 
