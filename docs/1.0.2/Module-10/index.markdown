@@ -249,7 +249,7 @@ Refresh and expand the **data/out/load** folder of the ITE application after pro
 
 <img src="/streamsx.tutorial.teda/images/1.0.2/module-10/Table_OutputFiles.png" alt="Table output files"/>
 
-The name pattern is \<tablename\>-\<groupID\>_\<input-filename\>.csv"
+The name pattern is \<tablename\>-\<groupID\>_\<input-filename\>.csv
 
 The content for SMS_CDR table files looks like:
 
