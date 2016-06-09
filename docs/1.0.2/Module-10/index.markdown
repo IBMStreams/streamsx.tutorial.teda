@@ -1,10 +1,17 @@
-
+---
+layout: docs
+title:  Module 10 - Table format output
+description:  Create output files which can be loaded into database tables
+weight:  20
+---
 
 # Objectives
 
-In this module, you extend the ITE application that you created while following the instructions of the modules 1-8.
+In this module, you extend the ITE application that you created in the modules 1-8.
 
-At the end of this module, your application creates 2 types of output files which can be loaded into database tables.
+At the end of this module, your application creates two types of output files, which can be loaded into database tables.
+
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-10/ITETableFiles.png" alt="ITE output files"/>
 
 After completing this module you should be able to:
 
@@ -17,15 +24,15 @@ You finished at least [module 8](http://ibmstreams.github.io/streamsx.tutorial.t
 
 # Concepts
 
-Imagine, you have the project requirement to split the CDRs according the record type into 2 tables:
+Imagine, you have the project requirement to split the CDRs according to the record type into two tables:
 
 * The table VOICE_CDR contains all records with cdrRecordType 1
 * The table SMS_CDR contains all other records  
 
-For the CDR repository two database tables will be the final destinations.
-The framework will not write directly into the database but generates output files which can be directly loaded into the database by a separate running DBLoader application.
-So the output files have to have a format corresponding to the tables. These file formats are a CSV format with correct column type and order as defined in the database tables.
-The table format definitions are available in file production.ddl.
+For the CDR repository, two database tables are the final destinations.
+The ITE application does not write directly into the database but generates output files, which can be loaded into the database by a separate running [DbLoader](https://github.com/IBMStreams/samples/tree/master/DbLoader) application.
+So the output files need to have a format corresponding to the tables. These file formats are a CSV format with correct column type and order as defined in the database tables.
+The table format definitions are available in file [production.ddl](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-10/production.ddl).
 
 ## Customization Points
 
@@ -35,7 +42,7 @@ The following figure and table show the points that you need to customize in the
 
 |    Number    |    Functional Block                     |    What needs to be customized?                                                                                                                |
 |--------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-|    1         |    FileWriter                           |    Configure the FileWriter and enable the TableFileWriter for 2 tables.|
+|    1         |    FileWriter                           |    Configure the FileWriter and enable the TableFileWriter for two tables.|
 |    2         |    ChainSink/PostContextDataProcessor   |    Custom code is necessary to convert from record stream type to table stream type.|
 
 ## Configuration
@@ -67,13 +74,21 @@ You implement custom logic that runs after the group processing but before the s
 
 The custom logic has to generate table-row tuples for the two destination tables VOICE_CDR and SMS_CDR.
 
-For generating a table-row from a tuple the demoapp.utility::TableRowGenerator operator can be used.
-It puts all attributes from 1 st until attribute "tablename" of its input stream into a tablerow string attribute in its output stream.
-This requires that the input tuple schema is defined in the correct way. The input for this schema definition is the DB table format.
+<img src="/streamsx.tutorial.teda/images/1.0.2/module-10/PostContextDataProcessor.png" alt="The PostContextDataProcessor composite"/>
+
+You need to transform the tuples to the composite output port stream type `TypesCommon.ChainSinkStreamType`, which has the following schema.
+
+    rstring tablename
+    rstring tablerow
+    TypesCommon.FileInfoBasicType
+
+The demoapp.utility::TableRowGenerator operator converts the tuple.
+It puts all attributes from first until attribute `tablename` of its input stream into a `tablerow` string attribute in its output stream.
+This conversion operation requires that the input tuple schema is defined in the correct way. The input for this schema definition is the database table format.
 
 You define the table schema in the **teda.demoapp/demoapp.streams.custom/TypesCustom.spl** file.
 
-Replace the Table1 type definition with the content from the box below:
+Replace the Table1 type definition:
 
     static Table1 = tuple<
         // ------------------------------------------------
@@ -110,7 +125,7 @@ Replace the Table1 type definition with the content from the box below:
         rstring tablename // must be the last attribute (required by TableRowGenerator and used in TableFileWriter)
     >;
 
-Open the **teda.demoapp/demoapp.chainsink.custom/PostContextDataProcessor.spl** file and replace the composite with the code below:
+Open the **teda.demoapp/demoapp.chainsink.custom/PostContextDataProcessor.spl** file and replace the composite with the code:
 
     public composite PostContextDataProcessor (
     	input
