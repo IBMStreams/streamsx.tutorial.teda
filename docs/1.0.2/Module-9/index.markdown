@@ -553,7 +553,4 @@ In the Monitoring GUI you can see the custom metrics for each group.
 
 # Next steps
 
-This covers the basics of writing applications with the Telecommunications Event Data Analytics (TEDA) application framework. To learn more about the details, refer to the knowledge center.
-
-We will continue to improve this tutorial.
-If you have any feedback, please click on the Feedback button at the top and let us know what you think!
+In the next [module](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/1.0.2/Module-10/), you change the format of output files for database tables.
