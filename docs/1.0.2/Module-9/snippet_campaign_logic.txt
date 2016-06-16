@@ -1,6 +1,6 @@
 						metrics.totalCDRs++;
 						/**
-						 * process only of not a duplicate
+						 * process only if not a duplicate
 						 */
 						if(!duplicate) {
 
