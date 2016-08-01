@@ -225,6 +225,8 @@ Either copy and paste the following code to the FileReaderCustomCSV.spl file rep
 
 **Hint**: Typically, the customizable parts of composite operators are marked with `// custom code begin` and `// custom code end`.
 
+**Hint**: If you want to set the `quoted` parameter of the FileReaderCSV operator, for example `CSVParse.off`, then you need to add the `use com.ibm.streams.teda.parser.text::*;` statement in your FileReaderCustomCSV composite.
+
     public composite FileReaderCustomCSV (
         input 
             stream<TypesCommon.FileIngestSchema> FileIn;
