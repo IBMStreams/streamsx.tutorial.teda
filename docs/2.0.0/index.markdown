@@ -1,11 +1,9 @@
-<!--(
 ---
 layout: docs
-title: Tutorial com.ibm.streams.teda 2.0.0 (IBM Streams 4.2)
+title: Tutorial com.ibm.streams.teda 2.0.0 
 description:  Tutorial com.ibm.streams.teda 2.0.0
 weight: 11
 ---
-)-->
 
 {% include nav.html context="/docs/2.0.0/"%}
 
