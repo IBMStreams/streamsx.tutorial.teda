@@ -1,0 +1,211 @@
+// begin_generated_IBM_copyright_prolog                            
+//                                                                 
+// This is an automatically generated copyright prolog.            
+// After initializing,  DO NOT MODIFY OR MOVE                      
+// ****************************************************************
+// Licensed Materials - Property of IBM                            
+// 5724-Y95                                                        
+// (C) Copyright IBM Corp.  2011, 2015    All Rights Reserved.     
+// US Government Users Restricted Rights - Use, duplication or     
+// disclosure restricted by GSA ADP Schedule Contract with         
+// IBM Corp.                                                       
+//                                                                 
+// end_generated_IBM_copyright_prolog                              
+
+namespace demoapp.chainprocessor.transformer.custom;
+
+use demoapp.streams::*;
+use demoapp.streams.custom::*;
+use demoapp.lookup::*;
+use demoapp.utility::*;
+use demoapp.functions::*;
+use demoapp.chainprocessor.transformer::TableRowGenerator;
+use com.ibm.streams.teda.utility::* ;
+
+/**
+ * This function converts the somehow exotic example timestamp which is an octett string
+ * of format ssmmhhddMMYYCC. The octett string is converted by SPL type conversion to 
+ * readable string which is input for this function.
+ * Just demo, this timestamp would probably not appear in real but other ...
+ */
+void extractDateTime (rstring inDateTime, mutable rstring outDate, mutable rstring outTime) {
+    if (length(inDateTime) == 14) {
+        outDate = inDateTime[12:14] + inDateTime[10:12] + "-" + inDateTime[8:10] + "-" + inDateTime[6:8];
+        outTime = inDateTime[4:6] + ":" + inDateTime[2:4] + ":" + inDateTime[0:2];
+    }
+    else {
+        outDate = "";
+        outTime = "";
+    }
+    return;
+}
+
+/**
+ * This function converts a TBCD hex string into 
+ * readable ASCII string in correct order.
+ * All HEX characters are allowed except 'F' which
+ * is just a fill character allowed at end only.
+ */
+rstring TBCDtoASCII (blob aAddressStringInTBCD) {
+    rstring HEX = "0123456789ABCDE";
+    mutable rstring result = "";
+    mutable uint8 x = 0;
+    mutable uint8 byte;
+    for (int32 i in range (0, size (aAddressStringInTBCD))) {
+        byte = aAddressStringInTBCD[i];
+        // low nibble
+        x = byte & 0xfu;
+        if (x < 0xfu) result += HEX[x];
+        // high nibble
+        x = (byte >> 4ub) & 0xfu;
+        if (x < 0xfu) result += HEX[x];
+    }
+    return result;
+}
+
+void twistAndTrimDigitString (mutable rstring inString) {
+    blob tmpBlob = (blob)inString;
+    inString = TBCDtoASCII (tmpBlob);
+}
+
+/**
+ * Implements the business logic that can consist of, for example, filtering,
+ * enrichment, calculations, or other transformations.
+ *
+ * This composite operator is the only one that must be adapted during the
+ * customization process. 
+ * 
+ * Exceptions raised in this operator result in rejected tuples
+ * if **ite.resilienceOptimization** parameter is on.
+ *
+ * @input  InRec
+ * Tuples received from the
+ * demoapp.chainprocessor.reader.custom::RecordValidator.
+ * You need to implement your custom business logic on InRec tuples, for example:
+ * a) Perform record transformations, like filtering or schema change for target tables.
+ * b) Enrich your records with lookup data.
+ * c) Prepare the hash codes for tuple deduplication.
+ * Ensure that you forward the basic file info attributes of the InRec tuple, because these attributes are required by downstream operators.
+ * In a Custom operator where you change the schema between input and output stream, you need to use the assignFrom() method to forward the basic file info attributes.
+ * The window punctuation received on InRec port must be forwarded to OutRec.
+ * At end of each file a window punctuation is received.
+ * You will not receive tuples from the different files between two window markers. 
+ * If you submit tuples to OutRej, then you need to forward the window punctuation to the OutRej output port.
+ *
+ * @input  InStat
+ * Statistic tuple received at end of file.
+ * It is required to forward this tuple to the OutStat port.
+ * You can update your custom statistic attributes before forwarding this tuple to the OutStat port.
+ * If you update the statistic tuple in this composite, then you need to wait for the window punctuation on InRec port.
+ * In this case, you should send the window punctuation to OutRec port before submitting the InStat tuple to the OutStat port.
+ *
+ * @output OutRec
+ * Tuples for the group or storage stage.
+ * Window punctuation received on InRec must be forwarded to this port.
+ * For variant A, the tuples sent on this port are received by the operator configured with the ite.storage.type parameter.
+ * In variant B or C this port is connected to the group composites in context namespace, for deduplication and/or custom correlation (<namespace>.context.custom::ContextDataProcessor).
+ * 
+ * @output OutStat
+ * The tuple received on InStat port must be forwarded to this port.
+ * You can update your custom statistic attributes in the InStat tuple before forwarding it to the OutStat port.
+ * 
+ * @output OutRej
+ * Tuples sent on this port are written to the rejected files.
+ * If you submit tuples to OutRej, then you need to forward the window punctuation from InRec port to the OutRej output port.
+ * 
+ * @output OutTap
+ * Tap stream to the <namespace>.tap.custom::PostContextDataProcessorTap composite.
+ * This stream is connected only if the **ite.businessLogic.group.tap** parameter is on.
+ *
+ * @param groupId
+ * The group identifier
+ *
+ * @param chainId
+ * The chain identifier
+ *
+ * @param reprocessDir
+ * The absolute path of the reprocess directory. Use this parameter
+ * to create files in the reprocess directory.
+ * 
+ * @param disableLookup
+ * If parameter is true then the lookup code must not be called.
+ * Pass this parameter to the LookupCache operator.
+ * 
+ * @param applControlDir
+ * The LookupCache operator requires this parameter that provides the path to the control directory.
+ * This directory provides the information about the name of the Lookup Manager job that 
+ * the LookupCache operator needs to specify the shared memory segment name 
+ */
+public composite DataProcessor (
+    input 
+        stream<TypesCommon.ReaderOutStreamType> InRec,
+        stream<TypesCommon.FileStatistics> InStat;
+    output
+        stream<TypesCommon.TransformerOutType> OutRec,
+        stream<TypesCommon.FileStatistics> OutStat,
+        stream<TypesCommon.RejectedDataStreamType> OutRej,
+        stream<TypesCommon.BundledTransformerOutputStreamType> OutTap // connected only if ite.businessLogic.transformation.tap=on
+) {
+
+    param
+        expression<rstring> $groupId;
+        expression<rstring> $chainId;
+        expression<rstring> $reprocessDir;
+        expression<boolean> $disableLookup;
+        expression<rstring> $applControlDir;
+		
+    graph
+
+        /*
+         * The transformation. We use a Custom instaed of a Functor to avoid copying Tuples 
+         */
+        (stream <TypesCommon.TransformerOutType> OutRec as O;
+         stream <TypesCommon.FileStatistics> OutStat;
+         stream <TypesCommon.RejectedDataStreamType> OutRej;
+         stream <TypesCommon.BundledTransformerOutputStreamType> OutTap) as Transform
+            = Custom (InRec as I; InStat)
+        {
+            logic
+                onTuple I :
+                {
+                    // untwist the calling and called IMSI
+                    // transform the timestamp
+                    // remove trailing 'F's from called and calling number
+                    twistAndTrimDigitString (I.cdrCalledImsi);
+                    twistAndTrimDigitString (I.cdrCallingImsi);
+
+                    if (length (cdrCallReferenceTime) == 14)
+                    {
+                        extractDateTime (I.cdrCallReferenceTime, I.callStartDate, I.callStartTime);
+                        I.cdrCallReferenceTime = I.callStartDate + " " + I.callStartTime;
+                    }
+                    else
+                    {
+                        I.cdrCallReferenceTime = "";  // clear the original invalid timestamp
+                        // I.callStartDate = "";      // attribute is already initialized
+                        // I.callStartTime = "";      // attribute is already initialized
+                    }
+                    I.cdrCalledNumber = rtrim (I.cdrCalledNumber, "F");
+                    I.cdrCallingNumber = rtrim (I.cdrCallingNumber, "F");
+
+                    submit (I, OutRec) ;
+                }
+                onPunct I :
+                {
+                    if(currentPunct() == Sys.WindowMarker)
+                    {
+                        // always forward window markers:
+                        submit (Sys.WindowMarker, OutRec);
+                        // in variant A forward window markers also to OutRej:
+                        submit (Sys.WindowMarker, OutRej);
+                        // submit (Sys.WindowMarker, OutTap);  // commented out; Tap is disabled
+                    }
+                }
+
+                onTuple InStat :
+                {
+                    // simply submit the statistics unchanged
+                    submit (InStat, OutStat);
+                }
+        }
+}

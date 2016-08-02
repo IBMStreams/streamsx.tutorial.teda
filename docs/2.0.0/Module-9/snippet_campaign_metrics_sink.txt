@@ -1,0 +1,36 @@
+		/**
+		 * CampaignMetricsSink
+		 * MetricsSink operator that receives campaign metrics stream data tuples and provides them as metrics 
+		 * @input  CampaignMetricsStream data stream with campaign metrics
+		 */
+		() as CampaignMetricsSink = MetricsSink(CampaignMetricsStream) {
+			param
+				metrics :
+					totalCDRs,
+					((totalCDRs>0l) ? (100l * smsCDRs / totalCDRs):0l),
+					((totalCDRs>0l) ? (100l * failedCDRs / totalCDRs):0l),
+					duplicateCDRs,
+					ignoredCDRs,
+					sizeofSubscriberMap,
+					totalNumberOfDays;
+
+				names :
+					"CDRs",
+					"SmsPercentage",
+					"FailedPercentage",
+					"DuplicateCDRs",
+					"IgnoredCDRs",
+					"SizeOfSubscriberMap",
+					"TotalNumberOfDays";
+
+				descriptions :
+					"number of processed CDRs",
+					"percentage of SMS",
+					"percentage of failed",
+					"number of duplicate CDRs",
+					"number of ignored CDRs",
+					"size of subscriber map",
+					"total number of days";
+
+		}
+

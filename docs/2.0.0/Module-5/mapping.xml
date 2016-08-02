@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- begin_generated_IBM_copyright_prolog                             -->
+<!--                                                                  -->
+<!-- This is an automatically generated copyright prolog.             -->
+<!-- After initializing,  DO NOT MODIFY OR MOVE                       -->
+<!-- **************************************************************** -->
+<!-- Licensed Materials - Property of IBM                             -->
+<!-- 5724-Y95                                                         -->
+<!-- (C) Copyright IBM Corp.  2011, 2015    All Rights Reserved.      -->
+<!-- US Government Users Restricted Rights - Use, duplication or      -->
+<!-- disclosure restricted by GSA ADP Schedule Contract with          -->
+<!-- IBM Corp.                                                        -->
+<!--                                                                  -->
+<!-- end_generated_IBM_copyright_prolog                               -->
+<mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.ibm.com/software/data/infosphere/streams/parser StructureParserMapping.xsd"
+                    xmlns="http://www.ibm.com/software/data/infosphere/streams/parser">
+
+<!-- the stream definition for reference:
+
+									Contained in:	voiceRecord / field #		smsRecord / field #
+			uint8 cdrRecordType						Yes	/ 01					Yes / 01
+			uint64 cdrRecordNumber					Yes	/ 02					Yes / 02
+			rstring cdrCallReference				Yes	/ 03					Yes / 03
+			rstring cdrCallingImsi					Yes	/ 04					Yes / 04
+			rstring cdrCallingImei					Yes	/ 05					Yes / 05
+			rstring cdrCallingNumber				Yes	/ 06					Yes / 06
+			rstring cdrCalledImsi					Yes	/ 07					No  / NA
+			rstring cdrCalledImei					Yes	/ 08					No  / NA
+			uint8 cdrCalledNumberTon				Yes	/ 09					Yes / 07
+			uint8 cdrCalledNumberNpi				Yes	/ 10					Yes / 08
+			rstring cdrCalledNumber					Yes	/ 11					Yes / 09
+			rstring cdrCallingSubsFirstLac			Yes	/ 12					No  / NA
+			rstring cdrCallingSubsFirstCi			Yes	/ 13					Yes / 10
+			rstring cdrCauseForTermination			Yes	/ 14					Yes / 11
+			uint8 cdrCallType						Yes	/ 15					Yes / 12
+			uint64 cdrSamMczDuration				Yes	/ 16					No  / NA
+			uint8 cdrCallingNumberTon				Yes	/ 17					Yes / 13
+			uint8 cdrCallingNumberNpi				Yes	/ 18					Yes / 14
+			rstring cdrCallReferenceTime			Yes	/ 19					Yes / 15
+			uint64 cdrCallingSubsFirstMcc			Yes	/ 20					No  / NA
+
+					Name of attribute in SPL type
+								|
+			<attribute name="cdrRecordType">
+					<from structure="voiceRecord" field="fieldRecordType"/>
+										|						|
+						Name of structure in structure.xml		|
+																|
+													Name of field in structure.xml
+-->
+
+	<!-- The following attributes are fetched from voiceRecord and smsRecord record type -->
+	<attribute name="cdrRecordType">
+		<from structure="voiceRecord" field="fieldRecordType"/>
+		<from structure="smsRecord" field="fieldRecordType"/>
+	</attribute>
+	<attribute name="cdrRecordNumber">
+		<from structure="voiceRecord" field="fieldRecordNumber"/>
+		<from structure="smsRecord" field="fieldRecordNumber"/>
+	</attribute>
+	<attribute name="cdrCallReference">
+		<from structure="voiceRecord" field="fieldCallReference"/>
+		<from structure="smsRecord" field="fieldCallReference"/>
+	</attribute>
+	<attribute name="cdrCallingImsi">
+		<from structure="voiceRecord" field="fieldCallingImsi"/>
+		<from structure="smsRecord" field="fieldCallingImsi"/>
+	</attribute>
+	<attribute name="cdrCallingImei">
+		<from structure="voiceRecord" field="fieldCallingImei"/>
+		<from structure="smsRecord" field="fieldCallingImei"/>
+	</attribute>
+	<attribute name="cdrCallingNumber">
+		<from structure="voiceRecord" field="fieldCallingNumber"/>
+		<from structure="smsRecord" field="fieldCallingNumber"/>
+	</attribute>
+	<attribute name="cdrCalledImsi">
+		<from structure="voiceRecord" field="fieldCalledImsi"/>
+	</attribute>
+	<attribute name="cdrCalledImei">
+		<from structure="voiceRecord" field="fieldCalledImei"/>
+	</attribute>
+	<attribute name="cdrCalledNumberTon">
+		<from structure="voiceRecord" field="fieldCalledNumberTon"/>
+		<from structure="smsRecord" field="fieldCalledNumberTon"/>
+	</attribute>
+	<attribute name="cdrCalledNumberNpi">
+		<from structure="voiceRecord" field="fieldCalledNumberNpi"/>
+		<from structure="smsRecord" field="fieldCalledNumberNpi"/>
+	</attribute>
+	<attribute name="cdrCalledNumber">
+		<from structure="voiceRecord" field="fieldCalledNumber"/>
+		<from structure="smsRecord" field="fieldCalledNumber"/>
+	</attribute>
+	<attribute name="cdrCallingSubsFirstLac">
+		<from structure="voiceRecord" field="fieldCallingSubsFirstLac"/>
+	</attribute>
+	<attribute name="cdrCallingSubsFirstCi">
+		<from structure="voiceRecord" field="fieldCallingSubsFirstCi"/>
+		<from structure="smsRecord" field="fieldCallingSubsFirstCi"/>
+	</attribute>
+	<attribute name="cdrCauseForTermination">
+		<from structure="voiceRecord" field="fieldCauseForTermination"/>
+		<from structure="smsRecord" field="fieldCauseForTermination"/>
+	</attribute>
+	<attribute name="cdrCallType">
+		<from structure="voiceRecord" field="fieldCallType"/>
+		<from structure="smsRecord" field="fieldCallType"/>
+	</attribute>
+	<attribute name="cdrSamMczDuration">
+		<from structure="voiceRecord" field="fieldSamMczDuration"/>
+	</attribute>
+	<attribute name="cdrCallingNumberTon">
+		<from structure="voiceRecord" field="fieldCallingNumberTon"/>
+		<from structure="smsRecord" field="fieldCallingNumberTon"/>
+	</attribute>
+	<attribute name="cdrCallingNumberNpi">
+		<from structure="voiceRecord" field="fieldCallingNumberNpi"/>
+		<from structure="smsRecord" field="fieldCallingNumberNpi"/>
+	</attribute>
+	<attribute name="cdrCallReferenceTime">
+		<from structure="voiceRecord" field="fieldCallReferenceTime"/>
+		<from structure="smsRecord" field="fieldCallReferenceTime"/>
+	</attribute>
+	<attribute name="cdrCallingSubsFirstMcc">
+		<from structure="voiceRecord" field="fieldCallingSubsFirstMcc"/>
+	</attribute>
+
+</mapping>

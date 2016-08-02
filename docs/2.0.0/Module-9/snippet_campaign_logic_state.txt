@@ -1,0 +1,25 @@
+				state : {
+					/**
+					 * operator metrics
+					 */
+					mutable CampaignMetricsType metrics = {};
+
+					/**
+					 * "empty" instances of data types used for initializations below 
+					 */
+					DayAggregateType dayAggregateEMPTY = {daySince1970=0u, callDurationPerDay=0u, droppedCallsPerDay=0u};
+					SubscriberDataType subscriberDataEMPTY = {intervalDays = (list<DayAggregateType>) []};
+
+					/**
+					 * subscriber map to remember subscriber information in the interval
+					 */
+					mutable map<rstring, SubscriberDataType> subscriberMap;
+
+					/**
+					 * checkpoint file written when write cmd is received
+					 * contains the serialized subscriberMap
+					 */
+					rstring checkpointFile=$checkpointFile;
+					rstring metricsFile = checkpointFile+".meta";
+				}
+

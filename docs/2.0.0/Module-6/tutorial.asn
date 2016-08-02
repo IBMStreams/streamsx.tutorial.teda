@@ -1,0 +1,860 @@
+--==============================================================================
+--
+--  Sample grammar for CDR parser demonstration
+--
+--==============================================================================
+
+
+CCOMSSber
+DEFINITIONS IMPLICIT TAGS ::=
+BEGIN
+
+
+--==============================================================================
+--
+--  MSC CALL AND EVENT RECORDS
+--
+--==============================================================================
+MSCRecord ::= CHOICE
+{
+    mscSampleRecord          [1] MobileSampleMsg
+}
+
+MobileSampleMsg ::= SEQUENCE
+{
+    mscRecordType                       [0] MSCRecordType,
+    mscRecordNumber                     [1] RecordNumber OPTIONAL,
+    mscRecordStatus                     [2] RecordStatus OPTIONAL,
+    mscCallReference                    [3] CallReference OPTIONAL,
+    mscExchangeId                       [4] ExchangeId OPTIONAL,
+    mscIntermediateRecordNumber         [5] IntermediateRecordNumber OPTIONAL,
+    mscIntermediateChargingInd          [6] IntermediateChargingInd OPTIONAL,
+    mscNumberOfSsRecords                [7] NumberOfSsRecords OPTIONAL,
+    mscCallingImsi                      [8] IMSI OPTIONAL,
+    mscCallingImei                      [9] IMEI OPTIONAL,
+    mscCallingNumber                    [10] CallNumber OPTIONAL,
+    mscCallingCategory                  [11] Category OPTIONAL,
+    mscCallingMsClassmark               [12] MsClassmark OPTIONAL,
+    mscCalledImsi                       [13] IMSI OPTIONAL,
+    mscCalledImei                       [14] IMEI OPTIONAL,
+    mscCalledNumberTon                  [15] TON OPTIONAL,
+    mscCalledNumberNpi                  [16] NPI OPTIONAL,
+    mscCalledNumber                     [17] CallNumber OPTIONAL,
+    mscCalledMsClassmark                [18] MsClassmark OPTIONAL,
+    mscDialledDigitsTon                 [19] TON         OPTIONAL,
+    mscDialledDigitsNpi                 [20] NPI OPTIONAL,
+    mscDialledDigits                    [21] DialledDigits OPTIONAL,
+    mscCallingSubsFirstLac              [22] LAC OPTIONAL,
+    mscCallingSubsFirstCi               [23] CI OPTIONAL,
+    mscCallingSubsLastExId              [24] LastExId OPTIONAL,
+    mscCallingSubsLastLac               [25] LAC OPTIONAL,
+    mscCallingSubsLastCi                [26] CI OPTIONAL,
+    mscOutCircuitGroup                  [27] CircuitGroup OPTIONAL,
+    mscOutCircuit                       [28] Circuit OPTIONAL,
+    mscBasicServiceType                 [29] BasicServiceType OPTIONAL,
+    mscBasicServiceCode                 [30] BasicServiceCode OPTIONAL,
+    mscFacilityUsage                    [31] FacilityUsage OPTIONAL,
+    mscNonTransparencyIndicator         [32] NonTransparencyIndicator OPTIONAL,
+    mscChannelRateIndicator             [33] ChannelRateIndicator OPTIONAL,
+    mscInChannelAllocatedTime           [34] TimeStamp OPTIONAL,
+    mscChargingStartTime                [35] TimeStamp OPTIONAL,
+    mscChargingEndTime                  [36] TimeStamp OPTIONAL,
+    mscCauseForTermination              [37] CauseForTermination OPTIONAL,
+    mscCallType                         [38] CallType OPTIONAL,
+    mscSamMczChrgType                  [39] ChrgType OPTIONAL,
+    mscSamMczDuration                  [40] Duration OPTIONAL,
+    mscSamMczTariffClass               [41] TariffClass OPTIONAL,
+    mscSamMczPulses                    [42] Pulses OPTIONAL,
+    mscCalledMsrnTon                    [43] TON OPTIONAL,
+    mscCalledMsrnNpi                    [44] NPI OPTIONAL,
+    mscCalledMsrn                       [45] MSRN OPTIONAL,
+    mscCallingNumberTon                 [46] TON OPTIONAL,
+    mscCallingNumberNpi                 [47] NPI OPTIONAL,
+    mscIntermediateChrgCause            [48] IntermediateChrgCause OPTIONAL,
+    mscCallingModifyParameters          [49] ModifyParameters OPTIONAL,
+    mscSamMczModifyPercent             [50] ModifyPercent OPTIONAL,
+    mscSamMczModifyDirection           [51] ModifyDirection OPTIONAL,
+    mscSamDiallingClass                [52] SamDiallingClass OPTIONAL,
+    mscLegCallReference                 [53] CallReference OPTIONAL,
+    mscCallReferenceTime                [54] TimeStamp OPTIONAL,
+    mscSpeechVersion                    [55] SpeechVersion OPTIONAL,
+    mscLocRoutingNumberTon              [56] TON OPTIONAL,
+    mscLocRoutingNumber                 [57] CallNumber OPTIONAL,
+    mscNpdbQueryStatus                  [58] NpdbQueryStatus OPTIONAL,
+    mscCamelCallReference               [59] CamelCallReference OPTIONAL,
+    mscCamelExchangeIdTon               [60] TON OPTIONAL,
+    mscCamelExchangeId                  [61] ExchangeId OPTIONAL,
+    mscNumberOfAllInRecords             [62] NumberINRecords OPTIONAL,
+    mscCugInterlock                     [63] CugInterlock OPTIONAL,
+    mscCugOutgoingAccess                [64] CugOutgoingAccess OPTIONAL,
+    mscCugInformation                   [65] CugInformation  OPTIONAL,
+    mscRedirectedIndicator              [66] BOOLEAN OPTIONAL,
+    mscConnectedToNumberTon             [67] TON OPTIONAL,
+    mscConnectedToNumber                [68] CallNumber OPTIONAL,
+    mscRoutingCategory                  [69] RoutingCategory OPTIONAL,
+    mscAddRoutingCategory               [70] AddRoutingCategory OPTIONAL,
+    mscRegionalSubsIndicator            [71] RegionalSubsIndicator OPTIONAL,
+    mscRegionalSubsLocationType         [72] RegionalSubsLocationType OPTIONAL,
+    mscSamMczChangePercent             [73] ModifyPercent OPTIONAL,
+    mscSamMczChangeDirection           [74] ModifyDirection OPTIONAL,
+    mscAcceptableChannelCodings         [75] ChannelCodings OPTIONAL,
+    mscReqAirInterfaceUserRate          [76] UserRate OPTIONAL,
+    mscUsedChannelCoding                [77] UsedChannelCoding OPTIONAL,
+    mscReqFixedNwUserRate               [78] FixedNwUserRate     OPTIONAL,
+    mscReqOtherModemType                [79] OtherModemType OPTIONAL,
+    mscReqNumberOfChannels              [80] ReqNumberOfChannels OPTIONAL,
+    mscReqUserInitiatedModInd           [81] ReqUserInitiatedModInd OPTIONAL,
+    mscUsedNumberOfChannels             [82] UsedNumberOfChannels OPTIONAL,
+    mscUsedOtherModemType               [83] OtherModemType OPTIONAL,
+    mscUsedFixedNwUserRate              [84] FixedNwUserRate OPTIONAL,
+    mscCallingSubsFirstMcc              [85] MCC OPTIONAL,
+    mscCallingSubsFirstMnc              [86] MNC OPTIONAL,
+    mscCallingSubsLastMcc               [87] MCC OPTIONAL,
+    mscCallingSubsLastMnc               [88] MNC OPTIONAL,
+    mscCalledSubsFirstMcc               [89] MCC OPTIONAL,
+    mscCalledSubsFirstMnc               [90] MNC OPTIONAL,
+    mscCalledSubsLastMcc                [91] MCC OPTIONAL,
+    mscCalledSubsLastMnc                [92] MNC OPTIONAL,
+    mscCallingSubsLastExIdTon           [93] TON OPTIONAL,
+    mscCalledSubsLastExIdTon            [94] TON OPTIONAL,
+    mscHotBillingRecordNumber           [95] HotBillingRecordNumber OPTIONAL,
+    mscNumberOfInRecords                [96] NumberOfINRecords OPTIONAL,
+    mscCamelServiceKey                  [97] CamelServiceKey OPTIONAL,
+    mscEmergencyCallCategory            [98] EmergencyCallCategory OPTIONAL,
+    mscOutsideUserPlaneIndex            [99] PlaneIndex OPTIONAL,
+    mscOutsideControlPlaneIndex         [100] PlaneIndex OPTIONAL,
+    mscOutBncConnectionType             [101] BncConnectionType OPTIONAL,
+    mscGlobalCallReference              [102] GlobalCallReference OPTIONAL,
+    mscRateAdaption                     [103] RateAdaptation OPTIONAL,
+    mscRadioNetworkType                 [104] RadioNetworkType OPTIONAL,
+    mscStreamIdentifier                 [105] StreamIdentifier OPTIONAL,
+    mscCallingSubsSecondMcc             [106] MCC OPTIONAL,
+    mscCallingSubsSecondMnc             [107] MNC OPTIONAL,
+    mscUsedAirInterfaceUserRate         [108] UsedAirInterfaceUserRate OPTIONAL
+}
+
+--============================================================================
+--
+-- COMMON DATA TYPES
+--
+--============================================================================
+
+MSCRecordType ::= INTEGER
+{
+    mscSampleCallRecord          (1),
+    mscSampleSMSRecord           (2)
+}
+
+RecordNumber ::= INTEGER
+
+RecordStatus ::= INTEGER
+{
+    normalOk                            (0),
+    synchronisingError                  (1),
+    differentContents                   (2)
+}
+
+CallReference ::= OCTET STRING (SIZE (5))
+
+CamelCallReference ::= OCTET STRING (SIZE (8))
+
+Category ::= INTEGER
+{
+    ordinary                            (0),
+    ordinaryNoCharge                    (2),
+    payPhone                            (5),
+    priority                            (8),
+    priorityNoCharge                    (11),
+    testEquipment                       (16),
+    privateNumberService                (69),
+    notExist                            (240),
+    notUsed                             (255)
+}
+
+Parameters ::= OCTET STRING (SIZE (1..30))
+
+ChannelRateIndicator ::= INTEGER
+
+IntermediateChargingInd ::= INTEGER (0..255)
+-- {
+--  normal              (0),
+--  intermediate        (1),
+--  lastPartial         (2),
+--  notUsed             (255)
+-- }
+
+-- BCD-coded International mobile subscriber identity
+IMSI ::= OCTET STRING (SIZE (3..8))
+
+-- BCD-coded International mobile subscriber identity
+IMEI ::= OCTET STRING (SIZE (3..8))
+
+-- BCD-coded International mobile subscriber identity
+CallNumber ::= OCTET STRING (SIZE (1..16))
+
+-- BCD-coded field
+TimeStamp ::= OCTET STRING (SIZE(7))
+-- TimeStamp The format is:
+-- The contents of this field are a compact form of the TimeStamp format containing local time plus an
+-- offset to universal time. Binary coded
+-- decimal encoding is employed for the digits to reduce the storage and transmission overhead
+-- The format is "YYMMDDhhmmssShhmm", where
+--
+-- YY   =   Year 00 to 99       BCD encoded
+-- MM   =   Month 01 to 12      BCD encoded
+-- DD   =   Day 01 to 31        BCD encoded
+-- hh   =   hour 00 to 23       BCD encoded
+-- mm   =   minute 00 to 59     BCD encoded
+-- ss   =   second 00 to 59     BCD encoded
+-- S    =   Sign 0 = "+", "-"       ASCII encoded
+-- hh   =   hour 00 to 23       BCD encoded
+-- mm   =   minute 00 to 59     BCD encoded
+
+
+-- MsClassmark
+-- 00H class 1, vehicle and portable
+-- 01H class 2, portable
+-- 02H class 3, handheld
+-- 03H class 4, handheld
+-- 04H class 5, handheld
+-- 05H...06H unknown values
+-- 07H... UMTS
+-- 08H...FEH unknown values
+-- FFH Value not available for the SMHPRB in the IWMSC or GMSC.
+MsClassmark ::= INTEGER
+{
+    class1                              (0),
+    class2                              (1),
+    class3                              (2),
+    class4                              (3),
+    class5                              (4),
+    umts                                (7)
+}
+
+TON ::= INTEGER
+{
+    notAvailable                        (0),
+    notUsed                             (1),
+    unknownToSs                         (2),
+    unknownNumber                       (4),
+    international                       (5),
+    national                            (6),
+    networkSpecified                    (7),
+    subscriber                          (8),
+    abbreviated                         (9),
+    dedicatedPadAccess                  (10),
+    undefinedCarrierAccessCode          (11),
+    carrierAccessCodeNationalOperator   (12),
+    carrierAccessCodeOperator           (13),
+    internationalNumber                 (14),
+    nationalNumber                      (15),
+    level2RegionalNumber                (16),
+    level1RegionalNumber                (17),
+    level0RegionalNumber                (18),
+    pisnSpecificNumber                  (19),
+    nationalNetworkRoutingNumber        (20),
+    networkSpecificNetworkRoutingNumber (21),
+    concatenatedNetworkRoutingNumber    (22),
+    portedNumber                        (23),
+    ascii                               (24),
+    dialledWithEscapeCode               (254),
+    notExist                            (255)
+}
+
+NPI ::= INTEGER
+{
+    notAvailable                        (0),
+    unknownToSs                         (2),
+    unknownNetworkDiallingPlan          (4),
+    iSDNTelephony                       (5),
+    data                                (6),
+    telex                               (7),
+    nationalStandard                    (8),
+    private                             (9),
+    nSAP                                (10)
+}
+
+-- Extended BCD-coded International mobile subscriber identity
+DialledDigits ::= OCTET STRING (SIZE (1..12))
+
+LAC ::= OCTET STRING (SIZE (1..2))
+
+-- BCD-coded International mobile subscriber identity
+LastExId ::= OCTET STRING (SIZE (1..10))
+
+CI ::= OCTET STRING (SIZE (1..2))
+
+
+CircuitGroup ::= INTEGER
+
+Circuit ::= INTEGER
+
+BasicServiceType ::= INTEGER
+{
+    teleservice                         (0),
+    bearerservice                       (1),
+    notused                             (255)
+}
+
+BasicServiceCode ::= INTEGER
+{
+    allBearerServices                   (0),
+    khz31Group                          (16),
+    khz31Plmn                           (17),
+    alternateSpeech                     (18),
+    speechFollowed31Khz                 (19),
+    dataCda                             (32),
+    dataCda300                          (33),
+    dataCda1200                         (34),
+    dataCda120075                       (35),
+    dataCda2400                         (36),
+    dataCda4800                         (37),
+    dataCda9600                         (38),
+    dataCdaGeneral                      (39),
+    dataCds                             (48),
+    dataCds1200                         (50),
+    dataCds2400                         (52),
+    dataCds4800                         (53),
+    dataCds9600                         (54),
+    dataCdsGeneral                      (55),
+    padAccessCda                        (64),
+    padAccessCda300                     (65),
+    padAccessCda1200                    (66),
+    padAccessCda120075                  (67),
+    padAccessCda2400                    (68),
+    padAccessCda4800                    (69),
+    padAccessCda9600                    (70),
+    padAccessCdaGeneral                 (71),
+    dataPds                             (80),
+    dataPds2400                         (84),
+    dataPds4800                         (85),
+    dataPds9600                         (86),
+    dataPdsGeneral                      (87),
+    alternateSpeechDataCda              (96),
+    alternateSpeechDataCds              (112),
+    speechFollowedDataCda               (128),
+    speechFollowedDataCds               (144),
+    serviseNotUsed                      (255)
+}
+
+FacilityUsage ::= INTEGER
+
+NonTransparencyIndicator ::= INTEGER
+{
+    transparent                         (0),
+    nontransparent                      (1),
+    transparentnoIwf                    (2),
+    notUsed                             (255)
+}
+
+CauseForTermination ::= OCTET STRING (SIZE (4))
+
+CallType ::= INTEGER
+{
+    incoming                            (0),
+    forwarded                           (1),
+    reRouted                            (2),
+    outgoing                            (3),
+    handover                            (4),
+    portedOut                           (5),
+    followOn                            (6),
+    terminatedToTheAnnouncementMachine  (16),
+    isupTunnelingOfSIPTunneling         (17),
+    internationalASubscriber            (32)
+}
+
+ChrgType ::= INTEGER
+{
+    chargeableCall                      (0),
+    analysis                            (8),
+    addressCompleteMessage              (16),
+    analysisAcm                         (24),
+    answerMessage                       (32),
+    analysisAnswerMessage               (40),
+    callProgressMessage                 (64),
+    analysisCallProgressMessage         (72),
+    cdb                                 (128),
+    analysisCdb                         (136),
+    addressCompleteMessageCdb           (144),
+    analysisAcmCdb                      (152),
+    answerMessageCdb                    (160),
+    analysisAnswerMessageCdb            (168),
+    callProgressMessageCdb              (192),
+    analysisCallProgressMessageCdb      (200)
+}
+
+Duration ::= INTEGER
+
+TariffClass ::= INTEGER
+
+Pulses ::= INTEGER
+
+-- BCD-coded International mobile subscriber identity
+MSRN ::= OCTET STRING (SIZE (1..12))
+
+IntermediateChrgCause ::= INTEGER
+
+ModifyParameters ::= OCTET STRING (SIZE (14))
+
+ModifyPercent ::= INTEGER (0..255)
+
+ModifyDirection ::= INTEGER
+{
+    chargeIncreased                     (0),
+    chargeDecreased                     (1)
+}
+
+SamDiallingClass ::= INTEGER (0..65536)
+
+SpeechVersion ::= INTEGER
+{
+    notKnown                            (0),
+    hrfr                                (1),
+    efr                                 (2),
+    amr                                 (3)
+}
+
+NpdbQueryStatus ::= INTEGER
+{
+    infoNotAvailable                    (0),
+    queryNotDone                        (1),
+    queryDoneNumberNotPorted            (2),
+    queryDoneNumberPorted               (3),
+    queryDoneAndFailed                  (4),
+    setToDoneQueryNotPerformed          (5),
+    queryDoneNotKnownPorted             (6),
+    queryDonePortedOut                  (7),
+    queryDonePortedForeignNationalNetwork (8),
+    queryDoneUnknown                    (9),
+    queryDoneSubsequentAllowed          (10),
+    queryDoneSubsequentDenied           (11)
+
+}
+
+NumberINRecords ::= INTEGER (0..255)
+
+CugOutgoingAccess ::= INTEGER
+{
+    fieldNotFound                       (0),
+    fieldValueUnknown                   (2),
+    ordinaryCall                        (4),
+    outgoingAccessAllowed               (5),
+    outgoingAccessNotAllowed            (6)
+}
+
+CugInformation ::= INTEGER
+{
+    notSupported                        (0),
+    subscribersInSameGroup              (1),
+    subscribersNotInSameGroup           (2),
+    subscribersMayBelongSameGroup       (3)
+}
+
+RoutingCategory ::= INTEGER (0..255)
+
+AddRoutingCategory ::= INTEGER (0..65534)
+
+RegionalSubsIndicator ::= INTEGER
+{
+    noHomeAreaCharging                  (0),
+    homeAreaCharging                    (1)
+}
+
+RegionalSubsLocationType ::= INTEGER
+{
+    locationUnknown                     (0),
+    initiatedInsideCallingPartyHomeArea (1),
+    initiatedOutsideCallingPartyHomeArea (2),
+    notRegional                         (255)
+}
+
+ChannelCodings::= INTEGER (0..255)
+
+UserRate ::= INTEGER
+{
+    notApplicable                       (0),
+    userRate96                          (1),
+    userRate144                         (2),
+    userRate192                         (3),
+    userRate216                         (4),
+    userRate288                         (5),
+    userRate384                         (6),
+    userRate432                         (7),
+    userRate576                         (8)
+}
+
+UsedChannelCoding ::= INTEGER
+{
+    radioInterface29                    (1),
+    radioInterface32                    (2),
+    radioInterface43                    (3),
+    radioInterface12                    (11),
+    radioInterface06                    (12),
+    radioInterface14                    (14)
+}
+
+FixedNwUserRate ::= INTEGER
+{
+    fixedNotApplicable                  (0),
+    fixedUserRate096                    (1),
+    fixedUserRate144                    (2),
+    fixedUserRate192                    (3),
+    fixedUserRate288                    (4),
+    fixedUserRate384                    (5),
+    fixedUserRate480                    (6),
+    fixedUserRate560                    (7),
+    fixedUserRate640                    (8),
+    fixedUserRate336                    (9),
+    fixedUserRate320                    (10)
+}
+
+OtherModemType ::= INTEGER
+{
+    doesNotExist                        (0),
+    v32bisModemRequested                (1),
+    v34ModemRequested                   (2)
+}
+
+ReqNumberOfChannels ::= INTEGER
+{
+    oneTrafficChannel                   (0),
+    twoTrafficChannel                   (1),
+    threeTrafficChannel                 (2),
+    fourTrafficChannel                  (3),
+    fiveTrafficChannel                  (4),
+    sixTrafficChannel                   (5),
+    sevenTrafficChannel                 (6),
+    eightTrafficChannel                 (7)
+}
+
+ReqUserInitiatedModInd ::= INTEGER
+{
+    notRequired                         (0),
+    upToOneTrafficChannel               (1),
+    upToTwoTrafficChannel               (2),
+    upToThreeTrafficChannel             (3),
+    upToFourTrafficChannel              (4)
+}
+
+UsedNumberOfChannels ::= INTEGER
+{
+    none                                (0),
+    standAloneDedicatedControlChannel   (1),
+    eightFullRateTrafficChannels        (4),
+    oneFullRateTrafficChannels          (8),
+    oneHalfRateTrafficChannels          (9),
+    twoFullRateTrafficChannels          (10),
+    threeFullRateTrafficChannels        (11),
+    fourFullRateTrafficChannels         (12),
+    fiveFullRateTrafficChannels         (13),
+    sixFullRateTrafficChannels          (14),
+    seveFullRateTrafficChannels         (15)
+}
+
+-- Mobile Country Code, Digits not in use are filled with 'F's.
+MCC ::= INTEGER
+
+-- Mobile Network Code, Digits not in use are filled with 'F's.
+MNC ::= INTEGER
+
+HotBillingRecordNumber ::= INTEGER (0..99999999)
+
+NumberOfINRecords ::= INTEGER (0..99)
+
+OptimalRoutingIndicator ::= INTEGER
+{
+    optimalRoutingNotHappened           (0),
+    optimalRoutingHappened              (1),
+    notUsed                             (255)
+}
+
+CauseForForwarding ::= INTEGER
+{
+    unconditional                       (33),
+    calledPartyBusy                     (41),
+    noReply                             (42),
+    calledPartyNotReachable             (43),
+    nightService                        (45),
+    callTransfer                        (49),
+    callDeflectionAlerting              (58),
+    callDeflectionImmediate             (59),
+    scpInitiated                        (245)
+}
+
+MSCType ::= INTEGER
+{
+    interworking                        (0),
+    visited                             (1),
+    gateway                             (2),
+    transit                             (3)
+}
+
+SMSType ::= INTEGER
+{
+    moSms                               (0),
+    moCommandSms                        (1),
+    mtSms                               (2),
+    mtStatusReport                      (3),
+    forwardedSms                        (5),
+    directDeliveryShortMessage          (11),
+    sipSaminatedMessage                (12),
+    sipTerminatedMessage                (13),
+    sipForwardedMessage                 (14),
+    sipDirectDelivery                   (15)
+}
+
+NumOfConcatenatedSms ::= INTEGER (0..255)
+
+ApplicationInfo ::= INTEGER
+{
+    normalSms                           (0),
+    pictureMessage                      (1),
+    notKnown                            (255)
+}
+
+ConcatenatedSmsReference ::= INTEGER
+
+DefaultHandling ::= INTEGER (0..255)
+-- {
+--  defHandlingNotUsed  (0),
+--  defHandlingUsed     (1),
+--  notAvailable        (255)
+--}
+
+TicketType ::= INTEGER
+{
+    pocPtc                              (0),
+    vpsoVpst                            (1),
+    handoverPocPtc                      (2),
+    iPTrunk                             (3),
+    cmn                                 (4)
+}
+
+BasicCallStateModel ::= INTEGER
+{
+    typeNotDefined                      (0),
+    originatingSide                     (1),
+    terminatingSide                     (2),
+    originating                         (3),
+    terminatingGatewayMsc               (4),
+    callForwarding                      (5),
+    originatingSideCobiCall             (6),
+    terminatingSideCobiCall             (7),
+    isaCall                             (8),
+    unknown                             (255)
+}
+
+-- BCD-coded International mobile subscriber identity
+ScfAddress ::= OCTET STRING (SIZE (1..9))
+
+CamelServiceKey ::= INTEGER
+
+CamelModification ::= INTEGER
+
+NumberOfSsRecords ::= INTEGER (0..255)
+
+IntermediateRecordNumber ::= INTEGER (0..255)
+
+-- BCD-coded International mobile subscriber identity
+ExchangeId ::= OCTET STRING (SIZE (1..16))
+
+CugInterlock ::= OCTET STRING (SIZE(4))
+
+SSRecordNumber ::= INTEGER
+
+SupplementaryServiceCode ::= INTEGER
+{
+    allSupplementaryServices            (0),
+    allNumberIdentServices              (16),
+    callingNumberIdentPresentation      (17),
+    callingNumberIdentRestriction       (18),
+    calledNumberIdentPresentation       (19),
+    calledNumberIdentRestriction        (20),
+    maliciousCallIdent                  (21),
+    callForwardServices                 (32),
+    callForwardUnconditional            (33),
+    allConditionalForwardServices       (40),
+    callForwardMobileSubsBusy           (41),
+    callForwardNoReply                  (42),
+    callForwardMobileSubsNotReachable   (43),
+    operatorControlledCallForward       (44),
+    nightService                        (45),
+    allCallOfferServices                (48),
+    callTransfer                        (49),
+    mobileAccessHunting                 (50),
+    callDeflectionAlerting              (58),
+    callDeflectionImmediate             (59),
+    allCallCompletionServices           (64),
+    callWaiting                         (65),
+    callHold                            (66),
+    completionCallsBusySubs             (67),
+    multicall                           (69),
+    completionCallsNotReachSubs         (74),
+    allMultiService                     (80),
+    multiService                        (81),
+    allCommunityInterestServices        (96),
+    closedUserGroup                     (97),
+    allChargingServices                 (112),
+    aocI                                (113),
+    aocC                                (114),
+    reverseCharging                     (115),
+    allAddInformTransferServices        (128),
+    userSignalling1                     (129),
+    userSignalling2                     (130),
+    userSignalling3                     (131),
+    allCallRestrictServices             (144),
+    barringOutCalls                     (145),
+    barringAllOutCalls                  (146),
+    barringOutInternCalls               (147),
+    barringOutInternDirectCalls         (148),
+    barringAllOutCallsOutside           (149),
+    barringIncomCalls                   (153),
+    barringAllIncomCalls                (154),
+    barringAllIncomCallsOutside         (155),
+    aocD                                (238),
+    aocE                                (239),
+    callTransferRecall                  (241),
+    ussd                                (242),
+    inService                           (245),
+    notUsed                             (255)
+}
+
+SmsLength ::= INTEGER
+
+CommandType ::= INTEGER
+
+CamelModifyParameters ::= OCTET STRING (SIZE (14))
+
+PlaneIndex ::= INTEGER
+
+BncConnectionType ::= INTEGER
+{
+    noConnection                        (0),
+    atmAdaptationLayer1                 (1),
+    atmAdaptationLayer2                 (2),
+    internetProtocol                    (4),
+    structured                          (5),
+    timeDivisionMultiplex               (8),
+    internetProtocolVer4                (16),
+    internetProtocolVer6                (32),
+    notActive                           (64),
+    notRegistered                       (128),
+    notDefined                          (255)
+}
+
+Action ::= INTEGER
+{
+    registration                        (0),
+    erasure                             (1),
+    activation                          (2),
+    deactivation                        (3),
+    interrogation                       (4),
+    invocation                          (5),
+    passwordRegistration                (6),
+    ssData                              (7),
+    ssDataRequest                       (8),
+    ssDataNotify                        (9)
+}
+
+ResultIndicator ::= INTEGER
+{
+    succeeded                           (0),
+    failed                              (65535)
+}
+
+ParametersLength ::= INTEGER
+
+MessageReference ::= INTEGER
+
+ConcatenatedRecordNumber ::= INTEGER
+
+Identifier ::= INTEGER
+{
+    unknownDeviceIdent                  (0),
+    scfInitiated                        (1),
+    onlineCallMonitoring                (2),
+    externalIP                          (3),
+    parallelRingingGroup                (6),
+    externalRingtoneServer              (7),
+    camelExternalUser                   (8),
+    camelInternalUser                   (9),
+    deviceIdentNotUsed                  (255)
+}
+
+LocUpIndicator ::= INTEGER
+{
+    locationUpdating                    (0),
+    gPRSLocationUpdate                  (1)
+}
+
+LevelOfCamelService ::= INTEGER
+
+EmergencyCallCategory ::= INTEGER
+
+
+
+-- Each call has a unique call reference that an MSC assigns at the
+-- beginning of the call. The first network element involved in the call
+-- generates a global session reference ID and it is transferred between
+-- network elements by using the network messages of different signalling
+-- (Nokia-Proprietary signalling). In case of a call transfer, a call transfer
+-- recall, a multiparty, or a multicall, all 'calls' have their own
+-- GLOBAL_CALL_REFERENCE. The field includes the network identity
+-- (exchange ID) part and the call ID (free integer) part. With this field, all
+-- CDRs produced from one call can be connected to each other.
+GlobalCallReference ::= SEQUENCE
+{
+    exchangeId                          [0] ExchangeId,
+    callId                              [1] CallId
+}
+
+CallId ::= OCTET STRING (SIZE (5) )
+
+-- This indicator describes whether or not the incoming call has already been forwarded (redirected)
+CfInformation ::= INTEGER
+{
+    notForwarded                        (0),
+    forwarded                           (1)
+}
+
+-- The bearer capability information of the used rate adaption. 
+RateAdaptation ::= INTEGER
+{
+    noRateAdaptation      (0),     -- 00H - no rate adaption
+    rateAdaptationV100X30 (1),     -- 01H - V.110, X.30 rate adaptation
+    flagStuffingITUTX3    (2),     -- 02H - ITU-T X.31 flag stuffing
+    rateAdaptationV120    (3),     -- 03H - V.120 rate adaption
+    multimediaH223H245    (19),    -- 13H - H.223 & H.245 (multimedia)
+    notAvailable          (255)    -- FFH - Information is not available
+}
+
+-- The type of the radio network where the subscriber is located
+RadioNetworkType ::= INTEGER
+{
+    gsm   (1),    -- 01H - GSM
+    umts  (2),    -- 02H - UMT
+    sip   (3),    -- 03H - SIP
+    uma   (4),    -- 04H - UMA
+    notUsed (255) -- FFH - not used
+}
+
+-- The stream identifier information at the beginning of the call
+-- 00H - No bearer
+-- 01H - Only one ongoing call
+-- 02H..FFH - Multicall
+StreamIdentifier ::= INTEGER (0..255)
+
+-- The used data rate of the UMTS-based interface between a third 
+-- generation radio network and an ATM Module
+UsedAirInterfaceUserRate ::= INTEGER
+{
+    notUsed     (0),     -- 00H - Not used
+    rate14      (1),     -- 01H - 14,4 kbit/s
+    rate28      (2),     -- 02H - 28,8 kbit/s
+    rate32      (3),     -- 03H - 32,0 kbit/s
+    rate57      (4),     -- 04H - 57,6 kbit/s
+    rate64      (5)      -- 05H - 64,0 kbit/s
+}
+
+
+END

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- begin_generated_IBM_copyright_prolog                             -->
+<!--                                                                  -->
+<!-- This is an automatically generated copyright prolog.             -->
+<!-- After initializing,  DO NOT MODIFY OR MOVE                       -->
+<!-- **************************************************************** -->
+<!-- Licensed Materials - Property of IBM                             -->
+<!-- 5724-Y95                                                         -->
+<!-- (C) Copyright IBM Corp.  2011, 2015    All Rights Reserved.      -->
+<!-- US Government Users Restricted Rights - Use, duplication or      -->
+<!-- disclosure restricted by GSA ADP Schedule Contract with          -->
+<!-- IBM Corp.                                                        -->
+<!--                                                                  -->
+<!-- end_generated_IBM_copyright_prolog                               -->
+<structures xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.ibm.com/software/data/infosphere/streams/parser StructureParserStructure.xsd"
+                    xmlns="http://www.ibm.com/software/data/infosphere/streams/parser">
+
+	<!-- This structure contains the voice record -->
+	<structure name="voiceRecord">
+		<!-- Condition for voice record is fieldRecordType equal 1 -->
+		<condition>
+			<cmp op="equal">
+				<field name="fieldRecordType"/>
+				<value>1</value>
+			</cmp>
+		</condition>
+		<field name="fieldRecordType" type="uint8"/>						<!-- 01   1 byte -->
+		<field name="fieldRecordNumber" type="uint64"/>						<!-- 02   8 byte -->
+		<field name="fieldCallReference" type="rstring" size="11"/>			<!-- 03  11 byte -->
+		<field name="fieldCallingImsi" type="rstring" size="15"/>			<!-- 04  15 byte -->
+		<field name="fieldCallingImei" type="rstring" size="15"/>			<!-- 05  15 byte -->
+		<field name="fieldCallingNumber" type="rstring" size="25"/>			<!-- 06  25 byte -->
+		<field name="fieldCalledImsi" type="rstring" size="15"/>			<!-- 07  15 byte -->
+		<field name="fieldCalledImei" type="rstring" size="15"/>			<!-- 08  15 byte -->
+		<field name="fieldCalledNumberTon" type="uint8"/>					<!-- 09   1 byte -->
+		<field name="fieldCalledNumberNpi" type="uint8"/>					<!-- 10   1 byte -->
+		<field name="fieldCalledNumber" type="rstring" size="25"/>			<!-- 11  25 byte -->
+		<field name="fieldCallingSubsFirstLac" type="rstring" size="5"/>	<!-- 12   5 byte -->
+		<field name="fieldCallingSubsFirstCi" type="rstring" size="5"/>		<!-- 13   5 byte -->
+		<field name="fieldCauseForTermination" type="rstring" size="9"/>	<!-- 14   9 byte -->
+		<field name="fieldCallType" type="uint8"/>							<!-- 15   1 byte -->
+		<field name="fieldSamMczDuration" type="uint64"/>					<!-- 16   8 byte -->
+		<field name="fieldCallingNumberTon" type="uint8"/>					<!-- 17   1 byte -->
+		<field name="fieldCallingNumberNpi" type="uint8"/>					<!-- 18   1 byte -->
+		<field name="fieldCallReferenceTime" type="rstring" size="15"/>		<!-- 19  15 byte -->
+		<field name="fieldCallingSubsFirstMcc" type="uint64"/>				<!-- 20   8 byte -->
+	</structure>															<!--    ======== -->
+																			<!--    185 byte -->
+
+	<!-- This structure contains the sms record -->
+	<structure name="smsRecord">
+		<!-- Condition for sms record is fieldRecordType equal 1 -->
+		<condition>
+			<cmp op="equal">
+				<field name="fieldRecordType"/>
+				<value>2</value>
+			</cmp>
+		</condition>
+		<field name="fieldRecordType" type="uint8"/>						<!-- 01   1 byte -->
+		<field name="fieldRecordNumber" type="uint64"/>						<!-- 02   8 byte -->
+		<field name="fieldCallReference" type="rstring" size="11"/>			<!-- 03  11 byte -->
+		<field name="fieldCallingImsi" type="rstring" size="15"/>			<!-- 04  15 byte -->
+		<field name="fieldCallingImei" type="rstring" size="15"/>			<!-- 05  15 byte -->
+		<field name="fieldCallingNumber" type="rstring" size="25"/>			<!-- 06  25 byte -->
+		<field name="fieldCalledNumberTon" type="uint8"/>					<!-- 07   1 byte -->
+		<field name="fieldCalledNumberNpi" type="uint8"/>					<!-- 08   1 byte -->
+		<field name="fieldCalledNumber" type="rstring" size="25"/>			<!-- 09  25 byte -->
+		<field name="fieldCallingSubsFirstCi" type="rstring" size="5"/>		<!-- 10   5 byte -->
+		<field name="fieldCauseForTermination" type="rstring" size="9"/>	<!-- 11   9 byte -->
+		<field name="fieldCallType" type="uint8"/>							<!-- 12   1 byte -->
+		<field name="fieldCallingNumberTon" type="uint8"/>					<!-- 13   1 byte -->
+		<field name="fieldCallingNumberNpi" type="uint8"/>					<!-- 14   1 byte -->
+		<field name="fieldCallReferenceTime" type="rstring" size="15"/>		<!-- 15  15 byte -->
+	</structure>															<!--    ======== -->
+</structures>																<!--    134 byte -->
+

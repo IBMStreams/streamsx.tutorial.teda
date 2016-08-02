@@ -1,0 +1,72 @@
+// begin_generated_IBM_copyright_prolog                            
+//                                                                 
+// This is an automatically generated copyright prolog.            
+// After initializing,  DO NOT MODIFY OR MOVE                      
+// ****************************************************************
+// Licensed Materials - Property of IBM                            
+// 5724-Y95                                                        
+// (C) Copyright IBM Corp.  2011, 2015    All Rights Reserved.     
+// US Government Users Restricted Rights - Use, duplication or     
+// disclosure restricted by GSA ADP Schedule Contract with         
+// IBM Corp.                                                       
+//                                                                 
+// end_generated_IBM_copyright_prolog                              
+/**
+ * The below code was generated using the spl-schema-from-asn1 tool, version 1.0.
+ */
+namespace demoapp.streams.custom;
+
+type CI = blob; /* OCTET STRING */
+
+type CallNumber = blob; /* OCTET STRING */
+
+type CallReference = blob; /* OCTET STRING */
+
+type CallType = int64; /* INTEGER */
+
+type CauseForTermination = blob; /* OCTET STRING */
+
+type Duration = int64; /* INTEGER */
+
+type IMEI = blob; /* OCTET STRING */
+
+type IMSI = blob; /* OCTET STRING */
+
+type LAC = blob; /* OCTET STRING */
+
+type MCC = int64; /* INTEGER */
+
+type MSCRecordType = int64; /* INTEGER */
+
+type MobileSampleMsg = tuple /* SEQUENCE */
+<
+	MSCRecordType mscRecordType /* mandatory, non-repeating */,
+	list<RecordNumber> mscRecordNumber /* optional, non-repeating */,
+	list<CallReference> mscCallReference /* optional, non-repeating */,
+	list<TimeStamp> mscCallReferenceTime /* optional, non-repeating */,
+	list<IMSI> mscCallingImsi /* optional, non-repeating */,
+	list<IMEI> mscCallingImei /* optional, non-repeating */,
+	list<CallNumber> mscCallingNumber /* optional, non-repeating */,
+	list<IMSI> mscCalledImsi /* optional, non-repeating */,
+	list<IMEI> mscCalledImei /* optional, non-repeating */,
+	list<TON> mscCalledNumberTon /* optional, non-repeating */,
+	list<NPI> mscCalledNumberNpi /* optional, non-repeating */,
+	list<CallNumber> mscCalledNumber /* optional, non-repeating */,
+	list<LAC> mscCallingSubsFirstLac /* optional, non-repeating */,
+	list<CI> mscCallingSubsFirstCi /* optional, non-repeating */,
+	list<CauseForTermination> mscCauseForTermination /* optional, non-repeating */,
+	list<CallType> mscCallType /* optional, non-repeating */,
+	list<Duration> mscSamMczDuration /* optional, non-repeating */,
+	list<TON> mscCallingNumberTon /* optional, non-repeating */,
+	list<NPI> mscCallingNumberNpi /* optional, non-repeating */,
+	list<MCC> mscCallingSubsFirstMcc /* optional, non-repeating */
+>;
+
+type NPI = int64; /* INTEGER */
+
+type RecordNumber = int64; /* INTEGER */
+
+type TON = int64; /* INTEGER */
+
+type TimeStamp = blob; /* OCTET STRING */
+

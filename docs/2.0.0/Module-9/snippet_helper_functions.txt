@@ -1,0 +1,26 @@
+/**
+ * getDateStringFromDay - converts the day which is days since 01/01/1970 to time string of format dd.mm.yyCC
+ * @param day day since 01/01/1970
+ * @return the date string of format dd.mm.yyCC
+ */
+rstring getDateStringFromDay(uint32 day) {
+	timestamp ts = createTimestamp((int64) day * 24l*60l*60l, 0u);
+	mutable Sys.tm tm = {sec=0, min=0, hour=0, mday=0, mon=0, year=0, wday=0,
+						 yday=0, isdst=0, gmtoff=0, zone=""};
+
+	time(ts, "UTC", tm);
+	return(strftime(tm, "%d.%m.%C%y"));
+}
+
+/**
+ * callReferenceTimeToTimestamp - converts the time string to timestamp
+ * @param callReferenceTime input time in format YYCC-MM-DD hh:mm:ss
+ * @return the timestamp
+ */
+timestamp callReferenceTimeToTimestamp(rstring callReferenceTime) {
+	mutable Sys.tm tm = {sec=0, min=0, hour=0, mday=0, mon=0, year=0, wday=0, yday=0, isdst=0, gmtoff=0, zone=""};
+	mutable uint32 numCharsProcessed = 0u;
+	strptime(callReferenceTime, "%C%y-%m-%d %H:%M:%S", tm, numCharsProcessed);
+	return toTimestamp(tm);
+}
+

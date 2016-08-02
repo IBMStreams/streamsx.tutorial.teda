@@ -1,0 +1,16 @@
+		/**
+		 * CustomContextDataStreamFilter
+		 * Filter operator that receives processing context specific data tuples and filters them by record type
+		 * (cdrRecordType == 1 = voice record) and call type.
+		 *
+		 * @input  InDataStream In data data stream of this composite coming from ChainProcessor
+		 * @output FilteredInDataStream Data tuples from in data stream matching filter criteria mentioned in the operator description
+		 * @output RemovedInDataStream Data tuples from in data stream not matching filter criteria mentioned in the operator description
+		 */
+		(stream<data> FilteredInDataStream; stream<data> RemovedInDataStream) as CustomContextDataStreamFilter = Filter(InDataStream as data) {
+			param
+				filter :
+					(true == data.chainPunct) ||
+					((cdrRecordType == 1ub) &&
+					((1ub <= cdrCallType && cdrCallType <= 4ub) || cdrCallType == 6ub));
+		}
