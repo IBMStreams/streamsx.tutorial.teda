@@ -143,14 +143,12 @@ In this file, you define shared memory segments, stores, streams schemas, and th
 You find more information about customizing the Lookup Manager application in the IBM Knowledge Center under
 [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0>Developing applications>Customizing applications>Customizing the Lookup Manager application](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$112.html).
 
-You customize the following parts:
+You customize the following part:
 
-* Specify the controlled ITE applications. They are identified by their SPL namespace. In the tutorial, you have one application with the namespace **demoapp**.
-* Define the memory segment name that the ITE application uses. This name must match the name of the input file without the `.csv` extension. Remember that the file name is `IMSI_CRM.csv`. Therefore, the segment name for your ITE application is **IMSI_CRM**. (In other projects you can have more than one ITE application. An ITE application can use more than one memory segments.)  
-* Define, which commands are allowed for the memory segment. The supported commands are **init**, **update**, and **delete**.
-* Customize the memory segment with the physical name of the shared memory object, its size, and the stores that it contains. A store in a memory segment is basically a map that maps a key to a number of values. The values are those attributes, by which the tuples are enriched within the business logic.
-* Define the SPL types and names for the values and an SPL expression for the key in the store.
-* Customize the mapping between the data source – here the `IMSI_CRM.csv` file – and the memory store.
+* Specify the `DataSources` that the ITE application uses. The `DataSource` represents the structure of the tuple that is provided by the lookup data source. The source is a database or a comma-separated file (`.csv`).You must enter the name that matches the name of the input file without the `.csv` extension. Remember, the file name is `IMSI_CRM.csv`. Therefore, the `DataSource` name for your ITE application is **IMSI_CRM**. (In other projects you can have more than one ITE application. An ITE application can use more than one memory segments.)
+* Define the source tuple attributes for each `DataSource`. The `ValueDefinition` describes the tuple attribute name and the SPL data type. The `IndexInInputFile` attribute is valid for the file as the source. It specifies the column in the file, where the data is located. The mapping to the database output is defined by the `DbAccessSpecification` attribute of the `DataSource` element. In the tutorial, you have three attributes in the `IMSI_CRM.csv` file.
+* Declare the `Segments` that the ITE application can read. Each segment defines the physical name of the shared memory object that assigns one `DataSource` definition. The maximal reserved size of the shared memory segment is required as well as the memory size unit. The tutorial provides data for only one **segmentDemoApp** segment that uses **1200** **MB** memory by the **IMSI_CRM** data source.
+* Specify the `Stores` assigned to the segment. Each segment supports one or more key-value store definitions. Here, you must define the value of the **ImsiMap** store that includes a tuple structure of two attributes **customerId** and **customerType**. The value of the **imsi** source attribute is the key that defines the unique set of data to be stored in the shared memory.
 
 Open the **teda.lookupmgr/Resources/LookupMgrCustomizing.xml** file of the SPL project teda.lookupmgr, and replace the sample content by the following lines.
 
