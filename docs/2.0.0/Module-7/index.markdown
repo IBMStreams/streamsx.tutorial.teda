@@ -177,8 +177,6 @@ Open the **teda.lookupmgr/Resources/LookupMgrCustomizing.xml** file of the SPL p
       </Segments>
     </LookupManager>
 
-It is important to understand that the XML elements `<SPLValueAssignment>` represent the attributes of the values that are stored in the map, whereas `<SPLKeyAssignment>` represents the expression for the key of the stream attributes defined in `<StreamsSchema>`.
-
 For more information about the allowed elements and values in the customization file, see the `etc/LookupMgrCustomizing.xsd` XSD file in your project directory.
 
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-07/LookupMgrCustomizing.png" alt="LookupMgrCustomizing.xml" width="97%" height="97%"/>
