@@ -1,27 +1,75 @@
 <!--(
 ---
 layout: docs
-title:  Module 10 - Table format output
-description:  Create output files which can be loaded into database tables
+title:  Module 11 - Lookup Manager with database source and application  configuration
+description:  Configure Looup Manager for database source by using the application configuration
 weight:  20
 ---
 )-->
 # Objectives
 
-In this module, you extend the ITE application that you created in the modules 1-8.
+In this optional module, you re-configure the Lookup Manager application that you created in the modul 7. You use the Application Configuration feature to setup database credentials in the streams application.
 
-At the end of this module, your application creates two types of output files, which can be loaded into database tables.
-
-<img src="/streamsx.tutorial.teda/images/2.0.0/module-10/ITETableFiles.png" alt="ITE output files"/>
+At the end of this module, your application reads the database credentioals form streams platform and uses the database as source of the lookup information.
 
 After completing this module you should be able to:
 
-* Configure the ITE application for table files output
-* Customize the PostContextDataProcessor composite
+* Configure the Lookup Manager application for database sources
+* Configure Application configuration with Streams Console
 
 # Prerequisites
+The database configuration requires additional preparation in your environment. The general database configuration is described in:
+* [Working with enrichment data from databases](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$97.html)
+* [Customizing the Lookup Manager application](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$112.html)
 
-You finished at least [module 8](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-8/) of the tutorial, in which you added the record deduplication.
+ 
+These are the prerequisites for the sample:
+
+* You finished at least [module 7](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/) of the tutorial, in which you created and customized the Lookup Manager application.
+
+* The DB2 database must exist and run - `db2start`
+
+* You must create the required database, here: **DEMOAPP**
+
+* You must create the required database table with following columns, here **DEMODATA.IMSI_CRM** :
+    * `IMSI` defined as `VARCHAR (21)`
+    * `CUSTOMER_ID` defined as `BIGINT`
+    * `CUSTOMER_TYPE` defined as `BIGINT`
+
+  SQL command example:
+  
+        CREATE TABLE DEMODATA.IMSI_CRM (IMSI VARCHAR (21)  NOT NULL , CUSTOMER_ID BIGINT NOT NULL , CUSTOMER_TYPE BIGINT NOT NULL )
+
+* Fill in the database table with content of the `IMSI_CRM.csv`. Remember, you used this file in [module 7](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/) to fill in the lookup data. The processed CSV file moved to `WORKSPACE/teda.lookupmgr/data/archive/<timestamp>_IMSI_CRM.csv`.
+
+  SQL command example:
+  
+        IMPORT FROM "IMSI_CRM.csv" OF DEL METHOD P (1, 2, 3) INSERT INTO DEMODATA.IMSI_CRM (IMSI, CUSTOMER_ID, CUSTOMER_TYPE )
+
+* Configure environment for [com.ibm.streams.db 2.0.0](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.db/tk$com.ibm.streams.db$1.html) toolkit. 
+
+    Here for DB2 database:
+      * `STREAMS_ADAPTERS_ODBC_INCPATH=<db2-install-path>/include/`
+      * `STREAMS_ADAPTERS_ODBC_LIBPATH=<db2-install-path>/lib64/`
+      * `STREAMS_ADAPTERS_ODBC_DB2=1`
+
+* The UnixODBC driver must be installed (http://www.unixodbc.org/)
+
+* You must configure `odbc.ini` for UnixODBC driver:
+
+        [DEMOAPP]
+        Driver = DB2
+        description = DEMOAPP database on DB2
+        ServerName = //<db2-server-address>:50000
+
+* You must configure `odbcinst.ini` for UnixODBC driver:
+
+        [DB2]
+        Description     = DB2 driver
+        Driver          = <path-to-db2-lib-folder>/libdb2.so
+        FileUsage       = 1
+        DontDLClose     = 1
+    
 
 # Concepts
 
