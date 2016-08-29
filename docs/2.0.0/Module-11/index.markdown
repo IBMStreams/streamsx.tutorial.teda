@@ -1,29 +1,29 @@
 <!--(
 ---
 layout: docs
-title:  Module 11 - Lookup Manager with database source and application  configuration
-description:  Configure Looup Manager for database source by using the application configuration
+title:  Module 11 - Lookup Manager with database source and application configuration
+description:  Configure Lookup Manager for database source by using the application configuration
 weight:  20
 ---
 )-->
 # Objectives
 
-In this optional module, you re-configure the Lookup Manager application that you created in the modul 7. You use the Application Configuration feature to setup database credentials in the streams application.
+In this optional module, you reconfigure the Lookup Manager application that you created in the modul 7. You use the Application Configuration feature to specify database credentials in the streams application.
 
 At the end of this module, your application reads the database credentioals form streams platform and uses the database as source of the lookup information.
 
-After completing this module you should be able to:
+After completing this module, you should be able to:
 
 * Configure the Lookup Manager application for database sources
 * Configure Application configuration with Streams Console
 
 # Prerequisites
-The database configuration requires additional preparation in your environment. The general database configuration is described in:
+The database configuration requires extra preparation in your environment. The general database configuration is described in:
 * [Working with enrichment data from databases](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$97.html)
 * [Customizing the Lookup Manager application](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$112.html)
 
  
-These are the prerequisites for the sample:
+The prerequisites for the sample:
 
 * You finished at least [module 7](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/) of the tutorial, in which you created and customized the Lookup Manager application.
 
@@ -31,7 +31,7 @@ These are the prerequisites for the sample:
 
 * You must create the required database, here: **DEMOAPP**
 
-* You must create the required database table with following columns, here **DEMODATA.IMSI_CRM** :
+* You must create the required **DEMODATA.IMSI_CRM** database table with following columns:
     * `IMSI` defined as `VARCHAR (21)`
     * `CUSTOMER_ID` defined as `BIGINT`
     * `CUSTOMER_TYPE` defined as `BIGINT`
@@ -40,7 +40,7 @@ These are the prerequisites for the sample:
   
         CREATE TABLE DEMODATA.IMSI_CRM (IMSI VARCHAR (21)  NOT NULL , CUSTOMER_ID BIGINT NOT NULL , CUSTOMER_TYPE BIGINT NOT NULL )
 
-* Fill in the database table with content of the `IMSI_CRM.csv`. Remember, you used this file in [module 7](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/) to fill in the lookup data. The processed CSV file moved to `WORKSPACE/teda.lookupmgr/data/archive/<timestamp>_IMSI_CRM.csv`.
+* Complete the database table with content of the `IMSI_CRM.csv`. Remember, you used this file in [module 7](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/) to complete the lookup data. The processed CSV file moved to `WORKSPACE/teda.lookupmgr/data/archive/<timestamp>_IMSI_CRM.csv`.
 
   SQL command example:
   
