@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- begin_generated_IBM_copyright_prolog                             -->
+<!--                                                                  -->
+<!-- This is an automatically generated copyright prolog.             -->
+<!-- After initializing,  DO NOT MODIFY OR MOVE                       -->
+<!-- **************************************************************** -->
+<!-- Licensed Materials - Property of IBM                             -->
+<!-- 5724-Y95                                                         -->
+<!-- (C) Copyright IBM Corp.  2011, 2015    All Rights Reserved.      -->
+<!-- US Government Users Restricted Rights - Use, duplication or      -->
+<!-- disclosure restricted by GSA ADP Schedule Contract with          -->
+<!-- IBM Corp.                                                        -->
+<!--                                                                  -->
+<!-- end_generated_IBM_copyright_prolog                               -->
+<LookupManager xmlns="http://www.ibm.com/xmlns/prod/streams/teda" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:teda="http://www.ibm.com/xmlns/prod/streams/teda" SchemaVersion="2.0" xsi:schemaLocation="http://www.ibm.com/xmlns/prod/streams/teda etc/LookupMgrCustomizing.xsd">
+  <DataSources>
+    <!--Indexing begins with 0-->
+    <DataSource Name="IMSI_CRM" DbAccessSpecification="ImsiCRM">
+      <ValueDefinition SPLType="rstring" Name="imsi" Description="Lookup key: Subscriber IMSI." IndexInInputFile="0" DbColumnName="IMSI" />
+      <ValueDefinition SPLType="int64" Name="customerId" Description="Lookup result: customerId." IndexInInputFile="1" DbColumnName="CUSTOMER_ID" />
+      <ValueDefinition SPLType="int64" Name="customerType" Description="Lookup result: customerType." IndexInInputFile="2" DbColumnName="CUSTOMER_TYPE" />
+    </DataSource>
+  </DataSources>
+  <Segments>
+    <Segment Name="segmentDemoApp" DataSource="IMSI_CRM" Size="1200" Unit="MB">
+      <Stores>
+        <Store Name="ImsiMap">
+          <ValueAssignment SPLType="int64" Name="customerId" SPLExpression="customerId"/>
+          <ValueAssignment SPLType="int64" Name="customerType" SPLExpression="customerType"/>
+          <KeyAssignment SPLType="rstring" SPLExpression="imsi"/>
+        </Store>
+      </Stores>
+      <Applications>
+        <Application Namespace="demoapp"/>
+      </Applications>
+    </Segment>
+  </Segments>
+</LookupManager>
