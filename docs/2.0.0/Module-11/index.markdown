@@ -1,10 +1,10 @@
+<!--(
 ---
 layout: docs
 title:  Module 11 - Lookup Manager with database source and application configuration
 description:  Configure Lookup Manager for database source by using the application configuration
 weight:  21
 ---
-<!--(
 )-->
 
 # Objectives
@@ -297,17 +297,7 @@ Only, the `init_all.cmd` command file moves to `archive` folder.
 
 ## Discussing the results
 
-Refresh and expand the **data/out/load** folder of the ITE application after processing the input files. You find some table files output there:
-
-<img src="/streamsx.tutorial.teda/images/2.0.0/module-10/Table_OutputFiles.png" alt="Table output files"/>
-
-The name pattern is \<tablename\>-\<groupID\>_\<input-filename\>.csv
-
-The content for SMS_CDR table files looks like:
-
-    2,56,4131002400,2014-02-01 13:05:00,3,,,186102999954,5,5,21436500000041,41400000000034,196105000045,5,6,0004,,0,00000010,,,1,34,2014-02-01,13:05:00
-    2,57,4131002400,2014-02-01 13:10:00,3,,,186102999954,5,5,21436500000041,41400000000034,196105000045,5,6,0004,,0,00000010,,,1,34,2014-02-01,13:10:00
-    2,58,4131002400,2014-02-01 13:15:00,3,,,186102999954,5,5,21436500000041,41400000000034,196105000045,5,6,0004,,0,00000010,,,1,34,2014-02-01,13:15:00
+The results of ITE file processing are exact the same as in previous modules. You cannot observe any difference in the file processing.
 
 # Next steps
 
