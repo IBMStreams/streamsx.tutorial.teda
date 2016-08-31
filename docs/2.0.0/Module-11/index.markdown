@@ -271,7 +271,7 @@ The configuarion and customizing of the Lookup Manager is done. You can prepare 
 
 ## Preparing the external data
 
-As you konw, the Lookup Manager application initializes and updates the data that ITE application uses for enrichment. Because you configure the database as the source then you must check if DB database is running. If it isn't running then call `db2start` command. Connect to the **DEMOAPP**  and check again if database table exists and includes the required data. This is part of prerequisites.
+As you know, the Lookup Manager application initializes and updates the data that ITE application uses for enrichment. Because you configure the database as the source then you must check if DB database is running. If it isn't running then call `db2start` command. Connect to the **DEMOAPP**  and check again if database table exists and includes the required data. This is part of prerequisites.
 
 Don't care about the `IMSI_CRM.csv` file it is not required.
 
@@ -282,7 +282,7 @@ You will process the same files as in previous modules. The application reject t
 * Ensure that the Streams Domain and Streams Instance are running. Start the Monitoring GUI.
 * Start the Lookup Manager application as **Distributed** to a running instance. Verify and adjust submission time parameters **common.lookup::LookupManagerMain.lm.applicationConfiguration** if the launch configuration was saved before.
 
-<img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Submission.png" alt="LM Submission Time Values"/>
+<img src="/streamsx.tutorial.teda/images/2.0.0/module-11/LM - Submission.png" alt="LM Submission Time Values"/>
 
 * Start the ITE application as **Distributed** to a running instance.
 
