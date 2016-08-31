@@ -2,10 +2,11 @@
 layout: docs
 title:  Module 11 - Lookup Manager with database source and application configuration
 description:  Configure Lookup Manager for database source by using the application configuration
-weight:  20
+weight:  21
 ---
 <!--(
 )-->
+
 # Objectives
 
 In this optional module, you reconfigure the Lookup Manager application that you created in the modul 7. You use the Application Configuration feature to specify database credentials in the streams application.
@@ -55,7 +56,7 @@ The prerequisites for the sample:
       * `STREAMS_ADAPTERS_ODBC_LIBPATH=<db2-install-path>/lib64/`
       * `STREAMS_ADAPTERS_ODBC_DB2=1`
 
-* The UnixODBC driver must be installed (http://www.unixodbc.org/)
+* The UnixODBC driver must be installed [http://www.unixodbc.org](http://www.unixodbc.org/)
 
 * You must configure `odbc.ini` for UnixODBC driver:
 
@@ -144,6 +145,7 @@ The values that you need for this sample are specified as follows:
           name="CUSTOMER_ID" type="BIGINT"
           name="CUSTOMER_ID" type="BIGINT"
 
+
 Create the **teda.lookupmgr/Resources/connections.xml** file of the SPL project teda.lookupmgr, and complete the sample content by the following lines.
 
     <?xml version="1.0" encoding="UTF-8"?>
@@ -198,7 +200,7 @@ The `<DataSource>` elements specify these references, that you need for the samp
 * You must add `DbAccessSpecification="ImsiCRM"` attribute next to the `Name="IMSI_CRM"` attribute in the `<DataSource>` element to create the name reference of the access specification specified in the **teda.lookupmgr/Resources/connections.xml**.
 * Each `ValueDefinition` attribute needs the name reference to the corresponding database column. You specify it with `DbColumnName` attribute.
 
-Open the **teda.lookupmgr/Resources/LookupMgrCustomizing.xml** file of the SPL project teda.lookupmgr, and replace the sample content by the following lines.
+Open the **teda.lookupmgr/Resources/LookupMgrCustomizing.xml** file of the SPL project teda.lookupmgr and replace the sample content by the following lines.
 
     <?xml version="1.0" encoding="utf-8"?>
     <LookupManager xmlns="http://www.ibm.com/xmlns/prod/streams/teda" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:teda="http://www.ibm.com/xmlns/prod/streams/teda" SchemaVersion="2.0" xsi:schemaLocation="http://www.ibm.com/xmlns/prod/streams/teda etc/LookupMgrCustomizing.xsd">
@@ -228,7 +230,7 @@ Open the **teda.lookupmgr/Resources/LookupMgrCustomizing.xml** file of the SPL p
  
  [To download LookupMgrCustomizing.xml](LookupMgrCustomizing.xml)
  
-You finished customizing the Lookup Manager application. You can build the project now.
+You finished customizing of the Lookup Manager application. You can build the project now.
 
 To build the Lookup Manager application project, right-click the **teda.lookupmgr** project and select **Build Project** from the context menu.
 Your don't need to build the **demoapp** project.
@@ -238,12 +240,15 @@ Your don't need to build the **demoapp** project.
 The general description, how to create application configuration, you find in the IBM Knowledge Center under [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0>Developing applications > Configuring Solutions > Configuring Lookup Manager Applications > Working with enrichment data from databases > Configure your Lookup Manager to use data from database > Configure your Lookup Manager with Application Configuration](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$101.html).
 
 Open the streams console and select menu and then **Manage Application Configurations**.
+
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console- Open Manage ApplConf.jpg" alt="Manage Application Configurations"/>
 
 Click the `+` button to add the configuration.
-<img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Add fill in ApplConfig.jpg" alt="Add Configuration"/>
 
-Complete the  **Name** with **MyApplConfig**, the **Description** in the dialog window. Specify the **lm.db.name** property value to **DEMOAPP** and add to property table - **Add to table**.
+<img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Add ApplConfig.jpg" alt="Add Configuration"/>
+
+Complete the  **Name** of the application configuration with **MyApplConfig** and the **Description** in the dialog window. Specify the **lm.db.name** property value to **DEMOAPP** and add to property table - **Add to table**.
+
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Add fill in ApplConfig.jpg" alt="New application configuration"/>
 
 Do the same for following properties:
@@ -251,12 +256,15 @@ Do the same for following properties:
 * **lm.db.password** complete with the password of the database user
 
 Finally, push **Save App Config** to close the dialog.
+
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Finish ApplConfig.jpg" alt="Finish application configuration"/>
 
 Confirm the creation of application configuration with **Yes**.
+
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Confirm Creation ApplConfig.jpg" alt="Confirm creation"/>
 
 The specified **MyAppConfig** configuration is visible in the container. Here, you can update the database credentials.
+
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Created ApplConfig.jpg" alt="Creatied MyAppConfig"/>
 
 The configuarion and customizing of the Lookup Manager is done. You can prepare and start the applications.
@@ -284,6 +292,7 @@ The [Module 7: Loading the lookup data up](http://ibmstreams.github.io/streamsx.
 
 In opposite to load result that Module 7 describes, the `IMSI_CRM.csv` file is not moved to `archive` directory. 
 Only, the `init_all.cmd` command file moves to `archive` folder.
+
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/LM - Processed Cmd with DB.png" alt="LM Submission Time Values"/>
 
 ## Discussing the results
