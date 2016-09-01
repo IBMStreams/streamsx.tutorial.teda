@@ -1,10 +1,10 @@
-<!--(
 ---
 layout: docs
 title:  Module 11 - Lookup Manager with database source and application configuration
 description:  Configure Lookup Manager for database source by using the application configuration
 weight:  21
 ---
+<!--(
 )-->
 
 # Objectives
