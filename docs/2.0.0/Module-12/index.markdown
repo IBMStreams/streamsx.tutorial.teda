@@ -79,6 +79,7 @@ The example of the Import operator shows the specified settings:
 		param subscription : ite=="demoapp.context_output_Dedup";
 	}
 
+The download of the [DemoappImportDedup](DemoappImportDedup.spl) application.
 
 ## Building and starting the ITE application
 
