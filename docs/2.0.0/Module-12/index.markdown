@@ -79,13 +79,36 @@ The example of the Import operator shows the specified settings:
 		param subscription : ite=="demoapp.context_output_Dedup";
 	}
 
-The download of the [DemoappImportDedup](DemoappImportDedup.spl) application.
+You shall use the `teda.import` sample project to understand the function of the plug-in interface.
+* Download the [teda.import.zip](teda.import.zip) project package.
+* Extract the downloaded file.
+* Import the existing project to Streams Studio as an existing project. (File->Import..->General->Existing Projekts into Workspace)
+* Build the `teda.import` project.
+
+The project includes a `DemoappImportDedup.spl` file. This file contains 2 main composites. The build configuration is prepared to start both importer applications.
+
+The `DemoappImportDedup` main composite implements an easy sample, that you typically use to import the tuples from the ITE application.
+The `DemoappImportDedupSlow`main composite blocks the tuple processing to provoke the back-pressure on ITE application.
 
 ## Building and starting the ITE application
 
 After restructuring the project, it is best practice to clean the project before starting a new build process. To do so, select on the Streams Studio main menu **Project > Clean…** and select the **teda.demoapp** project. Press OK.
 
+***REMEMBER:***
+You have to clean the generated output from the ITE application before you start.
+You can remove the checkpoint and out directories from Streams Studio or command line:
+
+    cd WORKSPACE/teda.demoapp/data
+    rm -rv checkpoint out
+
+If you restart the Lookup Manager application then you can remove the control and out directories from Streams Studio or command line:
+
+    cd WORKSPACE/teda.lookupmgr/data
+    rm -rv control out
+
 You need to do the same steps as in [Module 7: Starting the applications](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/#starting-the-applications) to launch the applications and to process the input files.
+
+Follow the same steps to load the lookup data and monitor the application's status as in [Module 7: Loading the lookup data](https://github.com/IBMStreams/streamsx.tutorial.teda/blob/gh-pages/docs/2.0.0/Module-7/index.markdown#loading-the-lookup-data)
 
 ***Note:***
 
@@ -99,8 +122,50 @@ desired command, in our case: `restart,demoapp`.*
 
 *ITE application and Lookup Manager application will establish a control sequence where at the end both applications are in RUN state using the data already available, without reload.*
 
-## Discussing the results
+## Starting the Importer applications and discussing the results
 
+The importer application must connect the ITE application before you start the file processing.
+Your ITE application must process huge number of data to recognize the back-pressure.
+
+You start with some preparation steps:
+* Download the ITE input files [Part1.zip](Part1.zip) and [Part2.zip](Part2.zip) and expand them in your local file system.
+* Ensure that the ITE and the Lookup Manager applications are healthy, running and in `RUN` ('green' state in the Monitoring GUI)
+* Open the **Instance Graph** view in Streams Studio follows the steps:
+  * Expand **Streams Instances** in **Streams Explorer** view.
+  * Select your instance and open menu by click on the right mouse button.
+  * Go to **Show Instance Graph** and click on the left mouse button.
+  * Select **Flow** as the **Color Schema** for the graph to monitor the tuple processing.
+
+You can start the **DemoappImportDedup** application.
+* Expand the **teda.import** project tree to `teda.import`>`teda.import`>`DemoappImportDedup[Build:BuildConfigFast]`>`BuildConfigFast[Active]`
+* Launch the allpication as **Distributed**.
+* Change view to `Instance Graph`.
+* Verify in the `Instance Graph` that the Importer application is connected to the ITE application
+
+Process the ITE input data from the `Part1` directory. 
+
+Move all included `.csv` files to `WORKSPACE/teda.demoapp/data/in` directory.
+
+Monitor tuple processing in the `Instance Graph`. The ITE application and the Importer application process the same rate of tuples.
+
+The Monitoring GUI provides all 3 **EXPORT** metrics for `demoapp.context_output_Dedup (Context00)`, `demoapp.context_output_Dedup (Context01)`and `demoapp.context_output_Dedup (Context02)` connections.
+The counter `nConnections` equals to 1 and the counter `nBrokenConnections` equals to 0. The importing application does not slow down the ITE application.
+
+Cancel the **DemoappImportDedup** application, now.
+
+The Monitoring GUI updates the `nConnections` counter to 0.
+
+You can start the **DemoappImportDedupSlow** application, now.
+* Expand the **teda.import** project tree to `teda.import`>`teda.import`>`DemoappImportDedupSlow[Build:BuildConfig]`>`BuildConfig[Active]`
+* Launch the allpication as **Distributed**.
+* Change view to `Instance Graph`.
+* Verify in the `Instance Graph` that the Importer application is connected to the ITE application
+
+Process the ITE input data from the `Part2` directory. 
+
+Move all included `.csv` files to `WORKSPACE/teda.demoapp/data/in` directory.
+
+Monitor tuple processing in the `Instance Graph`. The ITE application and the Importer application process tuples in different  rates. The Importer application is slower then the ITE application. But you observe in the graph that the tuple rate of the ITE application is the same as during file processing before this one. In this case as well as in the prevoius one, the importing application does not slow down the ITE application.
 
 
 # Next steps
