@@ -87,7 +87,7 @@ You shall use the `teda.import` sample project to understand the function of the
 
 The project includes a `DemoappImportDedup.spl` file. This file contains 2 main composites. The build configuration is prepared to start both importer applications.
 
-The `DemoappImportDedup` main composite implements an easy sample, that you typically use to import the tuples from the ITE application.
+The `DemoappImportDedup` main composite implements an easy sample that you typically use to import the tuples from the ITE application.
 The `DemoappImportDedupSlow`main composite blocks the tuple processing to provoke the back-pressure on ITE application.
 
 ## Building and starting the ITE application
@@ -173,8 +173,8 @@ Move all included `.csv` files to `WORKSPACE/teda.demoapp/data/in` directory.
 
 ### Discussing tuple processing in the **Instance Graph**. 
 
-The ITE application and the Importer application process tuples in different  rates. The Importer application is slower then the ITE application. But you observe in the graph that the tuple rate of the ITE application is the same as during file processing before this one. In this case as well as in the prevoius one, the importing application does not slow down the ITE application.
-The `nBrokenConnections` counter shows many broken connetions in the **Export** metrics that the Monitoring GUI shows.
+The ITE application and the Importer application process tuples in different rates. The Importer application is slower then the ITE application. But you observe in the graph that the tuple rate of the ITE application is the same as during file processing before this one. In this case as well as in the previous one, the importing application does not slow down the ITE application.
+The `nBrokenConnections` counter shows many broken connections in the **Export** metrics that the Monitoring GUI shows.
 
 # Next steps
 
