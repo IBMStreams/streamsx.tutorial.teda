@@ -136,17 +136,21 @@ You start with some preparation steps:
   * Go to **Show Instance Graph** and click on the left mouse button.
   * Select **Flow** as the **Color Schema** for the graph to monitor the tuple processing.
 
+### Starting ***DemoappImportDedup*** application.
+
 You can start the **DemoappImportDedup** application.
 * Expand the **teda.import** project tree to `teda.import`>`teda.import`>`DemoappImportDedup[Build:BuildConfigFast]`>`BuildConfigFast[Active]`
 * Launch the allpication as **Distributed**.
 * Change view to `Instance Graph`.
 * Verify in the `Instance Graph` that the Importer application is connected to the ITE application
 
-Process the ITE input data from the `Part1` directory. 
+### Process the ITE input data from the `Part1` directory. 
 
 Move all included `.csv` files to `WORKSPACE/teda.demoapp/data/in` directory.
 
-Monitor tuple processing in the `Instance Graph`. The ITE application and the Importer application process the same rate of tuples.
+### Discussing the tuple processing in the `Instance Graph`. 
+
+The ITE application and the Importer application process the same rate of tuples.
 
 The Monitoring GUI provides all 3 **EXPORT** metrics for `demoapp.context_output_Dedup (Context00)`, `demoapp.context_output_Dedup (Context01)`and `demoapp.context_output_Dedup (Context02)` connections.
 The counter `nConnections` equals to 1 and the counter `nBrokenConnections` equals to 0. The importing application does not slow down the ITE application.
@@ -155,18 +159,22 @@ Cancel the **DemoappImportDedup** application, now.
 
 The Monitoring GUI updates the `nConnections` counter to 0.
 
+### Starting ***DemoappImportDedupSlow*** application.
+
 You can start the **DemoappImportDedupSlow** application, now.
 * Expand the **teda.import** project tree to `teda.import`>`teda.import`>`DemoappImportDedupSlow[Build:BuildConfig]`>`BuildConfig[Active]`
 * Launch the allpication as **Distributed**.
 * Change view to `Instance Graph`.
 * Verify in the `Instance Graph` that the Importer application is connected to the ITE application
 
-Process the ITE input data from the `Part2` directory. 
+### Process the ITE input data from the `Part2` directory. 
 
 Move all included `.csv` files to `WORKSPACE/teda.demoapp/data/in` directory.
 
-Monitor tuple processing in the `Instance Graph`. The ITE application and the Importer application process tuples in different  rates. The Importer application is slower then the ITE application. But you observe in the graph that the tuple rate of the ITE application is the same as during file processing before this one. In this case as well as in the prevoius one, the importing application does not slow down the ITE application.
+### Discussing tuple processing in the **Instance Graph**. 
 
+The ITE application and the Importer application process tuples in different  rates. The Importer application is slower then the ITE application. But you observe in the graph that the tuple rate of the ITE application is the same as during file processing before this one. In this case as well as in the prevoius one, the importing application does not slow down the ITE application.
+The `nBrokenConnections` counter shows many broken connetions in the **Export** metrics that the Monitoring GUI shows.
 
 # Next steps
 
