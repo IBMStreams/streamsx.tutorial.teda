@@ -1,11 +1,13 @@
-<!--(
 ---
 layout: docs
 title:  Module 12 - Export streams
 description:  Export streams of the ITE application
 weight:  22
 ---
+
+<!--(
 )-->
+
 # Objectives
 
 In this module, you extend the ITE application that you created in the modules 1-8.
