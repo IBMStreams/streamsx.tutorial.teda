@@ -11,7 +11,7 @@ weight:  21
 
 In this optional module, you reconfigure the Lookup Manager application that you created in the [module 7](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/). You use the Application Configuration feature to specify database credentials in the streams application.
 
-At the end of this module, your application reads the database credentials form the streams platform and uses the database as source of the lookup information.
+At the end of this module, your application reads the database credentials form the streams platform and uses the database as source of the lookup information
 
 After completing this module, you should be able to:
 
@@ -306,7 +306,4 @@ The results of ITE file processing are exact the same as in previous modules. Yo
 
 # Next steps
 
-This module covers the basics of writing applications with the Telecommunications Event Data Analytics (TEDA) application framework. To learn more about the details, refer to the knowledge center.
-
-We continue to improve this tutorial.
-If you have any feedback, please click the Feedback button at the top and let us know what you think!
+In the next [module](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-12) you work with exporter plug-in as an optional interface for external applications.
