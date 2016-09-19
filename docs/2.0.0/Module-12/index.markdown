@@ -25,7 +25,7 @@ You finished at least [module 8](http://ibmstreams.github.io/streamsx.tutorial.t
 
 # Concepts
 
-Imagine, you have the project requirement to plug in another application to the ITE application to apply new business rules. The performance of the external application must not affect the performance of the ITE application. If the importing application is too slow, then the ITE application drops the tuples at export.
+Imagine, you have the project requirement to plug in another application to the ITE application to apply new business rules. The performance of the external application must not affect the performance of the ITE application. If the importing application is too slow, then the ITE application drops the connection at export. You must accept, that your application cannot import tuples till the reconnection and data might be lost.
 
 ## Customization Points
 
