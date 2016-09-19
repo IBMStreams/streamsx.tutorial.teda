@@ -57,7 +57,7 @@ You specify the export streams `dedup` to select the output stream of the BloomF
     
 The ITE application framework creates an exporter with **ite="demoapp.context_output_Dedup"** property and the `dropConnection` congestion policy to prevent back-pressure of the slow importer application. 
 
-You use the property to create the application that imports the output of ITE `DedupCore` composite. The 
+You use the property to create an application that imports the output of ITE application. The 
 
 This code is an example of the generated code in the ITE application framework:
     
@@ -73,7 +73,7 @@ You find the other supported **ite.export.streams** configuration settings in th
 ## Build the application to import the tuples from ITE application
 
 Your application that imports the tuples from ITE application, it must subscribe the **ite=="demoapp.context_output_Dedup"** property.
-You must use the same streams schema specification, that you obtain with **use demoapp.streams::*;'** inclusion in the spl code of your importer application.
+You must use the same streams schema specification as the ITE implementation. You obtain the streams schema with **use demoapp.streams::*;'** inclusion in the spl code of your importer application.
 
 The example of the Import operator shows the specified settings:
 
@@ -81,7 +81,7 @@ The example of the Import operator shows the specified settings:
 		param subscription : ite=="demoapp.context_output_Dedup";
 	}
 
-You shall use the `teda.import` sample project to understand the function of the plug-in interface.
+You must download and use the `teda.import` sample project to understand the function of the plug-in interface.
 
 * Download the [teda.import.zip](teda.import.zip) project package.
 * Extract the downloaded file.
@@ -91,7 +91,7 @@ You shall use the `teda.import` sample project to understand the function of the
 The project includes a `DemoappImportDedup.spl` file. This file contains two main composites. The build configuration is prepared to start both importer applications.
 
 The `DemoappImportDedup` main composite implements an easy sample that you typically use to import the tuples from the ITE application.
-The `DemoappImportDedupSlow`main composite blocks the tuple processing to provoke the back-pressure on ITE application.
+The `DemoappImportDedupSlow`main composite blocks the tuple processing to provoke the back-pressure on the ITE application.
 
 ## Building and starting the ITE application
 
@@ -133,13 +133,9 @@ Your ITE application must process huge number of data to recognize the back-pres
 You start with some preparation steps:
 
 * Download the ITE input files [Part1.zip](Part1.zip) and [Part2.zip](Part2.zip) and expand them in your local file system.
-* Ensure that the ITE and the Lookup Manager applications are healthy, running and in `RUN` ('green' state in the Monitoring GUI)
-* Open the **Instance Graph** view in Streams Studio follows the steps:
-
-  * Expand **Streams Instances** in **Streams Explorer** view.
-  * Select your instance and open menu by click the right mouse button.
-  * Go to **Show Instance Graph** and click the left mouse button.
-  * Select **Flow** as the **Color Schema** for the graph to monitor the tuple processing.
+* Ensure that the ITE and the Lookup Manager applications are healthy, running and in `RUN` state ('green' state in the Monitoring GUI)
+* Open the **Instance Graph** view from Streams Explorer view in Streams Studio
+* Select **Flow** as the **Color Schema** for the graph to monitor the tuple processing.
 
 ### Starting ***DemoappImportDedup*** application.
 
@@ -152,7 +148,7 @@ You can start the **DemoappImportDedup** application.
 
 ### Process the ITE input data from the `Part1` directory. 
 
-Move all included `.csv` files to `WORKSPACE/teda.demoapp/data/in` directory.
+Move all included `.csv` files from `Part1` folder to `WORKSPACE/teda.demoapp/data/in` directory.
 
 ### Discussing the tuple processing in the `Instance Graph`. 
 
@@ -167,7 +163,7 @@ The Monitoring GUI updates the `nConnections` counter to 0.
 
 ### Starting ***DemoappImportDedupSlow*** application.
 
-You can start the **DemoappImportDedupSlow** application, now.
+You must start the **DemoappImportDedupSlow** application, now.
 
 * Expand the **teda.import** project tree to `teda.import`>`teda.import`>`DemoappImportDedupSlow[Build:BuildConfig]`>`BuildConfig[Active]`
 * Launch the application as **Distributed**.
@@ -176,7 +172,7 @@ You can start the **DemoappImportDedupSlow** application, now.
 
 ### Process the ITE input data from the `Part2` directory. 
 
-Move all included `.csv` files to `WORKSPACE/teda.demoapp/data/in` directory.
+Move all included `.csv` files from `Part2` folder to `WORKSPACE/teda.demoapp/data/in` directory.
 
 ### Discussing tuple processing in the **Instance Graph**. 
 
@@ -185,7 +181,7 @@ The `nBrokenConnections` counter shows many broken connections in the **Export**
 
 # Next steps
 
-This module covers the basics of writing applications with the Telecommunications Event Data Analytics (TEDA) application framework. To learn more about the details, refer to the IBM Knowledge Center.
+This module covers the basics of writing applications with the Telecommunications Event Data Analytics (TEDA) application framework. To learn more about the details, refer to the [IBM Knowledge Center](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda.html).
 
 We continue to improve this tutorial.
 If you have any feedback, please click the Feedback button at the top and let us know what you think!
