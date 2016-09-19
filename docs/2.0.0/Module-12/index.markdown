@@ -82,6 +82,7 @@ The example of the Import operator shows the specified settings:
 	}
 
 You shall use the `teda.import` sample project to understand the function of the plug-in interface.
+
 * Download the [teda.import.zip](teda.import.zip) project package.
 * Extract the downloaded file.
 * Import the existing project to Streams Studio as an existing project. (File->Import..->General->Existing Projects into Workspace)
@@ -130,9 +131,11 @@ The importer application must connect the ITE application before you start the f
 Your ITE application must process huge number of data to recognize the back-pressure.
 
 You start with some preparation steps:
+
 * Download the ITE input files [Part1.zip](Part1.zip) and [Part2.zip](Part2.zip) and expand them in your local file system.
 * Ensure that the ITE and the Lookup Manager applications are healthy, running and in `RUN` ('green' state in the Monitoring GUI)
 * Open the **Instance Graph** view in Streams Studio follows the steps:
+
   * Expand **Streams Instances** in **Streams Explorer** view.
   * Select your instance and open menu by click the right mouse button.
   * Go to **Show Instance Graph** and click the left mouse button.
@@ -141,6 +144,7 @@ You start with some preparation steps:
 ### Starting ***DemoappImportDedup*** application.
 
 You can start the **DemoappImportDedup** application.
+
 * Expand the **teda.import** project tree to `teda.import`>`teda.import`>`DemoappImportDedup[Build:BuildConfigFast]`>`BuildConfigFast[Active]`
 * Launch the application as **Distributed**.
 * Change view to `Instance Graph`.
@@ -164,6 +168,7 @@ The Monitoring GUI updates the `nConnections` counter to 0.
 ### Starting ***DemoappImportDedupSlow*** application.
 
 You can start the **DemoappImportDedupSlow** application, now.
+
 * Expand the **teda.import** project tree to `teda.import`>`teda.import`>`DemoappImportDedupSlow[Build:BuildConfig]`>`BuildConfig[Active]`
 * Launch the application as **Distributed**.
 * Change view to `Instance Graph`.
