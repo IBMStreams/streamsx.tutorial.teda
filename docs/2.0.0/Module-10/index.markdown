@@ -128,7 +128,7 @@ Replace the Table1 type definition:
 
 Open the **teda.demoapp/demoapp.chainsink.custom/PostContextDataProcessor.spl** file.
 
-The first customization is to add the use clauses (`use com.ibm.streams.teda.utility::BloomFilterTypes;`) at the beginning of the file:
+The first customization is to add the use clause (`use com.ibm.streams.teda.utility::BloomFilterTypes;`) at the beginning of the file:
 
     use demoapp.streams::*;
     use demoapp.streams.custom::*;
