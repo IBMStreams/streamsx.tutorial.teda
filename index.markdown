@@ -4,7 +4,7 @@ title:  streamsx.tutorial.teda
 description:  Tutorials for IBM Streams Telecommunications Event Data Analytics (TEDA) toolkit
 ---
 
-The streamsx.tutorial.teda is a documentation project for IBM Streams [com.ibm.streams.teda](http://www-01.ibm.com/support/knowledgecenter/SSCRJU_4.1.1/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda.html) toolkit.
+The streamsx.tutorial.teda is a documentation project for the IBM Streams com.ibm.streams.teda toolkit.
 
 # Overview
 
