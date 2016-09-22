@@ -256,6 +256,7 @@ Complete the **Name** of the Application Configuration with the **MyApplConfig**
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Add fill in ApplConfig.jpg" alt="New application configuration"/>
 
 Do the same for following properties:
+
 * Complete **lm.db.user** with your database user name,  here **streamsadmin**
 * Complete **lm.db.password** with the password of the database user
 
