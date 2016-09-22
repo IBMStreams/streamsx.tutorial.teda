@@ -46,10 +46,10 @@ You do all configuration settings in the same manner as you did it in the previo
 
 The configuration and customization consists of the following tasks:
 
-1. Configure the exported streams
+1. Configure the export streams
 2. Build the application to import the tuples from ITE application
 
-## Configure the exported streams
+## Configure the export streams
 
 You specify the export streams `dedup` to select the output stream of the BloomFilter operator to be exported in each group. The export operator provides the **demoapp.streams::TypesCommon.TransformerOutType** streams schema. You configure the export stream in the `config.cfg` file of the teda.demoapp project:
 
@@ -57,7 +57,7 @@ You specify the export streams `dedup` to select the output stream of the BloomF
     
 The ITE application framework creates an exporter with **ite="demoapp.context_output_Dedup"** property and the `dropConnection` congestion policy to prevent back-pressure of the slow importer application. 
 
-You use the property to create an application that imports the output of ITE application. The 
+You use the property to create an application that imports the output of ITE application.  
 
 This code is an example of the generated code in the ITE application framework:
     
@@ -70,10 +70,10 @@ This code is an example of the generated code in the ITE application framework:
 
 You find the other supported **ite.export.streams** configuration settings in the IBM Knowledge Center under [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0> Parameter reference](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$184.html)
 
-## Build the application to import the tuples from ITE application
+## Build the application to import the tuples from the ITE application
 
-Your application that imports the tuples from ITE application, it must subscribe the **ite=="demoapp.context_output_Dedup"** property.
-You must use the same streams schema specification as the ITE implementation. You obtain the streams schema with **use demoapp.streams::*;'** inclusion in the spl code of your importer application.
+Your application that imports the tuples from the ITE application, it must subscribe the **ite=="demoapp.context_output_Dedup"** property.
+You must use the same streams schema specification as the ITE implementation. You obtain the streams schema with the inclusion of the use clause **use demoapp.streams::*;'** in the spl code of your importer application.
 
 The example of the Import operator shows the specified settings:
 
@@ -104,7 +104,7 @@ You can remove the checkpoint and out directories from Streams Studio or command
     cd WORKSPACE/teda.demoapp/data
     rm -rv checkpoint out
 
-If you restart the Lookup Manager application, then you can remove the control and out directories from Streams Studio or command line:
+If you restart the Lookup Manager application, then you must remove the control and out directories from Streams Studio or command line:
 
     cd WORKSPACE/teda.lookupmgr/data
     rm -rv control out
@@ -117,7 +117,7 @@ Follow the same steps to load the lookup data and monitor the application's stat
 
 *If your Lookup Manager is still running and the lookup data was loaded already before, then you can launch the ITE application and trigger the* **restart** *command in the* **control** *directory. In this case, the* **init** *command does not need to be processed again to synchronize the Lookup Manager and ITE applications.*
 
-*Change into `<WORKSPACE>/teda.lookupmgr/data/control` directory and create the `appl.ctl.cmd` file with content of the
+*Change into the `<WORKSPACE>/teda.lookupmgr/data/control` directory and create the `appl.ctl.cmd` file with content of the
 wanted command, in this case: `restart,demoapp`.*
 
     cd <WORKSPACE>/teda.lookupmgr/data/control
@@ -128,11 +128,11 @@ wanted command, in this case: `restart,demoapp`.*
 ## Starting the Importer applications and discussing the results
 
 The importer application must connect the ITE application before you start the file processing.
-Your ITE application must process huge number of data to recognize the back-pressure.
+Your ITE application must process a huge volume of data to recognize the back-pressure.
 
 You start with some preparation steps:
 
-* Download the ITE input files [Part1.zip](Part1.zip) and [Part2.zip](Part2.zip) and expand them in your local file system.
+* Download the ITE input files [Part1.zip](Part1.zip) and [Part2.zip](Part2.zip) and expand them to your local file system.
 * Ensure that the ITE and the Lookup Manager applications are healthy, running and in `RUN` state ('green' state in the Monitoring GUI)
 * Open the **Instance Graph** view from Streams Explorer view in Streams Studio
 * Select **Flow** as the **Color Schema** for the graph to monitor the tuple processing.
@@ -143,12 +143,12 @@ You can start the **DemoappImportDedup** application.
 
 * Expand the **teda.import** project tree to `teda.import`>`teda.import`>`DemoappImportDedup[Build:BuildConfigFast]`>`BuildConfigFast[Active]`
 * Launch the application as **Distributed**.
-* Change view to `Instance Graph`.
+* Change the view to `Instance Graph`.
 * Verify in the `Instance Graph` that the Importer application is connected to the ITE application
 
 ### Process the ITE input data from the `Part1` directory. 
 
-Move all included `.csv` files from `Part1` folder to `WORKSPACE/teda.demoapp/data/in` directory.
+Move all included `.csv` files from `Part1` folder to the `WORKSPACE/teda.demoapp/data/in` directory.
 
 ### Discussing the tuple processing in the `Instance Graph`. 
 
@@ -167,12 +167,12 @@ You must start the **DemoappImportDedupSlow** application, now.
 
 * Expand the **teda.import** project tree to `teda.import`>`teda.import`>`DemoappImportDedupSlow[Build:BuildConfig]`>`BuildConfig[Active]`
 * Launch the application as **Distributed**.
-* Change view to `Instance Graph`.
+* Change the view to `Instance Graph`.
 * Verify in the `Instance Graph` that the Importer application is connected to the ITE application
 
 ### Process the ITE input data from the `Part2` directory. 
 
-Move all included `.csv` files from `Part2` folder to `WORKSPACE/teda.demoapp/data/in` directory.
+Move all included `.csv` files from `Part2` folder to the `WORKSPACE/teda.demoapp/data/in` directory.
 
 ### Discussing tuple processing in the **Instance Graph**. 
 
