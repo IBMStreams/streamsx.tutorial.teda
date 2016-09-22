@@ -9,14 +9,14 @@ weight:  21
 
 # Objectives
 
-In this optional module, you reconfigure the Lookup Manager application that you created in the [module 7](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/). You use the Application Configuration feature to specify database credentials in the streams application.
+In this optional module, you reconfigure the Lookup Manager application that you created in the [module 7](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/) to read the data from a database. You use the Application Configuration feature to specify the database credentials in the streams application.
 
-At the end of this module, your application reads the database credentials form the streams platform and uses the database as source of the lookup information
+At the end of this module, your application reads the database credentials from the streams platform and uses the database as source of the lookup information
 
 After completing this module, you should be able to:
 
 * Configure the Lookup Manager application for database sources
-* Configure Application Configuration with Streams Console
+* Configure the Application Configuration with Streams Console
 
 # Prerequisites
 The database configuration requires extra preparation in your environment. The general database configuration is described in the IBM Knowledge Center under:
@@ -24,11 +24,11 @@ The database configuration requires extra preparation in your environment. The g
 * [ Reference > Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0 > Developing applications > Customizing applications > Customizing the Lookup Manager application](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$112.html)
 
  
-The prerequisites for the sample:
+The prerequisites for the sample that you use in this module:
 
 * You finished at least [module 7](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/) of the tutorial, in which you created and customized the Lookup Manager application.
 
-* The DB2 database must exist and run - `db2start`
+* The DB2 database must be installed and it must run
 
 * You must create the required database, here: **DEMOAPP**
   
@@ -53,23 +53,23 @@ The prerequisites for the sample:
   
         IMPORT FROM "IMSI_CRM.csv" OF DEL METHOD P (1, 2, 3) INSERT INTO DEMODATA.IMSI_CRM (IMSI, CUSTOMER_ID, CUSTOMER_TYPE )
 
-* Configure environment for `com.ibm.streams.db 2.0.0` toolkit. You find details in the IBM Knowledge Center under [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.db 2.0.0>Developing and running applications that use the Database Toolkit](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.db/tk$com.ibm.streams.db$1.html). 
+* Configure the environment for the `com.ibm.streams.db 2.0.0` toolkit. You find details in the IBM Knowledge Center under [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.db 2.0.0>Developing and running applications that use the Database Toolkit](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.db/tk$com.ibm.streams.db$1.html). 
 
-    Here for DB2 database:
+    Here, you find the valid environment variables for the DB2 database:
       * `STREAMS_ADAPTERS_ODBC_INCPATH=<db2-install-path>/include/`
       * `STREAMS_ADAPTERS_ODBC_LIBPATH=<db2-install-path>/lib64/`
       * `STREAMS_ADAPTERS_ODBC_DB2=1`
 
 * The UnixODBC driver must be installed [http://www.unixodbc.org](http://www.unixodbc.org/)
 
-* You must configure `odbc.ini` for UnixODBC driver:
+* You must configure `odbc.ini` for the UnixODBC driver, as follows:
 
         [DEMOAPP]
         Driver = DB2
         description = DEMOAPP database on DB2
         ServerName = //<db2-server-address>:50000
 
-* You must configure `odbcinst.ini` for UnixODBC driver:
+* You must configure `odbcinst.ini` for the UnixODBC driver, as follows:
 
         [DB2]
         Description     = DB2 driver
@@ -80,15 +80,15 @@ The prerequisites for the sample:
 
 # Concepts
 
-Imagine, you have the DB2 database available in the system, where you deploy your IBM Streams application. This database client provides the business data that you need for your enrichment processing and they update once a day.
+Imagine, you have the DB2 database available in the system, where you deploy your IBM Streams application. This database provides the business data that you need for your enrichment processing and they update once a day.
 
-You could copy the data to the CSV files, but this processing is not useful. Access the database directly. The Lookup Manager uses the `com.ibm.streams.db 2.0.0` toolkit to access the information included in the IBM Data Server Runtime Client.
+You could copy the data to the CSV files, but this processing is not useful. Access the database directly. The Lookup Manager uses the `com.ibm.streams.db 2.0.0` toolkit to access the information included in the DB2 database.
 
-A periodical change of the database credentials is typical requirement in customer environment. You can specify the properties for the database access in the Streams Console. The application framework read these configuration properties to access the source of the lookup data. If the database credentials change, then you must update the Application Configuration in the Streams Console. The running Lookup Manager application takes over the updates at the next database access.
+A periodical change of the database credentials is the typical requirement in a customer environment. You can specify the properties for the database access in the Streams Console. The application framework read these configuration properties to access the source of the lookup data. If the database credentials change, then you must update the Application Configuration in the Streams Console. The running Lookup Manager application takes over the updates at the next database access.
 
 ## Customization Points
 
-The following table show the points that you need to customize in the ITE application during this module or that influence the customization like the different formats and stream schemes. Other parts don't need to be customized because it is not necessary for this module.
+The following table shows the points that you need to customize in the ITE application during this module or that influence the customization like the different formats and stream schemas. Other parts don't need to be customized because it is not necessary for this module.
 
 |    Number    |    Functional Block                     |    What needs to be customized?                                                                                                                |
 |--------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -179,7 +179,7 @@ Create the **teda.lookupmgr/Resources/connections.xml** file of the SPL project 
 
 You specify the database as the source for the lookup repository in the `config.cfg` file of the teda.lookupmgr project. The database name, the user name, and the user password are submission time parameters. If you specify the values at the submission of the Lookup Manager application, then you define the default values. The running application uses the specification of the Application Configuration that you create in the Streams Console to update credentials. The database vendor is `DB2` per default.
 
-You must refer to the name of the Application Configuration that you create in Streams Console. It is a configuration parameter of the teda.lookupmgr project that you specify in the `config.cfg` file.
+You must refer to the name of the Application Configuration that you create in the Streams Console. It is a configuration parameter of the teda.lookupmgr project that you specify in the `config.cfg` file.
 
 You can use the CSV file as well as the database as lookup sources. This configuration is an option. If you specify both sources, then you must decide during creation of the command file, which source you are going to use. 
 The sample shows how to turn off the CSV file sources.
@@ -201,9 +201,9 @@ The sample shows how to turn off the CSV file sources.
 
 You must complete the customizing of the **teda.lookupmgr/Resources/LookupMgrCustomizing.xml** file of the SPL project teda.lookupmgr to specify the references that the database access requires.
 
-The `<DataSource>` elements specify these references, that you need for the sample:
-* You must add `DbAccessSpecification="ImsiCRM"` attribute next to the `Name="IMSI_CRM"` attribute in the `<DataSource>` element to create the name reference of the access specification that ist specified in the **teda.lookupmgr/Resources/connections.xml**.
-* Each `ValueDefinition` attribute needs the name reference to the corresponding database column. You specify it with `DbColumnName` attribute.
+The `<DataSource>` elements specify those references, that you need for the sample:
+* You must add the `DbAccessSpecification="ImsiCRM"` attribute next to the `Name="IMSI_CRM"` attribute in the `<DataSource>` element to create the name reference of the access specification that is specified in the **teda.lookupmgr/Resources/connections.xml**.
+* Each `ValueDefinition` attribute needs the name reference to the corresponding database column. You specify it with the `DbColumnName` attribute.
 
 Open the **teda.lookupmgr/Resources/LookupMgrCustomizing.xml** file of the SPL project teda.lookupmgr and replace the sample content by the following lines.
 
@@ -242,7 +242,7 @@ You don't need to build the **demoapp** project.
 
 ## Create the Application Configuration in the Streams Console
 
-The general description, how to create Application Configuration, you find in the IBM Knowledge Center under [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0>Developing applications > Configuring Solutions > Configuring Lookup Manager Applications > Working with enrichment data from databases > Configure your Lookup Manager to use data from database > Configure your Lookup Manager with Application Configuration](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$101.html).
+The general description, how to create an Application Configuration, you find in the IBM Knowledge Center under [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0>Developing applications > Configuring Solutions > Configuring Lookup Manager Applications > Working with enrichment data from databases > Configure your Lookup Manager to use data from database > Configure your Lookup Manager with Application Configuration](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$101.html).
 
 Open the Streams Console and select menu and then **Manage Application Configurations**.
 
@@ -252,7 +252,7 @@ Click the `+` button to add the configuration.
 
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Add ApplConfig.jpg" alt="Add Configuration"/>
 
-Complete the **Name** of the Application Configuration with **MyApplConfig** and the **Description** in the dialog window. Specify the **lm.db.name** property value to **DEMOAPP** and add to property table - **Add to table**.
+Complete the **Name** of the Application Configuration with the **MyApplConfig** value and the **Description** in the dialog window. Specify the **lm.db.name** property with the **DEMOAPP** value. Finally add the property to the property table by selecting the **Add to table** button.
 
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Add fill in ApplConfig.jpg" alt="New application configuration"/>
 
@@ -268,7 +268,7 @@ Confirm the creation of Application Configuration with **Yes**.
 
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Confirm Creation ApplConfig.jpg" alt="Confirm creation"/>
 
-The specified **MyAppConfig** configuration is visible in the container. Here, you can update the database credentials.
+The specified **MyAppConfig** configuration is visible in the Streams Console. Here, you can update the database credentials.
 
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/Console - Created ApplConfig.jpg" alt="Creatied MyAppConfig"/>
 
@@ -276,7 +276,7 @@ The configuration and customizing of the Lookup Manager is done. You can prepare
 
 ## Preparing the external data
 
-As you know, the Lookup Manager application initializes and updates the data that ITE application uses for enrichment. Because you configure the database as the source then you must check whether DB database is running. If it isn't running, then call `db2start` command. Connect to the **DEMOAPP**  and check again if database table exists and includes the required data. This check is a part of prerequisites.
+As you know, the Lookup Manager application initializes and updates the data that the ITE application uses for enrichment. If you configure the database as the source then you must check whether the DB2 database is running. If it isn't running, then call the `db2start` command. Connect to the **DEMOAPP**  and check again if the database table exists and includes the required data. This check is a part of prerequisites.
 
 Don't care about the `IMSI_CRM.csv` file it is not required.
 
@@ -289,21 +289,21 @@ You process the same files as in previous modules. The application rejects the p
 
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/LM - Submission.png" alt="LM Submission Time Values"/>
 
-* Start the ITE application as **Distributed** to a running instance.
+* Start the ITE application as **Distributed** to the same running instance.
 
 ### Loading the lookup data
 
 The [Module 7: Loading the lookup data up](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/#loading-the-lookup-data) describes the next steps.
 
-In opposite to load result that Module 7 describes, the `IMSI_CRM.csv` file is not moved to `archive` directory. 
-Only, the `init_all.cmd` command file moves to `archive` folder.
+In opposite to load result that Module 7 describes, the `IMSI_CRM.csv` file is not moved to the `archive` directory. 
+Only, the `init_all.cmd` command file moves to the `archive` folder.
 
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/LM - Processed Cmd with DB.png" alt="LM Submission Time Values"/>
 
 ## Discussing the results
 
-The results of ITE file processing are exact the same as in previous modules. You cannot observe any difference in the file processing.
+The results of ITE file processing are exactly the same as in previous modules. You cannot observe any difference in the file processing.
 
 # Next steps
 
-In the next [module](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-12) you work with exporter plug-in as an optional interface for external applications.
+In the next [module](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-12) you work with the exporter plug-in as an optional interface for external applications.
