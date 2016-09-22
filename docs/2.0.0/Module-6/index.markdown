@@ -1,11 +1,10 @@
-<!--(
 ---
 layout: docs
 title:  Module 6 - Customizing for input files in binary format (ASN.1)
 description:  Customizing-for-input-files-in-binary-format-(ASN.1)
 weight:  16
 ---
-)-->
+
 # Objectives
 
 In this module, you extend the ITE application that you created while following the instructions of the modules 1-5. You create a file reader for binary data files that contain data structures described in Abstract Syntax Notation One (ASN.1).
