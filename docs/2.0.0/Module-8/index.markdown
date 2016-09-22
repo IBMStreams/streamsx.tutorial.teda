@@ -1,11 +1,10 @@
-<!--(
 ---
 layout: docs
 title:  Module 8 - Adding record deduplication
 description:  Adding record deduplication
 weight:  18
 ---
-)-->
+
 # Objectives
 
 In this module, you extend the ITE application that you created while following the instructions of the modules 1-7. You supply some code and configure the application that it detects duplicates of input data records.
