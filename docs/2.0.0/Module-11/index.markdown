@@ -294,16 +294,16 @@ You process the same files as in previous modules. The application rejects the p
 
 ### Loading the lookup data
 
-The [Module 7: Loading the lookup data up](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/#loading-the-lookup-data) describes the next steps.
+The [Module 7: Loading the lookup data up](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/#loading-the-lookup-data) describes the process of the lookup data loading.
 
+## Discussing the results
+
+The results of ITE file processing are exactly the same as in previous modules. You cannot observe any difference in the file processing.
 In opposite to load result that Module 7 describes, the `IMSI_CRM.csv` file is not moved to the `archive` directory. 
 Only, the `init_all.cmd` command file moves to the `archive` folder.
 
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/LM - Processed Cmd with DB.png" alt="LM Submission Time Values"/>
 
-## Discussing the results
-
-The results of ITE file processing are exactly the same as in previous modules. You cannot observe any difference in the file processing.
 
 # Next steps
 
