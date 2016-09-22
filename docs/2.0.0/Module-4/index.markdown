@@ -1,11 +1,10 @@
-<!--(
 ---
 layout: docs
 title:  Module 4 - Customizing the business logic (first steps)
 description:  Customizing-the-business-logic-(first-steps)
 weight:  14
 ---
-)-->
+
 # Objectives
 
 In this module, you add a data transformation to your ITE application. Remember that the application, which you created by now, reads CSV files and writes the data into output files, without transforming the records. You discuss the requirements of the processing logic and learn how to add extra attributes for the results of the transformation. You learn how to implement a business logic that applies the same rules to each incoming record.
