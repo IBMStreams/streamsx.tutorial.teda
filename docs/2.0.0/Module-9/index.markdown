@@ -1,11 +1,10 @@
-<!--(
 ---
 layout: docs
 title:  Module 9 - Campaign logic
 description:  Campaign logic
 weight:  19
 ---
-)-->
+
 # Objectives
 
 In this module, you extend the ITE application that you created while following the instructions of the modules 1-8. You supply some code that your application is able to implement some business logic. The generated output can be used later in a campaign management system for the improvement of customer loyalty.
