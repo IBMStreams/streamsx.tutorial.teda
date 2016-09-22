@@ -1,11 +1,10 @@
-<!--(
 ---
 layout: docs
 title:  Module 7 - Enrich your data by using lookups on external data
 description:  Enrich your data by using lookups on external data
 weight:  17
 ---
-)-->
+
 # Objectives
 
 In this module, you extend the ITE application that you created while following the instructions of the modules 1 - 4 and optionally 5 and 6.
