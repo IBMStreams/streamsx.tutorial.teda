@@ -1,11 +1,10 @@
-<!--(
 ---
 layout: docs
 title:  Module 3 - Customizing for input files in CSV format
 description:  Customizing-for-input-files-in-CSV-format
 weight:  13
 ---
-)-->
+
 # Objectives
 
 In [module 2](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-2/), you created an SPL project in Streams Studio using the Telecommunications Event Data Analytics (TEDA) wizard. The SPL project is a simple mediation application (ITE application) with sample code that is able to process the provided sample data.
