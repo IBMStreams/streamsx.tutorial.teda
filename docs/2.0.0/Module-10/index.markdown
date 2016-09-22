@@ -1,11 +1,10 @@
-<!--(
 ---
 layout: docs
 title:  Module 10 - Table format output
 description:  Create output files which can be loaded into database tables
 weight:  20
 ---
-)-->
+
 # Objectives
 
 In this module, you extend the ITE application that you created in the modules 1-8.
