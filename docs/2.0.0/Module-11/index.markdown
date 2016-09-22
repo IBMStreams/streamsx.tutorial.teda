@@ -201,6 +201,7 @@ The sample shows how to turn off the CSV file sources.
 You must complete the customizing of the **teda.lookupmgr/Resources/LookupMgrCustomizing.xml** file of the SPL project teda.lookupmgr to specify the references that the database access requires.
 
 The `<DataSource>` elements specify those references, that you need for the sample:
+
 * You must add the `DbAccessSpecification="ImsiCRM"` attribute next to the `Name="IMSI_CRM"` attribute in the `<DataSource>` element to create the name reference of the access specification that is specified in the **teda.lookupmgr/Resources/connections.xml**.
 * Each `ValueDefinition` attribute needs the name reference to the corresponding database column. You specify it with the `DbColumnName` attribute.
 
@@ -285,11 +286,11 @@ Don't care about the `IMSI_CRM.csv` file it is not required.
 You process the same files as in previous modules. The application rejects the processing of the input file because the files duplication is detected. To avoid it, you must shutdown the applications and clean checkpoint files as described in [Module 7: Shutting down the applications and cleaning up](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-7/#shutting-down-the-applications-and-cleaning-up)
 
 * Ensure that the Streams Domain and Streams Instance are running. Start the Monitoring GUI.
-* Start the Lookup Manager application as **Distributed** to a running instance. Verify and adjust submission time parameters **common.lookup::LookupManagerMain.lm.applicationConfiguration** if the launch configuration was saved before.
+* Launch the Lookup Manager application as **Distributed** in a running instance. Verify and adjust submission time parameters **common.lookup::LookupManagerMain.lm.applicationConfiguration** if the launch configuration was saved before.
 
 <img src="/streamsx.tutorial.teda/images/2.0.0/module-11/LM - Submission.png" alt="LM Submission Time Values"/>
 
-* Start the ITE application as **Distributed** to the same running instance.
+* Launch the ITE application as **Distributed** in the same running instance.
 
 ### Loading the lookup data
 
