@@ -1,4 +1,3 @@
-
 ---
 layout: docs
 title: Tutorial com.ibm.streams.teda 2.0.0 (IBM Streams 4.2)
