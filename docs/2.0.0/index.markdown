@@ -13,4 +13,4 @@ The goal of this tutorial project is to introduce beginners into the application
 
 The tutorial uses a fictive customer project. The use case is hypothetical, but similar requirements are seen in real projects. It is a telecommunication company with a number of MSCs (Mobile Switching Center) from two vendors in its network. The MSCs generate CDRs (Call Detail Record) for several events. The customer wants to process voice call records and SMS (Short Message Service) records. The records must be transformed to a common format, which is written into a CDR repository.
 
-You find the toolkit documentation in IBM Knowledge Center: [com.ibm.streams.teda](http://www-01.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda.html)
+You find the **com.ibm.streams.teda** toolkit documentation in IBM Knowledge Center: [version 2.0.0](http://www-01.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda.html)
