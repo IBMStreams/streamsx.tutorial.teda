@@ -140,7 +140,7 @@ The wizard already created all required settings for you. The more important fil
 In this file, you define shared memory segments, stores, streams schemas, and the mapping from the enrichment data source to the SPL streams schemas. When you compile the Lookup Manager application, the content of the `LookupMgrCustomizing.xml` file is used to generate parts of its SPL source code.
 
 You find more information about customizing the Lookup Manager application in the IBM Knowledge Center under
-[Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0>Developing applications>Customizing applications>Customizing the Lookup Manager application](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$112.html).
+[Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0>Developing applications>Customizing applications>Customizing the Lookup Manager application](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$118.html).
 
 You customize the following part:
 
