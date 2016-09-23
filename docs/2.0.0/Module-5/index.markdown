@@ -53,7 +53,7 @@ While creating an ITE or - in later modules - a Lookup Manager Application proje
 
 If config.cfg is mentioned in a task description, this file is meant.
 
-The configuration file contains the description of all non-deprecated parameters as well as settings that are specific to the choices made during the project creation. As an application developer, you decide which parameters are needed in the project. Lastly, it contains settings that are mandatory and need to be changed to fit to the project needs. For getting familiar with all configuration parameters, read the parameter reference in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits >com.ibm.streams.teda > Parameter reference](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$167.html).
+The configuration file contains the description of all non-deprecated parameters as well as settings that are specific to the choices made during the project creation. As an application developer, you decide which parameters are needed in the project. Lastly, it contains settings that are mandatory and need to be changed to fit to the project needs. For getting familiar with all configuration parameters, read the parameter reference in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits >com.ibm.streams.teda > Parameter reference](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$184.html).
 
 Typically, you add parameter assignments below their descriptions.
 
@@ -205,7 +205,7 @@ Replace the content of the XML file with the following content.
 
 [mapping.xml](http://ibmstreams.github.io/streamsx.tutorial.teda/docs/2.0.0/Module-5/mapping.xml)
 
-A detailed description of the mapping file of the fixed-size structure binary data parser is contained in the toolkit’s reference in the IBM Knowledge Center under [Reference>Toolkits>Specialized toolkits>com.ibm.streams.teda 1.0.1>com.ibm.streams.teda.parser.binary>StructureParse>Mapping Definition Document>Mapping Definition](https://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/op$com.ibm.streams.teda.parser.binary$StructureParse$12.html).
+A detailed description of the mapping file of the fixed-size structure binary data parser is contained in the toolkit’s reference in the IBM Knowledge Center under [Reference>Toolkits>Specialized toolkits>com.ibm.streams.teda>com.ibm.streams.teda.parser.binary>StructureParse>Mapping Definition Document>Mapping Definition](https://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/op$com.ibm.streams.teda.parser.binary$StructureParse$12.html).
 
 ## Creating the custom binary-encoded data file reader composite
 
