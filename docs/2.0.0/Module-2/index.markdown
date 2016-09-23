@@ -9,7 +9,7 @@ weight:  11
 
 The Telecommunications Event Data Analytics (TEDA) application framework provides Streams Studio wizards to create Streams mediation applications as SPL projects. You configure these applications with configuration parameters that are stored in a simple text file, and customize them by adding your business logic or near real-time analytics to already prepared SPL composite operators.
 
-The tasks that the Streams Studio wizards perform can also run on the command line using the **teda-create-project** script, which is described in the IBM Knowledge Center: [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Developing applications > Creating applications > Creating applications with the command line](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$32.html). The tutorial focuses on the Streams Studio.
+The tasks that the Streams Studio wizards perform can also run on the command line using the **teda-create-project** script, which is described in the IBM Knowledge Center: [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Developing applications > Creating applications > Creating applications with the command line](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$34.html). The tutorial focuses on the Streams Studio.
 
 After completing this module you should be able to:
 
@@ -36,7 +36,7 @@ The TEDA application framework has two built-in application types.
 
 2. The Lookup Manager application is responsible for loading and updating the enrichment data in memory and distributing it across hosts.
 
-A mediation solution can contain one or more ITE applications, and optionally one Lookup Manager application if enrichment from external data sources like Customer Relation Management (CRM) systems is required. You can read more about the architecture in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Application framework > Architecture](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$10.html).
+A mediation solution can contain one or more ITE applications, and optionally one Lookup Manager application if enrichment from external data sources like Customer Relation Management (CRM) systems is required. You can read more about the architecture in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Application framework > Architecture](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$12.html).
 
 This module focuses on the ITE application.
 
@@ -62,7 +62,7 @@ The New ITE application project dialog opens. Here you can initially configure y
 
 Enter **teda.demoapp** as project name. This name becomes a part of the default location where the project is stored. Keep **Use default location** checked. Then, your project is created within the workspace directory (red underlined). Your workspace directory is most likely different than in the previous figure. Throughout the complete tutorial, this path is referred to as the _workspace directory_ or simply as the _workspace_.
 
-Select **Variant A** for your first ITE application. This variant is a simple file-to-file processing. You can find more information about the different variants in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Application framework > Architecture > ITE application > Variants](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$14.html).
+Select **Variant A** for your first ITE application. This variant is a simple file-to-file processing. You can find more information about the different variants in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Application framework > Architecture > ITE application > Variants](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$16.html).
 
 Enter **demoapp** as the namespace. This namespace becomes the most-outer SPL namespace of the ITE application. Leave the **Use Lookup Manager** switch unchecked. The ITE application that you create in the first step does not use lookup data, which needs to be managed. Also, keep the default value for the control path.
 
@@ -138,7 +138,7 @@ Although you can cancel TEDA application jobs like any other IBM Streams job wit
 
 Using `teda-shutdown-job` ensures that files, which are already in progress, are completely processed and queued commands end before the job is cancelled. Thus, the application has a consistent state and can be restarted faster, not needing time-consuming recovery actions.
 
-You can find more information about stopping TEDA jobs in the IBM Knowledge Center: [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Operating applications > Stopping the Lookup Manager and ITE applications](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$137.html)
+You can find more information about stopping TEDA jobs in the IBM Knowledge Center: [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Operating applications > Stopping the Lookup Manager and ITE applications](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$152.html)
 
 If you completed module 1, this command is within your search path. Assuming that your job-ID is 0, you would enter
 
