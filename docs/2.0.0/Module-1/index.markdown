@@ -79,7 +79,7 @@ The TEDA plug-in provides wizards to create SPL projects that are based on the T
   * **File > New > Project... > InfoSphere Streams Telecommunications Event Data Analytics > ITE Application Project**
   * **File > New > Project... > InfoSphere Streams Telecommunications Event Data Analytics > Lookup Manager Application Project**
 
-You find the procedure also in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Configuring > Configuring Telecommunications Event Data Analytics for InfoSphere Streams Studio](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$6.html).
+You find the procedure also in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Configuring > Configuring Telecommunications Event Data Analytics for InfoSphere Streams Studio](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$8.html).
 
 ## Installing the Monitoring GUI
 
@@ -95,7 +95,7 @@ The GUI is provided as a sample application of IBM Streams. For simplicity, you 
 
 The directory MonitoringGUI is created in your home directory, which contains the application.
 
-You find all information about the Monitoring GUI in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Application Framework > Tools > Monitoring GUI](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$25.html).
+You find all information about the Monitoring GUI in the IBM Knowledge Center under [Reference > Toolkits > SPL standard and specialized toolkits > com.ibm.streams.teda > Application Framework > Tools > Monitoring GUI](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$27.html).
 
 ## Starting and configuring the Monitoring GUI
 
