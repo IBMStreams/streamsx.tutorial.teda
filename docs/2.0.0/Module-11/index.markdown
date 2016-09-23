@@ -19,8 +19,8 @@ After completing this module, you should be able to:
 # Prerequisites
 The database configuration requires extra preparation in your environment. The general database configuration is described in the IBM Knowledge Center under:
 
-* [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0>Developing applications>Configuring Solutions>Configuring Lookup Manager Applications>Working with enrichment data from databases](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$97.html)
-* [ Reference > Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0 > Developing applications > Customizing applications > Customizing the Lookup Manager application](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$112.html)
+* [Reference>Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0>Developing applications>Configuring Solutions>Configuring Lookup Manager Applications>Working with enrichment data from databases](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$99.html)
+* [ Reference > Toolkits>SPL standard and specialized toolkits>com.ibm.streams.teda 2.0.0 > Developing applications > Customizing applications > Customizing the Lookup Manager application](http://www.ibm.com/support/knowledgecenter/SSCRJU_4.2.0/com.ibm.streams.toolkits.doc/spldoc/dita/tk$com.ibm.streams.teda/tk$com.ibm.streams.teda$118.html)
 
  
 The prerequisites for the sample that you use in this module:
