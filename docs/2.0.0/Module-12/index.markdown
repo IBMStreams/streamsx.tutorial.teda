@@ -73,7 +73,7 @@ You find the other supported **ite.export.streams** configuration settings in th
 ## Build the application to import the tuples from the ITE application
 
 Your application that imports the tuples from the ITE application, it must subscribe the **ite=="demoapp.context_output_Dedup"** property.
-You must use the same streams schema specification as the ITE implementation. You obtain the streams schema with the inclusion of the use clause **use demoapp.streams::*;'** in the spl code of your importer application.
+You must use the same streams schema specification as the ITE implementation. You obtain the streams schema with the inclusion of the use clause **use demoapp.streams::*;** in the spl code of your importer application.
 
 The example of the Import operator shows the specified settings:
 
